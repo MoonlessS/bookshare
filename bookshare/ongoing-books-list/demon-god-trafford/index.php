@@ -1,5 +1,5 @@
 <?php
-    set_include_path("/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/");
+set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 );
 
     include_once("common/database.php");
 
@@ -38,31 +38,31 @@
                           <table>
                       <tbody>
                       <tr>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter1.html">* Chapter 1 - Desperate Teenager</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter1.php">* Chapter 1 - Desperate Teenager</a></td>
                           <td>* * * * *</td>
                       </tr>
                       <tr>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter2.html">* Chapter 2 - First Yuan Heavy Water</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter2.php">* Chapter 2 - First Yuan Heavy Water</a></td>
                           <td>* * * * *</td>
                       </tr>
                       <tr>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter3.html">Chapter 3 - Desperate Teenager</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter3.php">Chapter 3 - Desperate Teenager</a></td>
                           <td>* * * * *</td>
                       </tr>
                       <tr>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter4.html">Chapter 4 - Desperate Teenager</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter4.php">Chapter 4 - Desperate Teenager</a></td>
                           <td>* * * * *</td>
                       </tr>
                       <tr>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter5.html">Chapter 5 - Desperate Teenager</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter5.php">Chapter 5 - Desperate Teenager</a></td>
                           <td>* * * * *</td>
                       </tr>
                       <tr>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter6.html">Chapter 6 - Desperate Teenager</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter6.php">Chapter 6 - Desperate Teenager</a></td>
                           <td>* * * * *</td>
                       </tr>
                       <tr>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter7.html">Chapter 7 - Desperate Teenager</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter7.php">Chapter 7 - Desperate Teenager</a></td>
                           <td>* * * * *</td>
                       </tr>
                   </tbody>
