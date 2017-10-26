@@ -2,8 +2,14 @@
     //set_include_path('../');
     //$path = $_SERVER['DOCUMENT_ROOT'];
     //$path = "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/";
-    set_include_path("/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/");
-    
+set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 );
+
+set_include_path(  get_include_path() . PATH_SEPARATOR .
+                 "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .
+                 "/srv/www/htdocs/bookshare/bookshare/"
+                );
+    //echo get_include_path();
+
     include_once("common/database.php");
 
     include_once("apresentacao/header.php");
@@ -34,13 +40,13 @@
                       </tr>
                       <tr>
                           <td><a href="ongoing-books-list/demon-god-trafford/">Demon God Trafford</a></td>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter2.html">2 First Yuan Heavy Water</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter2.php">2 First Yuan Heavy Water</a></td>
                           <td> Ghost Writer</td>
                           <td>20 minutes ago</td>
                       </tr>
                       <tr>
                           <td><a href="ongoing-books-list/demon-god-trafford/">Demon God Trafford</a></td>
-                          <td><a href="ongoing-books-list/demon-god-trafford/chapter1.html">1 Desperate Teenager</a></td>
+                          <td><a href="ongoing-books-list/demon-god-trafford/chapter1.php">1 Desperate Teenager</a></td>
                           <td> Ghost Writer</td>
                           <td>50 minutes ago</td>
                       </tr>

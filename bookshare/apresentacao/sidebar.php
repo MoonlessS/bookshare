@@ -61,12 +61,12 @@ function display_sidebar(){
                         </tr>
                         <tr>
                             <td><a href='ongoing-books-list/demon-god-trafford/'>Demon God Trafford</a></td>
-                            <td><a href='ongoing-books-list/demon-god-trafford/chapter2.html'>2 First Yuan Heavy Water</a></td>
+                            <td><a href='ongoing-books-list/demon-god-trafford/chapter2.php'>2 First Yuan Heavy Water</a></td>
 
                         </tr>
                         <tr>
                             <td><a href='ongoing-books-list/demon-god-trafford/'>Demon God Trafford</a></td>
-                            <td><a href='ongoing-books-list/demon-god-trafford/chapter1.html'>1 Desperate Teenager</a></td>
+                            <td><a href='ongoing-books-list/demon-god-trafford/chapter1.php'>1 Desperate Teenager</a></td>
                         </tr>
                         <tr>
                             <td><a href''></a></td>
