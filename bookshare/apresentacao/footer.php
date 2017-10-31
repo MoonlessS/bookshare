@@ -1,8 +1,9 @@
 <?php
   function display_footer(){
+
     echo "
     <footer>
-      <p>&copy; José Pedro Vieira Gomes - 2017</p>
+      <p>&copy; Filipa Coelho Nunes & José Pedro Vieira Gomes - 2017</p>
     </footer>
     ";
 
