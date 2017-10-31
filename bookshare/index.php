@@ -9,7 +9,7 @@
 
 
 <html>
-        <?php display_header("BookShare - Read Our Amazing Collection Or Write And Share Your Own Books On The Internet"); ?>
+        <?php display_header(); ?>
 
         <body>
           <?php display_nav(); ?>

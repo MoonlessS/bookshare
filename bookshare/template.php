@@ -10,18 +10,14 @@
 ?>
 
 <html>
-        <?php display_header("BookShare - Read Our Amazing Collection Or Write And Share Your Own Books On The Internet"); ?>
+  <?php display_header("BookShare - Read Our Amazing Collection Or Write And Share Your Own Books On The Internet"); ?>
 
-        <body>
-          <?php display_nav(); ?>
-          <?php display_banner(); ?>
+  <body>
+    <?php display_nav(); ?>
+    <?php display_banner(); ?>
+    <main>
 
-            <main>
-
-            </main>
-
-            <?php display_footer(); ?>
-
-
-        </body>
+    </main>
+    <?php display_footer(); ?>
+  </body>
 </html>

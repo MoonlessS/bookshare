@@ -6,7 +6,6 @@
     include_once("apresentacao/header.php");
     include_once("apresentacao/nav.php");
     include_once("apresentacao/banner.php");
-    include_once("apresentacao/sidebar.php");
     include_once("apresentacao/footer.php");
 ?>
 
@@ -17,11 +16,3 @@
     <?php display_nav(); ?>
     <?php display_banner(); ?>
     <main>
-      <section class="main">
-
-      </section>
-      <?php display_sidebar(); ?>
-    </main>
-    <?php display_footer(); ?>
-  </body>
-</html>
