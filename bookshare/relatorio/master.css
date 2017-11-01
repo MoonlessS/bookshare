@@ -189,7 +189,7 @@ table > caption {
     width: 70%;
 }
 
-.book-title {
+.book-title-container {
     width: 100%;
     padding: 10px;
     position: relative;
@@ -197,7 +197,7 @@ table > caption {
     
 }
 
-.book-title > div{
+.book-title-container > div{
     color:white;
     padding: 5px;
     
