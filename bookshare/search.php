@@ -2,13 +2,36 @@
   <?php include_once("template/templateTop.php"); ?>
     <article class="main">
 <!-- /////////////////////////////////////////////////////////////////////// -->
-      <div id="title" width=40% style="font-size: 20px; font-weight: bold; padding-left: 2px;">Ongoing Books List: </div>
-      <div class="book-title-container">
-          <div id="title" width=40%>Demon God Trafford</div>
-          <div id="author" width=40%>By: Ghost Writer</div>
-          <div id="stars" width=10%>*****</div>
-      </div>
+		<section class='search'>
+		<table>
+			<tbody>
+			<tr> <td></td> </tr>
+			<tr>
+				<th width=15%>Book:</th>
+				<td></td>
+			</tr>
+			<tr> <td><br></td> </tr>
+			
+			<tr>
+				<th >Chapter:</th>
+				<td></td>
+			</tr>
+			<tr> <td><br></td> </tr>
+			
+			<tr>
+				<th>Author:</th>
+				<td></td>
+			</tr>
+			<tr> <td><br></td> </tr>
+			
+			<tr>
+				<th>User:</th>
+				<td></td>
+			</tr>	
+			<tr> <td></td> </tr>
+			</tbody>
+		</table>
+		</section>
 <!-- /////////////////////////////////////////////////////////////////////// -->
     </article>
-  <?php include_once("apresentacao/sidebar.php"); display_sidebar(); ?>
 <?php include_once("template/templateBot.php"); ?>

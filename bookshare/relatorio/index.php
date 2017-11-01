@@ -2,6 +2,9 @@
   <?php include_once("template/templateTop.php"); ?>
     <article class="main">
 <!-- /////////////////////////////////////////////////////////////////////// -->
+      <script type="text/javascript">
+        document.getElementById("home").href = "./";
+      </script>
       <div class="book-title-container">
           <div id="title" width=40%>Filipa Coelho Nunes</div>
           <div id="author" width=40%>up201305298@fe.up.pt</div>
