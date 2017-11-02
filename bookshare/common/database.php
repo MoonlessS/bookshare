@@ -1,9 +1,28 @@
 <?php
   function db(){
-    $conn = pg_connect("host=vdbm.fe.up.pt dbname=exemplo user=siem1728 password=CrrfyvDH");
+    global $conn;
+    if(!isset($conn)){
+      $conn = pg_connect("host=db.fe.up.pt dbname=siem1728 user=siem1728 password=CrrfyvDH");
+    } else {
+      return;
+    }
     if(!$conn) {
       echo "An error ocurred.\n";
       exit;
     }
+    //debug
+    print "\ndbg:Connected Successfully to DataBase!\n";
+    $query = "set schema 'bookshare';";
+    pg_exec($conn, $query);
   }
+?>
+<?php
+function execQuery($query){
+  db();
+  global $conn;
+//debug
+print "\ndbg:SQL-Query: " . $query . " --end--";
+  $result = pg_exec($conn, $query);
+  return $result;
+}
 ?>

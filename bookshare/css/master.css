@@ -11,6 +11,16 @@ body {
   margin: 0 1% 10px 1%;
 }
 
+a {
+  text-decoration: underline;
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+  color: white;
+  /*text-decoration-color: white;*/
+}
+
 nav.main-navigation {
   overflow: auto;
   margin: 5px 0 5px 0;
@@ -18,46 +28,151 @@ nav.main-navigation {
 }
 
 nav.main-navigation>ul {
-  display: flow-root;
+  /*display: flow-root;*/
   margin: 0;
   padding: 0;
+  overflow: hidden;
   list-style: none;
 }
 
 nav.main-navigation>ul>li {
-  position: relative;
   float: left;
   width: 25%;
   min-width: 70px;
-  padding: 10px 0 10px 0;
+  /*padding: 10px 0 10px 0;*/
+  text-align: center;
+  min-width: 70px;
+}
+
+nav.main-navigation>ul>li>a:hover, .dropdown:hover .dropbtn {
+    /*background-color: rgb(154, 19, 19);*/
+    background: rgba(14, 12, 12, 0.9);
+}
+
+nav.main-navigation>ul>li>a, .dropbtn {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
   text-align: center;
 }
 
-a {
-  cursor: auto;
+/*nav.main-navigation>ul>li>a:hover {
   text-decoration: underline;
-  color: ghostwhite;
-}
-
-a:hover {
-  text-decoration: none;
   color: white;
   text-decoration-color: white;
+}*/
+
+li.dropdown {
+    display: inline-block;
 }
 
-nav.main-navigation>ul>li>a {
-  font-size: 18px;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(127,127,127,.7);
+  border: 3px solid rgba(64, 64, 64, 1);
+  padding: 8px 16px 2px 16px;
+  min-width: 160px;
+  /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+  z-index: 1;
+  margin-top:10px;
+  /*opacity: 0;*/
+
+}
+
+.space-box{
+  /*opacity: 1 !important;*/
+  /*float: left;*/
+  /*clear: both;*/
+  display: none;
+  height: 10px;
+  width: inherit;
+  position: absolute;
+  /*background-color: rgba(127,127,127,.7);*/
+  /*border: 0;*/
+  /*padding-top: 10px;*/
+  /*min-width: 160px;*/
+  /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+  /*z-index: 1;*/
+  align-content: center;
+}
+
+.arrow-up {
+  margin-left: 80%;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid rgba(64, 64, 64, 1);
+}
+/*
+.dropdown-content a {
+  color: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+*/
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button1 {
+    background-color: white;
+    color: rgba(41,41,41, 0.9);
+    border: 2px solid rgba(41,41,41, 0.9);
+    font-weight: bold;
+}
+
+.button1:hover {
+    background-color: rgba(41,41,41, 0.7);
+    border: 2px solid white;
+    color: white;
+}
+
+#username, #password {
+  width: 100%;
+  margin-bottom: 10px;
+	background-color: rgba(41,41,41, 0.7);
+	border: 3px solid rgba(14, 18, 23, 1);
+	width: 100%;
+	color: white;
+	font-size: 16px;
+	font-family: 'Segoe UI';
+	text-align: center;
+	padding: 5px;
+}
+
+#username:focus,#password:focus {
+	background-color: rgba(159, 189, 224, 0.9);
+	border: 3px solid rgba(71, 95, 124, 0.8);
   font-weight: 600;
-  cursor: auto;
-  text-decoration: none;
-  color: ghostwhite;
 }
 
-nav.main-navigation>ul>li>a:hover {
-  text-decoration: underline;
-  color: white;
-  text-decoration-color: white;
-}
 
 .banner {
   overflow: hidden;
@@ -133,6 +248,7 @@ input[type="text"], textarea {
 	text-align: center;
 	padding: 5px;
 }
+
 
 article.main>.chapter-list {
   width: 69%;
@@ -223,7 +339,10 @@ article.main {
   /*resize: horizontal;
   justify-content: center;*/
 }
-
+/*---use with flex-container
+.book-title-container>div#author{
+  margin-right: auto !important;
+}*/
 .book-title-container>div {
   /*display: inline-block;*/
   max-width: 100%;
