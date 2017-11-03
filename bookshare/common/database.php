@@ -10,18 +10,20 @@
       echo "An error ocurred.\n";
       exit;
     }
-    //debug
-    print "\ndbg:Connected Successfully to DataBase!\n";
+//debug
+error_log("\ndbg:Connected Successfully to DataBase!\n");
     $query = "set schema 'bookshare';";
     pg_exec($conn, $query);
   }
 ?>
+
+
 <?php
 function execQuery($query){
   db();
   global $conn;
 //debug
-print "\ndbg:SQL-Query: " . $query . " --end--";
+error_log("\ndbg:SQL-Query: " . $query . " --end--");
   $result = pg_exec($conn, $query);
   return $result;
 }

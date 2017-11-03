@@ -12,6 +12,7 @@
   echo  "
     <title>{$title}</title>
     <link rel='stylesheet' href='css/master.css'>
+    <script src='js/bookshare.js' charset='utf-8'></script>
   </head>
       ";
 

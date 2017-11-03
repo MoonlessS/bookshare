@@ -1,5 +1,5 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 ); ?>
-<?php include_once("template/templateTop.php"); ?>
+<?php include_once("common/database.php"); ?>
 <!--  ///////////////////////////////////////////////////////////////////  -->
 <?php
 function addUser($login,$password,$email){
@@ -10,6 +10,8 @@ function addUser($login,$password,$email){
 
 <?php
 function validateUser($login,$password){
+//debug
+// return true;
   $query = "select * from users where name = '" . $login . "' AND password = '" . md5($password) . "';" ;
   $result = execQuery($query);
 
@@ -22,7 +24,12 @@ function validateUser($login,$password){
 }
 ?>
 
+
+<?php
+//debug
 //testes:
-<?php $user ="user2" ?>
-<?php //addUser("$user", "password" , "$user@fe.up.pt"); ?>
-<?php //validateUser("$user", "password"); ?>
+// $user ="user2";
+//addUser("$user", "password" , "$user@fe.up.pt");
+ // validateUser("$user", "password");
+
+?>

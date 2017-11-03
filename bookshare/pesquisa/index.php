@@ -14,7 +14,7 @@
 				</form>
 			</tr>
 			<tr> <td><br></td> </tr>
-			
+
 			<tr>
 				<th >Chapter:</th>
 				<form action='pesquisa/search.php' method='get' id='chapter'>
@@ -22,7 +22,7 @@
 				</form>
 			</tr>
 			<tr> <td><br></td> </tr>
-			
+
 			<tr>
 				<th>Author:</th>
 				<form action='pesquisa/search.php' method='get' id='author'>
@@ -30,17 +30,17 @@
 				</form>
 			</tr>
 			<tr> <td><br></td> </tr>
-			
+
 			<tr>
 				<th>User:</th>
 				<form action='pesquisa/search.php' method='get' id='user'>
 					<td class='search'> <input type='text' style='width:100%' name='user'> </td>
 				</form>
-			</tr>	
+			</tr>
 			<tr> <td></td> </tr>
 			</tbody>
 		</table>
-		
+
 		</section>
 <!-- /////////////////////////////////////////////////////////////////////// -->
     </article>
