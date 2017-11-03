@@ -238,7 +238,7 @@ article.main > section.search{
 	padding: 0px;
 }
 
-input[type="text"], textarea {
+input.search[type="text"], textarea {
 	background-color: rgba(71, 95, 124, .7);
 	border: none;
 	color: white;
@@ -246,6 +246,27 @@ input[type="text"], textarea {
 	font-family: 'Segoe UI';
 	text-align: center;
 	padding: 5px;
+}
+
+div.advanced_search{
+	position:absolute;
+	margin-top: 70px;
+}
+
+input.advanced_search[type=text]{
+    width: 120px;
+    box-sizing: border-box;
+    font-size: 12px;
+	background-color: white;
+    padding: 12px 12px 12px 12px;
+}
+
+input.advanced_search[type=image]{
+    box-sizing: border-box;
+	background-color: white;
+	width: 42px;
+	margin-left: 122px;
+	margin-top: -58px;
 }
 
 
