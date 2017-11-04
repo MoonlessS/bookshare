@@ -11,7 +11,7 @@ function addUser($login,$password,$email){
 <?php
 function validateUser($login,$password){
 //debug
-return true;
+// return true;
   $query = "select * from users where name = '" . $login . "' AND password = '" . md5($password) . "';" ;
   $result = execQuery($query);
 
