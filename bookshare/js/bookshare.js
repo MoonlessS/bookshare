@@ -9,7 +9,8 @@ function showLogin(dropdown){
     usernameInput.textContent="";
     dropdownContent.parentElement.onmouseleave = () => {
       dropdown.nextElementSibling.style.display = "none";
-      dropdownContent.style.display = "none"
+      dropdownContent.style.display = "none";
+      document.getElementById('start-book-button').style.display='none';
     }
 }
 

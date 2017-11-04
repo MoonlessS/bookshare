@@ -19,17 +19,23 @@ function displayLogin(){
               <script>resizeNav(false);</script>
 ";
 }
-
+?>
+<!--
+<div style='resize: both;border-radius: 50%;/*! overflow: hidden; */height: inherit;align-content: center;border-color: blue;/*! display: inline; */'><i class='logo' style='background:url(css/img/profile.svg);size:64px'></i></div>
+-->
+<?php
 function displayLoggedUser(){
   $username = $_SESSION['username'];
   echo "
-              <a class='dropbtn' onclick='javascript:showLogin(this)'>$username</a>
+              <a class='dropbtn' onclick='javascript:showLogin(this)' style='word-break: break-all;'><div style='' class='avatar'><img src='css/img/avatar.png'></div><div class='username-box'>$username</div></a>
               <div class='space-box'>
                 <div class='arrow-up'></div>
               </div>
               <div class='dropdown-content'>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo addition'></i> <p>Add Book to Library</p></button>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo library'></i> <p>Library</p></button>
+                <button class='button button2' style='/*vertical-align:middle*/' onclick=document.getElementById('start-book-button').style.display='inline-block'><i class='logo pencil'></i> <p>Book Edition</p></button>
+                <button id='start-book-button' class='button button2  submenu' style='/*vertical-align:middle;*/display:none'><i class='logo addition'></i> <p>Start New Book</p></button>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo profile'></i> <p>My Profile</p></button>
                   <form class='log-out' action='javascript:logoutUser(this);' method='post'  autocomplete='on'>
                     <input type='hidden' id='username' name='username' value='$username'>

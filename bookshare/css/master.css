@@ -54,6 +54,7 @@ nav.main-navigation>ul>li>a:hover, .dropdown:hover .dropbtn {
 }
 
 nav.main-navigation>ul>li>a, .dropbtn {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
   height: 3em;
   display: block;
   /*display: inline-block;                                        */
@@ -183,8 +184,39 @@ i {
   background-size: 32px 32px;
   background-position: center;
 }
+
+img {
+  max-width:100%;
+  max-height:100%;
+}
+.avatar {
+  /*display: initial;*/
+  position: absolute;
+  display: inline-block;
+  /*float: left;*/
+  border-radius: 100%;
+  overflow: hidden !important;
+  width: 80px;
+  height:80px;
+  /*border: 1px solid white;*/
+  /*position: relative;*/
+  top:-10px;
+  left:70%;
+  /*right: 7%;*/
+}
+.username-box {
+
+  left: calc(70% + 50px);
+  width: calc(100% - 70% - 7% - 50px);
+  position: absolute;
+  display: inline-block;
+}
+
 .profile{
   background: url("img/profile.svg");
+}
+.pencil{
+  background: url("img/pencil.svg");
 }
 .library{
   background: url("img/books.svg");
@@ -258,6 +290,11 @@ i {
     border: 3px solid rgba(209, 228, 207, 1) !important;
     font-weight: bold;
     width: 100%;
+}
+
+.submenu {
+  margin-left: 10%;
+  width: 90%;
 }
 
 #username, #password {
@@ -587,4 +624,18 @@ article.main {
 }
 .z2{
   z-index:2;
+}
+
+.invisible{
+  /*background-color: rgba(255, 0, 0, 0);*/
+  background-color: inherit;
+  border:0;
+  padding: 0;
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
+  display: inline-block;
+  color: white;
+  font-size: inherit;
+  resize: vertical;
 }
