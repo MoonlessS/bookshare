@@ -35,7 +35,7 @@ function displayLoggedUser(){
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo addition'></i> <p>Add Book to Library</p></button>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo library'></i> <p>Library</p></button>
                 <button class='button button2' style='/*vertical-align:middle*/' onclick=document.getElementById('start-book-button').style.display='inline-block'><i class='logo pencil'></i> <p>Book Edition</p></button>
-                <button id='start-book-button' class='button button2  submenu' style='/*vertical-align:middle;*/display:none'><i class='logo addition'></i> <p>Start New Book</p></button>
+                <a href='start-new-book/' id='start-book-button' class='button button2  submenu' style='/*vertical-align:middle;*/display:none'><i class='logo addition'></i><p>Start New Book</p></a>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo profile'></i> <p>My Profile</p></button>
                   <form class='log-out' action='javascript:logoutUser(this);' method='post'  autocomplete='on'>
                     <input type='hidden' id='username' name='username' value='$username'>
