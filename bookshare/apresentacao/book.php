@@ -1,8 +1,16 @@
+<div style="block">
+
+</div>
 <?php
+// alterar a parte dos genre para esta e passar para os capitulos
+//``````````````````````````````````````````````````````````````
 function display_book($bookID = null){
   $book = getBookInfo($bookID);
+  if(!$book) {
+    display_error("The Book requested doesn't exist or was deleted!");
+    return;
+  }
   echo "
-  <form method='POST' action='start-new-book/'>
           <div class='book-title-container'>
               <div id='title' width=40%>{$book['title']}</div>
               <div id='author' width=40%>By: " . $_SESSION['username'] . "</div>
@@ -15,36 +23,22 @@ function display_book($bookID = null){
             <div class='float' style='min-width: 70%;width:calc(100% - 250px - 20px)'>
               <div class='green title' style='margin-right:50%;'>Synopsis</div>
               <div class='green description' style='min-height:250px;'>
-                {$book['synopsis']}
-              </div>
-            </div>
-            <div class='float' style='clear:left;width:100%;' >
-              <div class='green title' style='margin-right:50%;'>Choose your book Genres:</div>
-              <div class='green description' style=''>
-                <div class='float'>";
-  $result = getGenreList($book['title']);
-  $num_linhas = pg_numrows($result);
-  $i = 0;
-  while ($i < $num_linhas) {
-
-  	$row = pg_fetch_assoc($result);
-    $genreX = $row['genre'];
-    echo "
-    <input type='checkbox' value='None' id='".$genreX."' name='".$genreX."'";
-  echo isset($_POST[$genreX])?"checked='true'": "";
-    echo "/>
-    <label class='button button1 check' for='".$genreX."'>".$genreX."</label>";
-  	$i++;
-  }
-  echo "
-                  </div>
+                {$book['synopsis']}<br><br>
+              <div class='title no-border' style='margin-right:100%;padding:0;'>Genres:</div>";
+    $result = getGenreList($bookID);
+    $num_linhas = pg_numrows($result);
+    $i = 0;
+    while ($i < $num_linhas) {
+      $row = pg_fetch_assoc($result);
+      $genreX = $row['genre'];
+      echo "
+              <a style='padding:5px;display:inline-block;width:auto;' class='button button1'>".$genreX."</a>";
+      $i++;
+    }
+      echo    "
               </div>
             </div>
           </div>
-          <div class='float' style='clear:left;width:100%;' >
-            <button class='button button2 float-right' style='width:50%;/*vertical-align:middle*/' onclick='this.form.submit()' name='logout'><i class='logo pencil'></i><p>Send new book informations!</p></button>
-          </div>
-  </form>
         ";
 }
 function display_book_edit($title = null,$url = null,$synopsis = null,$bookGenreList = null){
@@ -94,19 +88,56 @@ function display_book_edit($title = null,$url = null,$synopsis = null,$bookGenre
             </div>
           </div>
           <div class='float' style='clear:left;width:100%;' >
-            <button class='button button2 float-right' style='width:50%;/*vertical-align:middle*/' onclick='this.form.submit()' name='logout'><i class='logo pencil'></i><p>Send new book informations!</p></button>
+            <button class='button button2 float' style='width:48%;/*vertical-align:middle*/' onclick='this.form.submit()' name='preview'><i class='logo eye'></i><p>Preview!</p></button>
+            <button class='button button2 float-right' style='width:50%;/*vertical-align:middle*/' onclick='this.form.submit()' name='new-book'><i class='logo pencil'></i><p>Send new book informations!</p></button>
           </div>
   </form>
         ";
 }
-function display_error_title_used($title){
+function display_book_preview(){
   echo "
-  <div class='block title red'>Error!
-  </div>
-  <div class='block description red'>
-    The Title /'$title/' is already in use! Please choose a different Title!
-  </div>
+  <div class='float border black' style='width:100%;'>
+          <div class='book-title-container'>
+              <div id='title' width=40%>{$_POST['title']}</div>
+              <div id='author' width=40%>By: " . $_SESSION['username'] . "</div>
+              <div id='stars' width=10%>*****</div>
+          </div>
+          <div>
+            <div class='float' style='width:250px;max-height:350px;margin-left: 20px;'>
+              <img src='" . (!empty($_POST['url'])?$_POST['url']:"img/cover.png") . "' alt='img/cover.png'>
+            </div>
+            <div class='float' style='min-width: 70%;width:calc(100% - 250px - 20px)'>
+              <div class='green title' style='margin-right:50%;'>Synopsis</div>
+              <div class='green description' style='min-height:250px;'>
+                {$_POST['synopsis']}<br><br>
+              <div class='title no-border' style='margin-right:100%;padding:0;'>Genres:</div>";
+              $result = getGenreList();
+              $num_linhas = pg_numrows($result);
+              $i = 0;
+              while ($i < $num_linhas) {
+
+                $row = pg_fetch_assoc($result);
+                $genreX = $row['genre'];
+                if(isset($_POST[$genreX])){
+                  echo "
+                  <a style='padding:5px;display:inline-block;width:auto;' class='button button1'>".$genreX."</a>";
+                }
+                $i++;
+              }
+      echo    "
+              </div>
+            </div>
+          </div>
+    </div>
         ";
 }
+// function display_error_title_used($title){
+//   echo "
+//   <div class='block title red'>Error!</div>
+//   <div class='block description red'>
+//     The Title /'$title/' is already in use! Please choose a different Title!
+//   </div>
+//         ";
+// }
 
  ?>

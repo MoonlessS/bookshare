@@ -9,6 +9,7 @@
     include_once("apresentacao/nav.php");
     include_once("apresentacao/banner.php");
     include_once("apresentacao/footer.php");
+    include_once("apresentacao/error.php");
 ?>
 
 <html>
