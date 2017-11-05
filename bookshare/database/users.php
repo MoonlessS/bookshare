@@ -11,14 +11,15 @@ function addUser($login,$password,$email){
 <?php
 function validateUser($login,$password){
 //debug
-return true;
+// return true;
   $query = "select * from users where name = '" . $login . "' AND password = '" . md5($password) . "';" ;
   $result = execQuery($query);
-
   $num_registos = pg_numrows($result);
 
-  if ($num_registos > 0)
+  if ($num_registos > 0){
+    $_SESSION['user'] = pg_fetch_assoc($result);
     return true;
+  }
   else
     return false;
 }
