@@ -2,23 +2,22 @@
 		
 		include_once("common/database.php");
 		include_once("template/templateTop.php");
+		include_once("database/search.php");
+
 ?>
 
 <?php
-	db();
-	if(isset($_GET['book'])){	
-		$book = $_GET['book'];
-		
-		$book = htmlspecialchars($book);
-                
-        $results = "SELECT * FROM book WHERE (title LIKE '%".$book."%')";
-		
-		foreach($conn->query($results) as $row){
-			print $row['name'];
-		}
-    }
+	if(isset($_GET['book'])){
+		$book = htmlspecialchars($_GET['book']);
+		$book = ucwords(strtolower($book));
+        
+		search_book($book);
+	}	
 	elseif(isset($_GET['chapter'])){
-		echo "Olá1!!!";	
+		$chapter = htmlspecialchars($_GET['chapter']);
+		$chapter = ucwords(strtolower($chapter));
+        
+		search_chapter($chapter);
 	}
 	elseif(isset($_GET['author'])){
 		echo "Olá2!!!";	
@@ -27,7 +26,11 @@
 		echo "Olá3!!!";	
 	}
 	elseif(isset($_GET['general_search'])){
-		echo "Olá4!!!";	
+		$search_input = htmlspecialchars($_GET['general_search']);
+		$search_input = ucwords(strtolower($search_input));
+        
+		general_search($search_input);
 	}
 ?>
 
+<?php include_once("template/templateBot.php"); ?>
