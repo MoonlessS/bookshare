@@ -24,13 +24,14 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
       logoutUser();
       // echo "\n\n-_______logout___________--session status:".session_status();
     }
-else if(validateUser("$username", "$password")){
+else if($_SESSION['user'] = validateUser("$username", "$password")){
       // session_start();
       $_SESSION['autenticado'] = true;
       $_SESSION['username'] = $username;
       // echo "\n\n-________login__________--session status:".session_status();
       loginOk($username);
-
+  }else{
+    loginFailure();
   }
 
 if(isset($conn)) {
@@ -38,13 +39,23 @@ if(isset($conn)) {
 }
 ?>
 <?php
+// TODO change to json_encode() of autentication verification status + html
 function loginOk(){
   displayLoggedUser();
+}
+function loginFailure(){
+  //add some error call
+  displayLogin();
 }
 
 function logoutUser(){
   $_SESSION['autenticado'] = false;
   session_destroy();
   displayLogin();
+}
+
+function getUserPrivileges(){
+  $username = $_SESSION['username'];
+
 }
 ?>

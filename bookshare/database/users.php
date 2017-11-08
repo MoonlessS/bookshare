@@ -17,8 +17,7 @@ function validateUser($login,$password){
   $num_registos = pg_numrows($result);
 
   if ($num_registos > 0){
-    $_SESSION['user'] = pg_fetch_assoc($result);
-    return true;
+     return pg_fetch_assoc($result);
   }
   else
     return false;

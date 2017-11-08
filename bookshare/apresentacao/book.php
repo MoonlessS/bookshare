@@ -13,7 +13,7 @@ function display_book($bookID = null){
   echo "
           <div class='book-title-container'>
               <div id='title' width=40%>{$book['title']}</div>
-              <div id='author' width=40%>By:{$book['author']}</div>
+              <div id='author' width=40%>By: {$book['author']}</div>
               <div id='stars' width=10%>*****</div>
           </div>
           <div>
