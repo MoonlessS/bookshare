@@ -39,7 +39,7 @@ if(isset($conn)) {
 }
 ?>
 <?php
-// TODO change to json_encode() of autentication verification status + html
+// TODO:0 change to json_encode() of autentication verification status + html id:0 gh:4
 function loginOk(){
   displayLoggedUser();
 }
