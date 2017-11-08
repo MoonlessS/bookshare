@@ -35,7 +35,11 @@ function getGenreList($bookID = null){
 }
 
 function getBookInfo($bookID){
-  $query = "SELECT * FROM bookshare.book where id='$bookID'";
+  $query = "SELECT title, author as authorID, name as author,start_publish_date, end_publish_date, book.popularity, cover, status, synopsis
+              FROM bookshare.book
+              join bookshare.users on book.author=users.id
+              where book.id='$bookID'";
+  //"SELECT * FROM bookshare.book where id='$bookID'";
   $result = execQuery($query);
   return pg_fetch_assoc($result);
 }
