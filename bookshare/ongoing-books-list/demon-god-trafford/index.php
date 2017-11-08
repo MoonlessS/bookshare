@@ -14,7 +14,7 @@
   <div class="float" style="min-width: 60%;width:calc(100% - 250px - 20px)">
     <div class="green title" style="margin-right:50%;">Synopsis</div>
     <div class="green description" style="min-height:250px;">
-      <p>The fantastic adventures of Trafford on it’s path to be the God of all Demons. The fabulous encounters with the Archangels and the fight for supremacy with the demons.<br>How will Trafford rise from a low bastard from a low standing noble demon into the terrifying being know as Demon God? </p>
+      <p>The fantastic adventures of Trafford on it’s path to be the God of all Demons. The fabulous encounters with the Archangels and the fight for supremacy with the demons.<br>How will Trafford rise from a low bastard from a low standing noble demon into the terrifying being know as Demon God?</p>
     </div>
   </div>
 
