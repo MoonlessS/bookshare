@@ -71,7 +71,6 @@ function display_book_edit($title = null,$url = null,$synopsis = null,$bookGenre
   $num_linhas = pg_numrows($result);
   $i = 0;
   while ($i < $num_linhas) {
-
   	$row = pg_fetch_assoc($result);
     $genreX = $row['genre'];
     echo "
