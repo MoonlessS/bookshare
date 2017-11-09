@@ -8,7 +8,7 @@
 
 
 <?php
-// TODO add verification of autenticated user author of this book -- create the function
+// TODO:0 add verification of autenticated user author of this book -- create the function id:3 gh:8
 if(isset($_GET['id'])){
   $bookID = $_GET['id'];
   display_book($bookID);

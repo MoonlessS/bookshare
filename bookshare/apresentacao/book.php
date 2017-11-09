@@ -2,7 +2,7 @@
 
 </div>
 <?php
-// TODO passar para os capitulos
+// TODO:0 passar para os capitulos id:1 gh:6
 //``````````````````````````````````````````````````````````````
 function display_book($bookID = null){
   $book = getBookInfo($bookID);
@@ -12,7 +12,11 @@ function display_book($bookID = null){
   }
   echo "
           <div class='book-title-container'>
+<<<<<<< HEAD
               <div id='title' width=40%><a href='book-list/?title={$book['title']}'>{$book['title']}</a></div>
+=======
+              <div id='title' width=40%><a href='books-list/?title={$book['title']}'>{$book['title']}</a></div>
+>>>>>>> b10c5bb01170bf003782e726666ddc5ff13a4f92
               <div id='author' width=40%>By: {$book['author']}</div>
               <div id='stars' width=10%>*****</div>
           </div>
