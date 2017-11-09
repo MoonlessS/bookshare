@@ -9,9 +9,10 @@
     include_once("apresentacao/nav.php");
     include_once("apresentacao/banner.php");
     include_once("apresentacao/footer.php");
+
     include_once("apresentacao/error.php");
 ?>
-
+<!DOCTYPE html>
 <html>
   <?php display_header("BookShare - Read Our Amazing Collection Or Write And Share Your Own Books On The Internet"); ?>
 

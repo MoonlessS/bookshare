@@ -1,8 +1,5 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 ); ?>
 <?php
-  header('Content-Type: application/json');
-?>
-<?php
   include_once("common/database.php");
   include_once("database/users.php");
   include_once("database/books.php");
@@ -24,7 +21,7 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
   //  echo "\n\n-_______start___________--session status:".session_status();
   if($_SESSION['autenticado'] and $_SESSION['username'] == $username and !($logout=='true')){
     error_log("dbg: Utilizador ja autenticado!");
-    //Chrome faz pedidos duplos por isso reposta não da qualquer erro para não se notar esse acontecimento do ponto de vista do utilizador -- firefox winndows não dá problemas
+    //Chrome faz pedidos duplos por isso reposta não da qulaquer erro para não se notar esse acontecimento do ponto de vista do utilizador -- firefox winndows não dá problemas
     loginOk($username);
   } else if($logout=='true'){
       logoutUser();
@@ -36,7 +33,13 @@ else if(($_SESSION['user'] = validateUser("$username", "$password"))){
       $_SESSION['username'] = $username;
       $_SESSION['userBooks'] = getBookInfoByAuthor($username);
       // echo "\n\n-________login__________--session status:".session_status();
+      ob_start();
       loginOk($username);
+      $loginOK = ob_get_contents();
+      ob_end_clean();
+      $message = array('status' => 'ok','html' => $loginOK);
+      echo json_encode($message);
+      
   }else{
     loginFailure();
   }
@@ -46,11 +49,12 @@ if(isset($conn)) {
 }
 ?>
 <?php
+// TODO:0 0 0 0 change to json_encode() of autentication verification status + html id:0 gh:4
 function loginOk(){
   displayLoggedUser();
 }
 function loginFailure(){
-  // TODO add some error on login failure
+  //add some error call
   displayLogin();
 }
 
@@ -58,5 +62,10 @@ function logoutUser(){
   $_SESSION['autenticado'] = false;
   session_destroy();
   displayLogin();
+}
+
+function getUserPrivileges(){
+  $username = $_SESSION['username'];
+
 }
 ?>

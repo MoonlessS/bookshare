@@ -1,16 +1,15 @@
 function showLogin(dropdown) {
   // console.log(dropdown);
-  dropdown.nextElementSibling.style.display = "block";
+  toggleVisibility(dropdown.nextElementSibling);
   var dropdownContent = dropdown.nextElementSibling.nextElementSibling;
-  // if(dropdownContent.style.display == "none"){
-  dropdownContent.style.display = "block";
+  toggleVisibility(dropdownContent);
   var usernameInput = document.getElementById("username");
   usernameInput.focus();
   usernameInput.textContent = "";
   dropdownContent.parentElement.onmouseleave = () => {
     dropdown.nextElementSibling.style.display = "none";
     dropdownContent.style.display = "none";
-    document.getElementById('start-book-button').style.display = 'none';
+    document.getElementById("book-edition-submenu").style.display = "none";
   }
 }
 
@@ -20,9 +19,9 @@ function validateUser(form) {
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("loginButton").innerHTML = this.responseText;
-      // console.log("response:\n" + this.responseText);
+      console.log("response:\n" + this.responseText);
       resizeNav(true);
-      // eval(this.responseXML.getElementById('resize').innerHTML.trim()).call();
+      // eval(this.responseXML.getElementById("resize").innerHTML.trim()).call();
       showLoading(false);
     }
   };
@@ -55,16 +54,16 @@ function logoutUser(form) {
 function resizeNav(loggedStatus) {
   // console.log("loggedStatus: "+loggedStatus);
   if (!loggedStatus) {
-    document.getElementById('logout').style.display = 'none';
-    document.getElementById('home-container').style.width = '25%';
+    document.getElementById("logout").style.display = "none";
+    document.getElementById("home-container").style.width = "25%";
   } else if (loggedStatus) {
-    document.getElementById('home-container').style.width = '20%';
-    setTimeout(() => document.getElementById('logout').style.display = 'block', 1);
+    document.getElementById("home-container").style.width = "20%";
+    setTimeout(() => document.getElementById("logout").style.display = "block", 1);
   }
 }
 
 window.onload = function() {
-  // console.log('showLoadingRequests:' + showLoadingRequests);
+  // console.log("showLoadingRequests:" + showLoadingRequests);
   showLoadingRequests = 0;
 };
 function showLoading(loadingStatus) {
@@ -73,9 +72,18 @@ function showLoading(loadingStatus) {
     : -1;
   // console.log("loggedStatus: "+loggedStatus);
   if (showLoadingRequests < 1) {
-    //document.getElementById('logout').style.display = 'none';
-    document.getElementById('loadingIcon').style.display = 'none';
+    //document.getElementById("logout").style.display = "none";
+    document.getElementById("loadingIcon").style.display = "none";
   } else if (loadingStatus > 0) {
-    document.getElementById('loadingIcon').style.display = 'block';
+    document.getElementById("loadingIcon").style.display = "block";
+  }
+}
+function toggleVisibility(element){
+  if(!(element instanceof Element))
+    element = document.getElementById(element);
+  if (element.style.display !== "block") {
+    element.style.display = "block";
+  } else {
+    element.style.display = "none";
   }
 }

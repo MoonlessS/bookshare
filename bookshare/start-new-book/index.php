@@ -8,32 +8,44 @@
 
 <?php
 
-if(isset($_POST['title'])){
-  if((getIDfromTitle($_POST['title']))){
-    //display_error_title_used($_POST['title']);
-    display_error("The Title '{$_POST['title']}' is already in use! Please choose a different Title!","Erro!","black");
-    display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
-  }else if(isset($_POST['preview'])){
-    display_book_preview();
-    display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
-
-  }else{
-    $result = getGenreList();
-    $num_linhas = pg_numrows($result);
-    $i = 0;
-      while ($i < $num_linhas) {
-      	$row = pg_fetch_assoc($result);
-        $genreX = $row['genre'];
-        if(isset($_POST[$genreX]))$bookGenreList[] = $genreX;
-      	$i++;
-      }
-    $book = addNewBook($_POST['title'], $_POST['url'], $_POST['synopsis'], $bookGenreList);
-    if(($bookID = getIDfromTitle($_POST['title'])))
-    //only works before content echo:
-    //header('Location: http://www.example.com/');
-      display_book($bookID);
+if(isset($_POST['preview'])){
+  if(isset($_POST['title'])){
+    if((getIDfromTitle($_POST['title']))){
+      display_error("The Title '{$_POST['title']}' is already in use! Please choose a different Title!","Erro!");
+    }
   }
-}else{
+  display_book_preview();
+  display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
+
+} else if(isset($_POST['new-book'])){
+  if(isset($_POST['title'])){
+    if((getIDfromTitle($_POST['title']))){
+      display_error("The Title '{$_POST['title']}' is already in use! Please choose a different Title!","Erro!");
+      display_book_edit();
+    } else {
+      $result = getGenreList();
+      $num_linhas = pg_numrows($result);
+      $i = 0;
+        while ($i < $num_linhas) {
+        	$row = pg_fetch_assoc($result);
+          $genreX = $row['genre'];
+          if(isset($_POST[$genreX]))$bookGenreList[] = $genreX;
+        	$i++;
+        }
+      $book = addNewBook($_POST['title'], $_POST['url'], $_POST['synopsis'], $bookGenreList);
+      if(($bookID = getIDfromTitle($_POST['title']))){
+        //only works before content echo:
+        //header('Location: http://www.example.com/');
+        display_error("Click your book title to find your book page!\nGo to 'User Menu > Book Edition' to find link for your books edition anytime!","New Book successfully created!","purple");
+
+        display_book($bookID);
+      } else {
+        display_error("Problem adding new Book! Please try again or contact site Admin!");
+        display_book_edit();
+      }
+    }
+  }
+} else {
   display_book_edit();
 }
 ?>
