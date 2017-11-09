@@ -2,7 +2,7 @@
 
 </div>
 <?php
-// TODO passar para os capitulos
+// TODO:0 passar para os capitulos id:1 gh:6
 //``````````````````````````````````````````````````````````````
 function display_book($bookID = null){
   $book = getBookInfo($bookID);
@@ -88,15 +88,16 @@ function display_book_edit($title = null,$url = null,$synopsis = null,$bookGenre
             </div>
           </div>
           <div class='float' style='clear:left;width:100%;' >
-            <button class='button button2 float' style='width:48%;/*vertical-align:middle*/' onclick='this.form.onsubmit();' name='preview'><i class='logo eye'></i><p>Preview!</p></button>
-            <button class='button button2 float-right' style='width:50%;/*vertical-align:middle*/' onclick='this.form.onsubmit();' name='new-book'><i class='logo pencil'></i><p>Send new book informations!</p></button>
+            <button class='button button2 float blue' style='width:48%;/*vertical-align:middle*/' onclick='this.form.onsubmit();' name='preview'><i class='logo eye'></i><p>Preview!</p></button>
+            <button class='button button2 float-right purple' style='width:50%;/*vertical-align:middle*/' onclick='this.form.onsubmit();' name='new-book'><i class='logo pencil'></i><p>Send new book informations!</p></button>
           </div>
   </form>
         ";
 }
 function display_book_preview(){
   echo "
-  <div class='float border black' style='width:100%;'>
+  <div class='blue title' style='margin-right:50%;'>Preview</div>
+  <div class='description float border black'>
           <div class='book-title-container'>
               <div id='title' width=40%><a href='book-list/?title={$_POST['title']}'>{$_POST['title']}</a></div>
               <div id='author' width=40%>By: " . $_SESSION['username'] . "</div>

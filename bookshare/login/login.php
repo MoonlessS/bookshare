@@ -50,7 +50,7 @@ function loginOk(){
   displayLoggedUser();
 }
 function loginFailure(){
-  // TODO add some error on login failure
+  // TODO:0 add some error on login failure id:4 gh:9
   displayLogin();
 }
 
