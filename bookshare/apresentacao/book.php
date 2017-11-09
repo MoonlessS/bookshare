@@ -2,7 +2,7 @@
 
 </div>
 <?php
-// TODO passar para os capitulos
+// TODO:0 passar para os capitulos id:1 gh:6
 //``````````````````````````````````````````````````````````````
 function display_book($bookID = null){
   $book = getBookInfo($bookID);
