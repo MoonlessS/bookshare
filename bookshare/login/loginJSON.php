@@ -4,7 +4,6 @@
   include_once("database/users.php");
   include_once("database/books.php");
   include_once("apresentacao/login.php");
-  //include_once("template/templateTop.php");
 ?>
 <?php
 // echo "<p>---- \n\n\n\n\n\n\n----</p>";
@@ -21,14 +20,18 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
   //  echo "\n\n-_______start___________--session status:".session_status();
   if($_SESSION['autenticado'] and $_SESSION['username'] == $username and !($logout=='true')){
     error_log("dbg: Utilizador ja autenticado!");
-    //Chrome faz pedidos duplos por isso reposta não da qulaquer erro para não se notar esse acontecimento do ponto de vista do utilizador -- firefox winndows não dá problemas
-    loginOk($username);
+    //Chrome faz pedidos duplos por isso reposta não deve dar qualquer erro para não se notar esse acontecimento do ponto de vista do utilizador ou deve ser resolvido de outra forma -- firefox winndows não dá problemas
+    $message = array('status' => 'authenticated');
+    echo json_encode($message);
   } else if($logout=='true'){
-      logoutUser();
+    ob_start();
+    logoutUser();
+    $logoutOK = ob_get_contents();
+    ob_end_clean();
+    $message = array('status' => 'ok','html' => $logoutOK);
+    echo json_encode($message);
       // echo "\n\n-_______logout___________--session status:".session_status();
-    }
-else if(($_SESSION['user'] = validateUser("$username", "$password"))){
-      // session_start();
+    } else if(($_SESSION['user'] = validateUser("$username", "$password"))){
       $_SESSION['autenticado'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['userBooks'] = getBookInfoByAuthor($username);
@@ -39,9 +42,11 @@ else if(($_SESSION['user'] = validateUser("$username", "$password"))){
       ob_end_clean();
       $message = array('status' => 'ok','html' => $loginOK);
       echo json_encode($message);
-      
+
   }else{
-    loginFailure();
+    $message = array('status' => 'failure');
+    echo json_encode($message);
+    // loginFailure();
   }
 
 if(isset($conn)) {
@@ -49,12 +54,10 @@ if(isset($conn)) {
 }
 ?>
 <?php
-// TODO:0 0 0 0 change to json_encode() of autentication verification status + html id:0 gh:4
 function loginOk(){
   displayLoggedUser();
 }
 function loginFailure(){
-  //add some error call
   displayLogin();
 }
 

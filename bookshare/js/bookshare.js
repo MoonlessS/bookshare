@@ -18,15 +18,24 @@ function validateUser(form) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("loginButton").innerHTML = this.responseText;
       console.log("response:\n" + this.responseText);
-      resizeNav(true);
+      var response = JSON.parse(this.responseText);
+      if(response.status==="ok"){
+        document.getElementById("loginButton").innerHTML = response.html;
+        resizeNav(true);
+      } else if (response.status==="username") {
+        displayNotification("The username doesn't exist!");
+      } else if (response.status==="failure") {
+        displayNotification("Wrong password for the username indicated! ");
+      } else if (response.status==="authenticated") {
+        displayNotification("Authentication already successfully done! ");
+      }
       // eval(this.responseXML.getElementById("resize").innerHTML.trim()).call();
       showLoading(false);
     }
   };
   // xmlhttp.open("GET", "gethint.php?q=" + str, true);
-  xmlhttp.open("POST", "login/login.php", true);
+  xmlhttp.open("POST", "login/loginJSON.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var message = "username=" + form["username"].value + "&password=" + form["password"].value;
   xmlhttp.send(message);
@@ -39,12 +48,15 @@ function logoutUser(form) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("loginButton").innerHTML = this.responseText;
-      resizeNav(false);
+      var response = JSON.parse(this.responseText);
+      if(response.status==="ok"){
+        document.getElementById("loginButton").innerHTML = response.html;
+        resizeNav(false);
+      }
       showLoading(false);
     }
   };
-  xmlhttp.open("POST", "login/login.php", true);
+  xmlhttp.open("POST", "login/loginJSON.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var message = "username=" + form["username"].value + "&" + "logout=true";
   xmlhttp.send(message);
@@ -78,6 +90,7 @@ function showLoading(loadingStatus) {
     document.getElementById("loadingIcon").style.display = "block";
   }
 }
+
 function toggleVisibility(element){
   if(!(element instanceof Element))
     element = document.getElementById(element);
@@ -86,4 +99,20 @@ function toggleVisibility(element){
   } else {
     element.style.display = "none";
   }
+}
+
+notificationNumber = 0;
+function displayNotification(notification){
+  var noteNumber = notificationNumber++;
+  var container = document.getElementById('notification-container');
+  var notificationElement = document.createElement("DIV");
+  var txt = document.createTextNode(notification);
+  notificationElement.appendChild(txt);
+  notificationElement.setAttribute('class', 'notification');
+  notificationElement.setAttribute('id', 'note'+noteNumber);
+  notificationElement = container.appendChild(notificationElement);
+  //notificationElement = document.getElementById('note'+noteNumber);
+  setTimeout(()=>{
+    container.removeChild(notificationElement);
+  },5000)
 }
