@@ -1,5 +1,5 @@
 <?php
-
+// TODO registar User
 function displayLogin(){
   echo "
               <a class='dropbtn' onclick='javascript:showLogin(this)'>Login</a>
@@ -20,11 +20,9 @@ function displayLogin(){
 ";
 }
 ?>
-<!--
-<div style='resize: both;border-radius: 50%;/*! overflow: hidden; */height: inherit;align-content: center;border-color: blue;/*! display: inline; */'><i class='logo' style='background:url(css/img/profile.svg);size:64px'></i></div>
--->
 <?php
 function displayLoggedUser(){
+  include_once("database/books.php");
   $username = $_SESSION['username'];
   echo "
               <a class='dropbtn' onclick='javascript:showLogin(this)' style='word-break: break-all;'><div style='' class='avatar'><img src='css/img/avatar.png'></div><div class='username-box'>$username</div></a>
@@ -34,13 +32,29 @@ function displayLoggedUser(){
               <div class='dropdown-content'>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo addition'></i> <p>Add Book to Library</p></button>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo library'></i> <p>Library</p></button>
-                <button class='button button2' style='/*vertical-align:middle*/' onclick=document.getElementById('start-book-button').style.display='inline-block'><i class='logo pencil'></i> <p>Book Edition</p></button>
-                <a href='start-new-book/' id='start-book-button' class='button button2  submenu' style='/*vertical-align:middle;*/display:none'><i class='logo addition'></i><p>Start New Book</p></a>
+                <button class='button button2' style='/*vertical-align:middle*/' onclick=toggleVisibility('book-edition-submenu')><i class='logo pencil'></i> <p>Book Edition</p></button>
+                <div id='book-edition-submenu' class='submenu' style='/*vertical-align:middle;*/display:none'>";
+if($userBooks = getBookInfoByAuthor($username)) {
+  //pg_result_seek($userBooks, 0);
+  $num_linhas = pg_numrows($userBooks);
+  $i = 0;
+  while ($i < $num_linhas) {
+    $row = pg_fetch_assoc($userBooks);
+    $book = $row['title'];
+
+    echo "
+                  <a href='book-list/?title=$book&options=edit' id='book$i-edit-button' class='button button2 purple' style='/*vertical-align:middle;display:none'*/><i class='logo pencil'></i><p>$book</p></a>";
+    $i++;
+  }
+}
+  echo "
+                  <a href='start-new-book/' id='start-book-button' class='button button2' style='/*vertical-align:middle;display:none'*/><i class='logo addition'></i><p>Start New Book</p></a>
+                </div>
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo profile'></i> <p>My Profile</p></button>
-                  <form class='log-out' action='javascript:logoutUser(this);' method='post'  autocomplete='on'>
-                    <input type='hidden' id='username' name='username' value='$username'>
-                    <button class='button button1' style='/*vertical-align:middle*/' onclick='this.form.submit()' name='logout'><i class='logo logout-black'></i> <p>LOGOUT</p></button>
-                  </form>
+                <form class='log-out' action='javascript:logoutUser(this);' method='post'  autocomplete='on'>
+                  <input type='hidden' id='username' name='username' value='$username'>
+                  <button class='button button1' style='/*vertical-align:middle*/' onclick='this.form.submit()' name='logout'><i class='logo logout-black'></i> <p>LOGOUT</p></button>
+                </form>
               </div>
               <script>resizeNav(true);</script>
   ";

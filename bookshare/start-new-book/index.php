@@ -8,33 +8,39 @@
 
 <?php
 
-if(isset($_POST['title'])){
-  if((getIDfromTitle($_POST['title']))){
-    //display_error_title_used($_POST['title']);
-    display_error("The Title '{$_POST['title']}' is already in use! Please choose a different Title!","Erro!","black");
-    display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
-  }else if(isset($_POST['preview'])){
-    display_book_preview();
-    display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
-
-  }else{
-    $result = getGenreList();
-    $num_linhas = pg_numrows($result);
-    $i = 0;
-      while ($i < $num_linhas) {
-      	$row = pg_fetch_assoc($result);
-        $genreX = $row['genre'];
-        if(isset($_POST[$genreX]))$bookGenreList[] = $genreX;
-      	$i++;
-      }
-    $book = addNewBook($_POST['title'], $_POST['url'], $_POST['synopsis'], $bookGenreList);
-    if(($bookID = getIDfromTitle($_POST['title'])))
-    //only works before content echo:
-    //header('Location: http://www.example.com/');
-      display_book($bookID);
+if(isset($_POST['preview'])){
+  if(isset($_POST['title'])){
+    if((getIDfromTitle($_POST['title']))){
+      display_error("The Title '{$_POST['title']}' is already in use! Please choose a different Title!","Erro!");
+    }
   }
-}else{
-  display_book_edit();
+  display_book_preview();
+  display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
+
+} else if(isset($_POST['new-book'])){
+  if(isset($_POST['title'])){
+    if((getIDfromTitle($_POST['title']))){
+      display_error("The Title '{$_POST['title']}' is already in use! Please choose a different Title!","Erro!");
+      display_book_edit();
+    } else {
+      $result = getGenreList();
+      $num_linhas = pg_numrows($result);
+      $i = 0;
+        while ($i < $num_linhas) {
+        	$row = pg_fetch_assoc($result);
+          $genreX = $row['genre'];
+          if(isset($_POST[$genreX]))$bookGenreList[] = $genreX;
+        	$i++;
+        }
+      $book = addNewBook($_POST['title'], $_POST['url'], $_POST['synopsis'], $bookGenreList);
+      if(($bookID = getIDfromTitle($_POST['title'])))
+      //only works before content echo:
+      //header('Location: http://www.example.com/');
+      display_book($bookID);
+    }
+  }
+} else {
+display_book_edit();
 }
 ?>
 

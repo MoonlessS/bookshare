@@ -2,7 +2,7 @@
 
 </div>
 <?php
-// alterar a parte dos genre para esta e passar para os capitulos
+// TODO passar para os capitulos
 //``````````````````````````````````````````````````````````````
 function display_book($bookID = null){
   $book = getBookInfo($bookID);
@@ -12,19 +12,19 @@ function display_book($bookID = null){
   }
   echo "
           <div class='book-title-container'>
-              <div id='title' width=40%>{$book['title']}</div>
+              <div id='title' width=40%><a href='books-list/?title={$book['title']}'>{$book['title']}</a></div>
               <div id='author' width=40%>By: {$book['author']}</div>
               <div id='stars' width=10%>*****</div>
           </div>
           <div>
-            <div class='float' style='width:250px;max-height:350px;margin-left: 20px;'>
+            <div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>
               <img src='{$book['cover']}' alt='img/cover.png'>
             </div>
             <div class='float' style='min-width: 70%;width:calc(100% - 250px - 20px)'>
               <div class='green title' style='margin-right:50%;'>Synopsis</div>
               <div class='green description' style='min-height:250px;'>
                 {$book['synopsis']}<br><br>
-              <div class='title no-border' style='margin-right:100%;padding:0;'>Genres:</div>";
+              <div class='title no-border' style='margin-right:100%;padding-top:2em;'>Genres:</div>";
     $result = getGenreList($bookID);
     $num_linhas = pg_numrows($result);
     $i = 0;
@@ -88,8 +88,8 @@ function display_book_edit($title = null,$url = null,$synopsis = null,$bookGenre
             </div>
           </div>
           <div class='float' style='clear:left;width:100%;' >
-            <button class='button button2 float' style='width:48%;/*vertical-align:middle*/' onclick='this.form.submit()' name='preview'><i class='logo eye'></i><p>Preview!</p></button>
-            <button class='button button2 float-right' style='width:50%;/*vertical-align:middle*/' onclick='this.form.submit()' name='new-book'><i class='logo pencil'></i><p>Send new book informations!</p></button>
+            <button class='button button2 float' style='width:48%;/*vertical-align:middle*/' onclick='this.form.onsubmit();' name='preview'><i class='logo eye'></i><p>Preview!</p></button>
+            <button class='button button2 float-right' style='width:50%;/*vertical-align:middle*/' onclick='this.form.onsubmit();' name='new-book'><i class='logo pencil'></i><p>Send new book informations!</p></button>
           </div>
   </form>
         ";
@@ -98,7 +98,7 @@ function display_book_preview(){
   echo "
   <div class='float border black' style='width:100%;'>
           <div class='book-title-container'>
-              <div id='title' width=40%>{$_POST['title']}</div>
+              <div id='title' width=40%><a href='book-list/?title={$_POST['title']}'>{$_POST['title']}</a></div>
               <div id='author' width=40%>By: " . $_SESSION['username'] . "</div>
               <div id='stars' width=10%>*****</div>
           </div>
@@ -131,13 +131,4 @@ function display_book_preview(){
     </div>
         ";
 }
-// function display_error_title_used($title){
-//   echo "
-//   <div class='block title red'>Error!</div>
-//   <div class='block description red'>
-//     The Title /'$title/' is already in use! Please choose a different Title!
-//   </div>
-//         ";
-// }
-
  ?>

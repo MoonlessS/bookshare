@@ -289,6 +289,7 @@ img {
     border: 3px solid rgba(209, 228, 207, 1) !important;
     font-weight: bold;
     width: 100%;
+    opacity: .9 !important;
 }
 
 .submenu {
@@ -601,9 +602,13 @@ article.main {
   background-color: rgba(255, 3, 3, 0.6);
 }
 
-.purple{
+.purple2{
   /*background-color: rgba(96, 74, 123, .5);*/
   background-color: rgba(179, 162, 199, .4);
+}
+.purple{
+  /*background-color: rgba(96, 74, 123, .5);*/
+  background-color: rgba(162, 132, 198, 1);
 }
 .title.red {
   background-color: rgba(255, 3, 3, 1);

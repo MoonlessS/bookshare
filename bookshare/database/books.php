@@ -19,15 +19,16 @@ function getIDfromTitle($title) {
   $title = trim($title);
   $query = "SELECT id FROM bookshare.book where lower(title)=lower('$title')";
   $result = execQuery($query);
-  if(pg_numrows($result)==0) {return false;}
+  if(!$result) return $result;
     else return pg_fetch_assoc($result)['id'];
+
 }
 
 function getGenreList($bookID = null){
   if(!is_null($bookID)){
     $query = "SELECT genre FROM bookshare.book_genres WHERE book='$bookID'";
   }else {
-    $query = 'SELECT "genre" FROM "bookshare"."genre"';
+    $query = 'SELECT genre FROM bookshare.genre';
   }
   $result = execQuery($query);
 
@@ -39,8 +40,17 @@ function getBookInfo($bookID){
               FROM bookshare.book
               join bookshare.users on book.author=users.id
               where book.id='$bookID'";
+  $result = execQuery($query);
+  if(!$result) return $result;
+    else return pg_fetch_assoc($result);
+}
+function getBookInfoByAuthor($username){
+  $query = "SELECT title, author as authorID, name as author,start_publish_date, end_publish_date, book.popularity, cover, status, synopsis
+              FROM bookshare.book
+              join bookshare.users on book.author=users.id
+              where name='$username'";
   //"SELECT * FROM bookshare.book where id='$bookID'";
   $result = execQuery($query);
-  return pg_fetch_assoc($result);
+  return $result;
 }
 ?>
