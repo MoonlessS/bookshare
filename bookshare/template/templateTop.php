@@ -11,6 +11,7 @@
     include_once("apresentacao/footer.php");
 
     include_once("apresentacao/error.php");
+		include_once("apresentacao/starRating.php");
 ?>
 <!DOCTYPE html>
 <html>

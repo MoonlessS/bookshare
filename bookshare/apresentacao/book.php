@@ -14,7 +14,7 @@ function display_book($bookID = null){
           <div class='book-title-container'>
               <div id='title' width=40%><a href='book-list/?title={$book['title']}'>{$book['title']}</a></div>
               <div id='author' width=40%>By: {$book['author']}</div>
-              <div id='stars' width=10%>*****</div>
+              <div id='stars' width=10%>";starRating("bookRate"); echo "</div>
           </div>
           <div>
             <div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>
