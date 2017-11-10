@@ -1,11 +1,8 @@
-<?php //set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 );
-		set_include_path('../');
-
+<?php set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 );
 		include_once("common/database.php");
 		include_once("database/chapter.php");
-
+		include_once("apresentacao/error.php");
 ?>
-php
 
 <?php
 	function search_book ($search_input){
@@ -16,11 +13,12 @@ php
 		$num_registos = pg_numrows($result);
 
 		if($num_registos==0){
-			echo "<tr><th>No books found!!!!</th></tr>";
+			$error = 'No books found!';
+			display_error($error);
 		}
 		else{
 			echo "<section class='search'>";
-			echo "<table width='100%'><tr>";
+			echo "<table width='100%'><tr><th>Books Found:</th></tr><tr>";
 			for ($i=0; $i< $num_registos;$i++){
 				$book_name=pg_fetch_result($result,$i,1);
 				$book_name_link=str_replace(" ","-",strtolower($book_name));
@@ -31,7 +29,6 @@ php
 			echo"</table>";
 			echo"</section>";
 		}
-
 		return $num_registos;
 
 	}
@@ -43,11 +40,12 @@ php
 		$num_registos = pg_numrows($result);
 
 		if($num_registos==0){
-			echo "<tr><th>No chapters found!!!!</th></tr>";
+			$error = 'No chapters found!';
+			display_error($error);
 		}
 		else{
 			echo "<section class='search'>";
-			echo "<table width='100%'><tr>";
+			echo "<table width='100%'><tr><th>Chapters Found:</th></tr><tr>";
 			for ($i=0; $i< $num_registos;$i++){
 				$chapter_name = pg_fetch_result($result,$i,1);
 
@@ -67,14 +65,14 @@ php
 
 	function general_search ($search_input){
 			echo "<section class='search'>";
-			echo "<table width='100%'><th>Books Found:</th>";
+			echo "<table width='100%'>";
 				search_book($search_input);
 			echo "<tr><br></tr>";
 			echo"</table>";
 			echo"</section>";
 
 			echo "<section class='search'>";
-			echo "<table width='100%'><th>Chapters Found:</th>";
+			echo "<table width='100%'>";
 				search_chapter($search_input);
 			echo "<tr><br></tr>";
 			echo"</table>";

@@ -3,7 +3,6 @@
 
      echo "
         <div class='banner'>
-			
 			<div class='advanced_search'>
 				<form action='pesquisa/resultados.php' method='get'>
 					<input class='advanced_search' type='text' name='general_search' placeholder='Search'>
