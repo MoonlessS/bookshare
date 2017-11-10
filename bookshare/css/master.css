@@ -716,9 +716,11 @@ input[type=checkbox]:checked + .check{
   right: 2px;
   left: 2px;
   bottom: 1px;
+  z-index: 3;
 }
 .notification{
   margin-bottom: 2px;
   opacity: 1 !important;
   background-color: rgba(255, 3, 3, 0.8);
+  
 }

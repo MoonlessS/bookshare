@@ -15,6 +15,32 @@ function addNewBook($title = null,$url = null,$synopsis = null,$genreList = null
     $result = execQuery($query);
 }
 
+function updateBookInfo($title = null,$url = null,$synopsis = null,$genreList = null){
+  $authorID = $_SESSION['user']['id'];
+  $query = "UPDATE book
+            SET
+            cover = ". (empty($url) ?"DEFAULT" :"'$url'").",
+            synopsis = '$synopsis'
+            WHERE title='$title' and author='$authorID'";
+  $result1 = execQuery($query);
+
+
+  if(count($genreList)>0){
+    $bookID = getIDfromTitle($title);
+    $query = "DELETE FROM book_genres
+              WHERE book = '$bookID'";
+    $result = execQuery($query);
+
+    $query = "INSERT INTO book_genres(book,genre) VALUES ";
+    foreach ($genreList as $genre){
+      $query .= "($bookID,'$genre'),";
+    }
+    $query = rtrim($query,',');
+    $result2 = execQuery($query);
+  }
+  return ($result1 and $result2);
+}
+
 function getIDfromTitle($title) {
   $title = trim($title);
   $query = "SELECT id FROM bookshare.book where lower(title)=lower('$title')";
@@ -36,7 +62,7 @@ function getGenreList($bookID = null){
 }
 
 function getBookInfo($bookID){
-  $query = "SELECT title, author as authorID, name as author,start_publish_date, end_publish_date, book.popularity, cover, status, synopsis
+  $query = "SELECT book.id as id, title, author as authorID, name as author,start_publish_date, end_publish_date, book.popularity, cover, status, synopsis
               FROM bookshare.book
               join bookshare.users on book.author=users.id
               where book.id='$bookID'";

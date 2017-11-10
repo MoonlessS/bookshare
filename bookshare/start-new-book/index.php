@@ -15,13 +15,13 @@ if(isset($_POST['preview'])){
     }
   }
   display_book_preview();
-  display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
+  display_new_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis']);
 
 } else if(isset($_POST['new-book'])){
   if(isset($_POST['title'])){
     if((getIDfromTitle($_POST['title']))){
       display_error("The Title '{$_POST['title']}' is already in use! Please choose a different Title!","Erro!");
-      display_book_edit();
+      display_new_book_edit();
     } else {
       $result = getGenreList();
       $num_linhas = pg_numrows($result);
@@ -41,12 +41,12 @@ if(isset($_POST['preview'])){
         display_book($bookID);
       } else {
         display_error("Problem adding new Book! Please try again or contact site Admin!");
-        display_book_edit();
+        display_new_book_edit();
       }
     }
   }
 } else {
-  display_book_edit();
+  display_new_book_edit();
 }
 ?>
 

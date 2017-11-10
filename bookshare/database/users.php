@@ -21,6 +21,14 @@ function validateUser($login,$password){
   else
     return false;
 }
+
+function userAuthenticationStatus(){
+  if(isset($_SESSION['autenticado']))
+    if(is_bool($_SESSION['autenticado'])){
+      return $_SESSION['autenticado'];
+    }
+  return false;
+}
 ?>
 
 
