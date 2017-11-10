@@ -396,8 +396,9 @@ input.search[type="text"], textarea {
 }
 
 div.advanced_search{
-	position:relative;
+	position:absolute;
 	margin-top: 70px;
+	width:90%;
 }
 
 input.advanced_search[type=text]{
@@ -409,9 +410,15 @@ input.advanced_search[type=text]{
 }
 
 input.advanced_search[type=image]{
+	position: absolute;
     box-sizing: border-box;
 	background-color: white;
 	width: 42px;
+<<<<<<< HEAD
+=======
+	margin-left	: 121px;
+	margin-top : -42px;
+>>>>>>> 9f7978c8781707f1925cb16052f4e29b85886a8f
 }
 
 input.order[type=submit]{
