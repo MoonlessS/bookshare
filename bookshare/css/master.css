@@ -392,7 +392,7 @@ input.search[type="text"], textarea {
 }
 
 div.advanced_search{
-	position:absolute;
+	position:relative;
 	margin-top: 70px;
 }
 
@@ -407,9 +407,7 @@ input.advanced_search[type=text]{
 input.advanced_search[type=image]{
     box-sizing: border-box;
 	background-color: white;
-	width: 42px;
-	margin-left: 122px;
-	margin-top: -58px;
+	width: 42px;	
 }
 
 input.order[type=submit]{
