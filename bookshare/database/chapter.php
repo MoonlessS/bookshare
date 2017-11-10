@@ -16,4 +16,14 @@
 		
 		return $chapter_number;
 	}
+	
+	function GetInfoChapterByBook($book_id){
+		$query = "SELECT date,number,title FROM chapter WHERE book= '".$book_id."' ORDER BY date desc";
+		
+		$book_lastupdate = pg_fetch_result(execQuery($query),0,0);
+		$book_totalchapter = pg_fetch_result(execQuery($query),0,1);
+		$book_chaptername = pg_fetch_result(execQuery($query),0,2);
+		
+		return array($book_lastupdate,$book_totalchapter, $book_chaptername);
+	}
 ?>

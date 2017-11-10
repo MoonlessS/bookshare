@@ -412,6 +412,22 @@ input.advanced_search[type=image]{
 	margin-top: -58px;
 }
 
+input.order[type=submit]{
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border: 3px solid white;
+  background-color: rgba(179, 162, 199, .5);
+  background-size: 100%;
+}
+
+#order:hover{
+	text-decoration: underline;
+	color:white;
+}
 
 article.main>.chapter-list {
   width: 69%;
