@@ -14,6 +14,25 @@ function addNewBook($title = null,$url = null,$synopsis = null,$genreList = null
     }
     $result = execQuery($query);
 }
+function rateBook($rate,$book){
+  $userID = $_SESSION['user']['id'];
+
+  $query = "DELETE FROM book_usersrate
+            WHERE book = '$bookID' and user='$userID'";
+  $result = execQuery($query);
+
+  $query = "INSERT INTO book_usersrate(book,users,rate) VALUES ($bookID,$userID,$rate)";
+  return $result = execQuery($query);
+}
+
+function getUserBookRate($bookID){
+  $userID = $_SESSION['user']['id'];
+  $query = "SELECT rate FROM book_usersrate WHERE book='$bookID' and users='$userID'";
+  if(!($result = execQuery($query))) return false;
+  $query = "UPDATE book SET popularity = (SELECT AVG(rate) FROM book_usersrate WHERE book=$bookID) WHERE book=$bookID";
+  execQuery($query);
+  return pg_fetch_assoc($result)['rate'];
+}
 
 function updateBookInfo($title = null,$url = null,$synopsis = null,$genreList = null){
   $authorID = $_SESSION['user']['id'];

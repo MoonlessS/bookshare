@@ -224,9 +224,7 @@ img {
   background: url("img/books.svg");
 }
 .addition{
-  background-color: rgb(70, 16, 71);
-
-  /*background: url("img/plus.svg");*/
+  background: url("img/plus.svg");
 }
 .logout, .logout-white{
   background: url("img/logoutWhite.svg");
@@ -414,11 +412,8 @@ input.advanced_search[type=image]{
     box-sizing: border-box;
 	background-color: white;
 	width: 42px;
-<<<<<<< HEAD
-=======
 	margin-left	: 121px;
 	margin-top : -42px;
->>>>>>> 9f7978c8781707f1925cb16052f4e29b85886a8f
 }
 
 input.order[type=submit]{
@@ -524,6 +519,7 @@ article.main {
   float: left;
   width: 100%;
   padding: 10px;
+  height: 75px;
   /*resize: horizontal;
   justify-content: center;*/
 }
@@ -534,15 +530,22 @@ article.main {
 .book-title-container>div {
   /*display: inline-block;*/
   max-width: 100%;
+  min-width: 20%;
   font-size: 20px;
   font-weight: bold;
   float: left;
+  height: 55px;
   padding: 10px;
   text-align: center;
   color: white;
   border: 3px solid white;
   background-color: rgba(179, 162, 199, .5);
   background-size: 100%;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+  justify-content: center;
+  align-items: center;
   /*resize: horizontal;
   justify-content: center;*/
   /*max-width: -moz-available;*/

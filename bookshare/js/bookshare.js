@@ -116,3 +116,24 @@ function displayNotification(notification){
     container.removeChild(notificationElement);
   },5000)
 }
+function submitRating(id,type,rate){
+  showLoading(true);
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      if(response.status==="authenticationError"){
+        displayNotification("User needs to be authenticated for rating! Rate sent: ("+ response.rate + "stars on " +type + " "+ id +")");
+      } else if(response.status!=="ok"){
+        displayNotification("Rating Failed!Rate sent: ("+ response.rate + "stars on " +type + " "+ id +")");
+      }
+      showLoading(false);
+    }
+  };
+  xmlhttp.open("POST", "starRating/starRating.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  var message = "id=" + id + "&" + "type=" + type + "&" + "rate=" + rate;
+  xmlhttp.send(message);
+  return;
+
+}
