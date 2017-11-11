@@ -1,6 +1,3 @@
-<div style="block">
-
-</div>
 <?php
 // TODO:0 passar para os capitulos id:1 gh:6
 //``````````````````````````````````````````````````````````````
@@ -14,7 +11,7 @@ function display_book($bookID = null){
           <div class='book-title-container'>
               <div id='title' width=40%><a href='book-list/?title={$book['title']}'>{$book['title']}</a></div>
               <div id='author' width=40%>By: {$book['author']}</div>
-              <div id='stars' width=10%>";starIndicator($book['title'],$book['popularity']); echo "</div>
+              <div id='stars' width=10%>";starIndicator('T'.$book['title'],$book['popularity']); echo "</div>
           </div>
           <div>
             <div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>
@@ -22,9 +19,12 @@ function display_book($bookID = null){
             </div>
             <div class='float' style='min-width: 70%;width:calc(100% - 250px - 20px)'>
               <div class='green title' style='margin-right:50%;'>Synopsis</div>
-              <div class='green description' style='min-height:250px;'>
-                {$book['synopsis']}<br><br>
-              <div class='title no-border' style='margin-right:100%;padding-top:2em;'>Genres:</div>";
+              <div class='green description' style='min-height:250px;'><p>
+                {$book['synopsis']}</p><br><br>
+                <div class='title black' style='position:relative;right:1%;bottom:1%;display:inline-block;'><p>Rate this book:<p>
+                  ";starRating($bookID,'bookid',(userAuthenticationStatus()?getUserBookRate($bookID):0)); echo "
+                </div>
+              <div class='title no-border' style='margin-bottom:2em;margin-right:2em;padding:0em;'>Genres:</div>";
     $result = getGenreList($bookID);
     $num_linhas = pg_numrows($result);
     $i = 0;
@@ -39,6 +39,7 @@ function display_book($bookID = null){
               </div>
             </div>
           </div>
+
         ";
 }
 
@@ -186,7 +187,10 @@ function display_book_preview(){
               <div class='green title' style='margin-right:50%;'>Synopsis</div>
               <div class='green description' style='min-height:250px;'>
                 {$_POST['synopsis']}<br><br>
-              <div class='title no-border' style='margin-right:100%;padding:0;'>Genres:</div>";
+                <div class='title black' style='position:relative;right:1%;bottom:1%;display:inline-block;'><p>Rate this book:<p>
+                  ";starRating(0,'bookid',5); echo "
+                </div>
+              <div class='title no-border' style='margin-bottom:2em;margin-right:2em;padding:0em;'>Genres:</div>";
               $result = getGenreList();
               $num_linhas = pg_numrows($result);
               $i = 0;

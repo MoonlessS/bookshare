@@ -14,23 +14,24 @@ function addNewBook($title = null,$url = null,$synopsis = null,$genreList = null
     }
     $result = execQuery($query);
 }
-function rateBook($rate,$book){
+function rateBook($rate,$bookID){
   $userID = $_SESSION['user']['id'];
 
   $query = "DELETE FROM book_usersrate
-            WHERE book = '$bookID' and user='$userID'";
+            WHERE book=$bookID and users=$userID";
   $result = execQuery($query);
 
   $query = "INSERT INTO book_usersrate(book,users,rate) VALUES ($bookID,$userID,$rate)";
-  return $result = execQuery($query);
+  if(!($result = execQuery($query))) return false;
+  $query = "UPDATE book SET popularity = (SELECT AVG(rate) FROM book_usersrate WHERE book=$bookID) WHERE id=$bookID";
+  execQuery($query);
+  return $result;
 }
 
 function getUserBookRate($bookID){
   $userID = $_SESSION['user']['id'];
   $query = "SELECT rate FROM book_usersrate WHERE book='$bookID' and users='$userID'";
-  if(!($result = execQuery($query))) return false;
-  $query = "UPDATE book SET popularity = (SELECT AVG(rate) FROM book_usersrate WHERE book=$bookID) WHERE book=$bookID";
-  execQuery($query);
+  if(!($result = execQuery($query))) return 0;
   return pg_fetch_assoc($result)['rate'];
 }
 
@@ -90,7 +91,7 @@ function getBookInfo($bookID){
     else return pg_fetch_assoc($result);
 }
 function getBookInfoByAuthor($username){
-  $query = "SELECT title, author as authorID, name as author,start_publish_date, end_publish_date, book.popularity, cover, status, synopsis
+  $query = "SELECT book.id,title, author as authorID, name as author,start_publish_date, end_publish_date, book.popularity, cover, status, synopsis
               FROM bookshare.book
               join bookshare.users on book.author=users.id
               where name='$username'";
@@ -102,17 +103,17 @@ function getBookInfoByAuthor($username){
 function getLastMonthBooks ($num_rows){
 	 $query = "SELECT title, popularity FROM book ORDER BY start_publish_date desc LIMIT ".$num_rows."";
 	 $result = execQuery($query);
-	 
+
 	 $num_registos = pg_numrows($result);
-	 
+
 	 for($i=0;$i<$num_registos;$i++){
-		 
+
 		$book_name = pg_fetch_result($result,$i,0);
 		$book_popularity = pg_fetch_result($result,$i,1);
 		echo "<tr>
 			<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-			<td>" .$book_popularity." </td>
-			</tr>";	
+			<td>";starIndicator($book_name,$book_popularity); echo " </td>
+			</tr>";
 		}
 }
 ?>
