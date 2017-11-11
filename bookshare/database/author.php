@@ -10,4 +10,17 @@
 		
 		return $author;
 	}
+	
+	function GetAuthorByChapter ($chapter_name){
+		$query = "SELECT book FROM chapter WHERE title = '".$chapter_name."' ";
+		$book_id = pg_fetch_result(execQuery($query),0,0);
+		
+		
+		$query = "SELECT author FROM book WHERE id = ".$book_id."";
+		$book_author_id = pg_fetch_result(execQuery($query),0,0);
+		
+		$book_author = GetAuthorByBook ($book_author_id);
+		
+		return $book_author;
+	}
 ?>

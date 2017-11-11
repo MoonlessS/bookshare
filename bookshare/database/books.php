@@ -98,4 +98,21 @@ function getBookInfoByAuthor($username){
   $result = execQuery($query);
   return $result;
 }
+
+function getLastMonthBooks ($num_rows){
+	 $query = "SELECT title, popularity FROM book ORDER BY start_publish_date desc LIMIT ".$num_rows."";
+	 $result = execQuery($query);
+	 
+	 $num_registos = pg_numrows($result);
+	 
+	 for($i=0;$i<$num_registos;$i++){
+		 
+		$book_name = pg_fetch_result($result,$i,0);
+		$book_popularity = pg_fetch_result($result,$i,1);
+		echo "<tr>
+			<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
+			<td>" .$book_popularity." </td>
+			</tr>";	
+		}
+}
 ?>
