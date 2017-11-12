@@ -181,21 +181,51 @@ function toggleBookOnLibrary(bookID){
 
 }
 
+function CheckUsername(){
+	var usernameInput = document.getElementById('name').value;
+
+	var xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  var response = JSON.parse(this.responseText);
+		  if(response.status==="not_ok"){
+				displayNotification("Username not available! Try another please!");
+			}
+		}
+	};
+	xmlhttp.open("POST", "register/user.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var message = "username=" + usernameInput;
+	xmlhttp.send(message);
+	return;
+}
+
 function ValidatePassword(){
     if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
         displayNotification("Passwords do not match! Please try again!");
         return false;
 	}
-	else document.getElementById('submit').disabled = false;
+	else return 1;
 }
 
-function CheckUsername(){
-	var usernameInput = document.getElementById("u_name").value;
+function CheckEmail(){
+	var emailInput = document.getElementById('email').value;
+
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "database/user.php", true);
+
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  var response = JSON.parse(this.responseText);
+		  if(response.status==="not_ok"){
+				displayNotification("Email already in use! Try another please!");
+			}
+		  else return 1;
+		}
+	};
+	xmlhttp.open("POST", "register/email.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var message = "username=" + usernameInput;
+	var message = "email=" + emailInput;
 	xmlhttp.send(message);
 	return;
-
 }

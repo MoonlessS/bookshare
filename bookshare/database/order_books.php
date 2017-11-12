@@ -3,6 +3,7 @@
 		include_once("common/database.php");
 		include_once("database/chapter.php");
 		include_once("database/author.php");
+		include_once("apresentacao/starRating.php"); 
 ?>
 
 <?php
@@ -87,4 +88,6 @@
 		echo"</table>";
 		echo"</section>";
 	}
+	
+	
  ?>

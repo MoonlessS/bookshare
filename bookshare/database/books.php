@@ -1,3 +1,10 @@
+<?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 );?>
+
+<?php
+  include_once("common/database.php");
+  include_once("apresentacao/starRating.php"); 
+?>
+
 <?php
 include_once("common/database.php");
 function addNewBook($title = null,$url = null,$synopsis = null,$genreList = null){
@@ -101,7 +108,7 @@ function getBookInfoByAuthor($username){
   return $result;
 }
 
-function getLastMonthBooks ($num_rows){
+function getLastUpdatedBooks ($num_rows){
 	 $query = "SELECT title, popularity FROM book ORDER BY start_publish_date desc LIMIT ".$num_rows."";
 	 $result = execQuery($query);
 
