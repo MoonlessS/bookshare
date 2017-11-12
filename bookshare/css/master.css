@@ -716,50 +716,50 @@ article.main {
 }
 
 .green {
-  background-color: rgba(0, 145, 0, .5);
+  background-color: rgba(0, 145, 0, .5) !important;
 }
 
 .blue {
-  background-color: rgba(102, 180, 227, .5);
+  background-color: rgba(102, 180, 227, .5) !important;
 }
 
 .blue * td {
   border-collapse: collapse;
-  background-color: rgba(149, 179, 215, .6);
+  background-color: rgba(149, 179, 215, .6) !important;
 }
 
 .black {
-  background-color: rgba(15, 15, 15, .5);
+  background-color: rgba(15, 15, 15, .5) !important;
 }
 
 .red {
-  background-color: rgba(255, 3, 3, 0.6);
+  background-color: rgba(255, 3, 3, 0.6) !important;
 }
 
 .purple2{
   /*background-color: rgba(96, 74, 123, .5);*/
-  background-color: rgba(179, 162, 199, .4);
+  background-color: rgba(179, 162, 199, .4) !important;
 }
 .purple{
   /*background-color: rgba(96, 74, 123, .5);*/
-  background-color: rgba(162, 132, 198, 1);
+  background-color: rgba(162, 132, 198, 1) !important;
 }
 .title.red {
-  background-color: rgba(255, 3, 3, 1);
+  background-color: rgba(255, 3, 3, 1) !important;
 }
 .title.green {
-  background-color: rgba(0, 145, 0, 1);
+  background-color: rgba(0, 145, 0, 1) !important;
 }
 
 .title.black {
-  background-color: rgba(25, 25, 25, 1);
+  background-color: rgba(25, 25, 25, 1) !important;
 }
 
 .title.blue {
-  background-color: rgba(102, 180, 227, 1);
+  background-color: rgba(102, 180, 227, 1) !important;
 }
 .title.purple{
-  background-color: rgba(96, 74, 123, 1);
+  background-color: rgba(96, 74, 123, 1) !important;
   /*background-color: rgba(179, 162, 199, 1);*/
 }
 
