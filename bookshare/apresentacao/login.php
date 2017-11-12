@@ -23,14 +23,22 @@ function displayLogin(){
 <?php
 function displayLoggedUser(){
   include_once("database/books.php");
+  include_once("database/library.php");
   $username = $_SESSION['username'];
+  global $pageType;
+  global $contentID;
+  $bookID = $contentID;
   echo "
               <a class='dropbtn' onclick='javascript:showLogin(this)' style='word-break: break-all;'><div style='' class='avatar'><img src='css/img/avatar.png'></div><div class='username-box'>$username</div></a>
               <div class='space-box'>
                 <div class='arrow-up'></div>
               </div>
-              <div class='dropdown-content'>
-                <button class='button button2' style='/*vertical-align:middle*/'><i class='logo addition'></i> <p>Add Book to Library</p></button>
+              <div class='dropdown-content'>";
+if($pageType == 'book'){
+  echo "
+                <button class='button button2' style='/*vertical-align:middle*/' onclick='toggleBookOnLibrary($bookID);'><i id='library-status-icon' class='logo ". (getBookAddedToLibraryState($bookID)?"remove":"addition") ."'></i> <p>". (getBookAddedToLibraryState($bookID)?"Remove Book From Library":"Add Book to Library") ."</p></button>";
+  }
+  echo "
                 <button class='button button2' style='/*vertical-align:middle*/'><i class='logo library'></i> <p>Library</p></button>
                 <button class='button button2' style='/*vertical-align:middle*/' onclick=toggleVisibility('book-edition-submenu')><i class='logo pencil'></i> <p>Book Edition</p></button>
                 <div id='book-edition-submenu' class='submenu' style='/*vertical-align:middle;*/display:none'>";

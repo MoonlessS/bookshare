@@ -1,3 +1,4 @@
+
 <?php
 // TODO:0 passar para os capitulos id:1 gh:6
 //``````````````````````````````````````````````````````````````
@@ -8,10 +9,16 @@ function display_book($bookID = null){
     return;
   }
   echo "
+          <form id='PageInfo'><input type='hidden' name='BookPageMarker' class='book' id='$bookID' value='{$book['title']}'></form>
           <div class='book-title-container'>
               <div id='title' width=40%><a href='book-list/?title={$book['title']}'>{$book['title']}</a></div>
               <div id='author' width=40%>By: {$book['author']}</div>
               <div id='stars' width=10%>";starIndicator('T'.$book['title'],$book['popularity']); echo "</div>
+              <div class= 'float-right button library-icon-container' onclick='toggleBookOnLibrary($bookID);'><span style='display:inherit'>
+                  <i id='library-icon' class='big-logo library'></i>
+                  <i id='library-status-icon2' class='logo ". (getBookAddedToLibraryState($bookID)?"right":"remove") ."'></i>
+                </span>
+              </div>
           </div>
           <div>
             <div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>

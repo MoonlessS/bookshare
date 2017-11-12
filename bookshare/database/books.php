@@ -1,4 +1,5 @@
 <?php
+include_once("common/database.php");
 function addNewBook($title = null,$url = null,$synopsis = null,$genreList = null){
   $authorID = $_SESSION['user']['id'];
   $query = "INSERT INTO book(title,author,start_publish_date,cover,status,synopsis) VALUES ('$title','$authorID',current_date,". (empty($url) ?"DEFAULT" :"'$url'"). ",'On-going','$synopsis')";

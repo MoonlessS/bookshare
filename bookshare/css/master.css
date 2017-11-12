@@ -185,8 +185,18 @@ i {
   height: 32px;
   background-size: 32px 32px;
   background-position: center;
+  background-repeat: no-repeat !important;
 }
-
+.big-logo{
+  display: inline-block;
+  text-indent: -9999px;
+  width: 48px;
+  height: 48px;
+  background-size: 48px 48px;
+  background-position: center;
+  background-repeat: no-repeat !important;
+  vertical-align: middle;
+}
 img {
   max-width:100%;
   max-height:100%;
@@ -226,11 +236,27 @@ img {
 .addition{
   background: url("img/plus.svg");
 }
+.remove{
+  background: url("img/cross.svg");
+}
 .logout, .logout-white{
   background: url("img/logoutWhite.svg");
 }
 .logout-black{
   background: url("img/logoutBlack.svg");
+}
+.eye{
+  background: url("img/eye.svg");
+}
+.right {
+  background: url("img/right.svg");
+}
+.library-icon-container{
+  margin:0;
+  width: auto !important;
+}
+#library-icon{
+  display: table;
 }
 
 .button1 {

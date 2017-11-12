@@ -4,28 +4,28 @@
 
 <?php
   include_once("common/database.php");
-  include_once("database/users.php");
   include_once("database/books.php");
+  include_once("database/library.php");
   ?>
 <?php
 session_start();
 $_SESSION['autenticado'] = isset($_SESSION['autenticado']) ? $_SESSION['autenticado'] : null;
 
-$id = isset($_POST['id']) ? $_POST['id'] : null;
-$type = isset($_POST['type']) ? $_POST['type'] : null;
-$rate = isset($_POST['rate']) ? $_POST['rate'] : null;
+$bookID = isset($_POST['bookID']) ? $_POST['bookID'] : null;
 
 if(!$_SESSION['autenticado']){
-  $message = array('status' => 'authenticationError','rate' => $rate);
-} else if($type=='bookid'){
-  //$id = getIDfromTitle($id);
-  if(rateBook($rate,$id)){
-    $message = array('status' => 'ok','rate' => $rate);
-  } else $message = array('status' => 'error','rate' => $rate);
-} else if($type=='chapterid'){
-    if(rateChapter($rate,$id)){
-      $message = array('status' => 'ok','rate' => $rate);
-    } else $message = array('status' => 'error','rate' => $rate);
+  $message = array('status' => 'authenticationError');
+} else if(!is_null($bookID)){
+  if(getBookAddedToLibraryState($bookID)){
+    $result = removeBookFromUserLibrary($bookID);
+    $message = array('status' => 'ok', 'onLibrary' => false);
+  }else{
+    $result = addBookToUserLibrary($bookID);
+    $message = array('status' => 'ok', 'onLibrary' => true);
+  }
+  if(!$result) $message = array('status' => 'error:2');
+} else {
+  $message = array('status' => 'error:1');
 }
 echo json_encode($message);
 

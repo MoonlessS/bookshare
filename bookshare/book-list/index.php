@@ -1,8 +1,29 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 );?>
-  <?php include_once("template/templateTop.php"); ?>
-  <?php include_once("apresentacao/book.php"); ?>
-  <?php include_once("database/books.php"); ?>
-  <?php include_once("database/users.php"); ?>
+
+  <?php $pageTitle = null; $pageType = null; $contentID= null;
+  include_once("database/books.php");
+if(isset($_GET['Options'])){
+  $pageTitle = 'Book-'.$_GET['Options'];
+}elseif (isset($_GET['edit-book'])) {
+  $pageTitle = 'Book Update';
+}elseif(isset($_GET['preview'])){
+  $pageTitle = 'Book-preview';
+}else {
+  $pageTitle = 'Book';
+  $pageType = 'book';
+}
+if(isset($_GET['id'])){
+  $bookID = $_GET['id'];
+}
+if(isset($_GET['title'])){
+  $pageTitle .= ' '.$_GET['title'].' - ';
+  if(!isset($bookID))$bookID = getIDfromTitle($_GET['title']);
+}
+if(isset($bookID)) $contentID = $bookID;
+  ?>
+<?php include_once("template/templateTop.php");?>
+<?php include_once("apresentacao/book.php"); ?>
+<?php include_once("database/users.php"); ?>
     <article class="main">
 <!-- /////////////////////////////////////////////////////////////////////// -->
 

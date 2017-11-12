@@ -15,7 +15,7 @@
 ?>
 <!DOCTYPE html>
 <html>
-  <?php display_header("BookShare - Read Our Amazing Collection Or Write And Share Your Own Books On The Internet"); ?>
+  <?php	display_header((is_null($pageTitle)?'':$pageTitle)."BookShare - Read Our Amazing Collection Or Write And Share Your Own Books On The Internet"); ?>
 
   <body>
     <?php display_nav(); ?>

@@ -31,13 +31,15 @@ function validateUser(form) {
         displayNotification("Authentication already successfully done! ");
       }
       // eval(this.responseXML.getElementById("resize").innerHTML.trim()).call();
-      showLoading(false);
     }
+    showLoading(false);
   };
   // xmlhttp.open("GET", "gethint.php?q=" + str, true);
   xmlhttp.open("POST", "login/loginJSON.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  var message = "username=" + form["username"].value + "&password=" + form["password"].value;
+  var pageType = document.forms["PageInfo"].firstChild.class;
+  var contentID = document.forms["PageInfo"].firstChild.id;
+  var message = "username=" + form["username"].value + "&password=" + form["password"].value + "&pageType="+ pageType + "&contentID=" + contentID;
   xmlhttp.send(message);
   // console.log("message:\n" + message);
   return;
@@ -53,8 +55,8 @@ function logoutUser(form) {
         document.getElementById("loginButton").innerHTML = response.html;
         resizeNav(false);
       }
-      showLoading(false);
     }
+    showLoading(false);
   };
   xmlhttp.open("POST", "login/loginJSON.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -127,12 +129,51 @@ function submitRating(id,type,rate){
       } else if(response.status!=="ok"){
         displayNotification("Rating Failed!Rate sent: ("+ response.rate + "stars on " +type + " "+ id +")");
       }
-      showLoading(false);
+      xmlhttp.onreadystatechange = () => {return;}
     }
+    showLoading(false);
   };
   xmlhttp.open("POST", "starRating/starRating.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var message = "id=" + id + "&" + "type=" + type + "&" + "rate=" + rate;
+  xmlhttp.send(message);
+  return;
+
+}
+function toggleBookOnLibrary(bookID){
+  showLoading(true);
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      if(response.status==="authenticationError"){
+        displayNotification("User needs to be authenticated for Library addition/removal!");
+      } else if(response.status!=="ok"){
+        displayNotification("Library Addition Failed!");
+      } else {
+        var statusIcon = document.getElementById( "library-status-icon" );
+        var statusIcon2 = document.getElementById( "library-status-icon2" );
+        if(response.onLibrary==true){
+          statusIcon.classList.add("remove");
+          statusIcon.classList.remove("addition");
+          statusIcon2.classList.add("right");
+          statusIcon2.classList.remove("remove");
+          statusIcon.nextElementSibling.textContent = "Remove From Library";
+        }else if (response.onLibrary==false) {
+          statusIcon.classList.add("addition");
+          statusIcon.classList.remove("remove");
+          statusIcon2.classList.add("remove");
+          statusIcon2.classList.remove("right");
+          statusIcon.nextElementSibling.textContent = "Add Book to Library";
+        }
+      }
+    }
+    showLoading(false);
+  };
+  xmlhttp.open("POST", "library/addBookToLibrary.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //  bookID = document.forms['PageInfo'].firstChild.id;
+  var message = "bookID=" + bookID;
   xmlhttp.send(message);
   return;
 
