@@ -19,10 +19,12 @@
 	}
 
 	function GetIdByChapter ($chapter_name){
-		$query = "SELECT number FROM chapter WHERE title = '".$chapter_name."' ";
-		$chapter_number = pg_fetch_result(execQuery($query),0,0);
-
-		return $chapter_number;
+		if($chapter_name==null)return 0;
+		else{
+			$query = "SELECT number FROM chapter WHERE title = '".$chapter_name."' ";
+			$chapter_number = pg_fetch_result(execQuery($query),0,0);
+			return $chapter_number;
+		}
 	}
 
 	function GetInfoChapterByBook($book_id){
@@ -53,7 +55,7 @@
 			$book_name = GetBookTitleByChapter($chapter_name);
 			echo "<tr>
 				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-				<td>".$chapter_number." ".$chapter_name." </td>
+				<td><a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>" .$chapter_name. " </td>
 			</tr>";
 		}
 	}
@@ -73,7 +75,7 @@
 			$author_name = GetAuthorByChapter($chapter_name);
 			echo "<tr>
 				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-				<td>".$chapter_number." ".$chapter_name." </td>
+				<td>".$chapter_number." <a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>".$chapter_name." </td>
 				<td>".$author_name." </td>
 				<td>".$chapter_update." </td>
 			</tr>";
