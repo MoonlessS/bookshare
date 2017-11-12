@@ -1,7 +1,10 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 ); ?>
 
-<?php include_once("common/database.php"); ?>
-<?php include_once("database/author.php"); ?>
+<?php 
+	include_once("common/database.php");
+	include_once("database/author.php");
+	include_once("apresentacao/starRating.php"); 
+?>
 
 <?php
 	function GetBookTitleByChapter ($chapter_name){
@@ -37,7 +40,7 @@
 		}
 	}
 
-	function getLastMonthChapters ($num_rows){
+	function getLastUpdatedChapters ($num_rows){
 		$query = "SELECT title, number FROM chapter ORDER BY date desc LIMIT ".$num_rows."";
 		$result = execQuery($query);
 
@@ -55,7 +58,7 @@
 		}
 	}
 
-	function getLastMonthChaptersInfo ($num_rows){
+	function getLastUpdatedChaptersInfo ($num_rows){
 		$query = "SELECT title, number,date FROM chapter ORDER BY date desc LIMIT ".$num_rows."";
 		$result = execQuery($query);
 
@@ -95,5 +98,6 @@
 	  execQuery($query);
 	  return pg_fetch_assoc($result)['rate'];
 	}
+	
 
 ?>

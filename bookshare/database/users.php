@@ -13,9 +13,7 @@
 		$result = execQuery($query);
 	}
 }
-?>
 
-<?php
 function validateUser($login,$password){
 //debug
 // return true;
@@ -38,15 +36,21 @@ function userAuthenticationStatus(){
   return false;
 }
 
-
-function CheckEmail($email){
-	$query = 'SELECT email FROM users WHERE email = "'.$email.'"';
+function CheckUser($user){
+	$query = "SELECT name FROM users WHERE name = '".$user."'";
 	$result = execQuery($query);
 	$num_registos = pg_numrows($result);
 	
-	if($num_registos != 0) return false;
+	return $num_registos;
+}
+
+
+function CheckEmail($email){
+	$query = "SELECT email FROM users WHERE email = '".$email."'";
+	$result = execQuery($query);
+	$num_registos = pg_numrows($result);
 	
-	return true;
+	return $num_registos;
 }
 
 ?>

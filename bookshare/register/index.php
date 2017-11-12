@@ -11,7 +11,7 @@
 			<form action='register/register.php' method='post' id='register'>
 			<tr>
 				<th class='register'> <label for='name'>Name:</label></th>
-				<td class='register'> <input class='register' type='text' style=' width:100%' id='u_name' name='name' placeholder='Name' pattern='[a-zA-Z0-9_-]{3,20}' title='Username should have at least 3 and a maximum of 20 characters between letters, numbers, hyphen or underscore!' onBlur='CheckUsername()' required> </td>
+				<td class='register'> <input class='register' type='text' style=' width:100%' id='name' name='name' placeholder='Name' pattern='[a-zA-Z0-9_-]{3,20}' title='Username should have at least 3 and a maximum of 20 characters between letters, numbers, hyphen or underscore!' onblur='CheckUsername()' required> </td>
 			</tr>
 			<tr></tr>	
 			<tr>
@@ -31,7 +31,7 @@
 			<tr></tr>
 			<tr>
 				<th class='register'> <label for='email'>Email:</label></th>
-				<td class='register'> <input class='register' type='email' style=' width:100%' name='email' placeholder='youremail@email.com' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Enter your email with this pattern email@email.com'required> </td>
+				<td class='register'> <input class='register' type='email' style=' width:100%' id ='email' name='email' placeholder='youremail@email.com' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='Enter your email with this pattern email@email.com' onblur='CheckEmail()' required> </td>
 			</tr>	
 			<tr></tr>
 			<tr>
