@@ -3,6 +3,7 @@
 // TODO:0 passar para os capitulos id:1 gh:6
 //``````````````````````````````````````````````````````````````
 function display_book($bookID = null){
+  include_once("apresentacao/chapter.php");
   $book = getBookInfo($bookID);
   if(!$book) {
     display_error("The Book requested doesn't exist or was deleted!");
@@ -13,12 +14,15 @@ function display_book($bookID = null){
           <div class='book-title-container'>
               <div id='title' width=40%><a href='book-list/?title={$book['title']}'>{$book['title']}</a></div>
               <div id='author' width=40%>By: {$book['author']}</div>
-              <div id='stars' width=10%>";starIndicator('T'.$book['title'],$book['popularity']); echo "</div>
+              <div id='stars' width=10%>";starIndicator('T'.$book['title'],$book['popularity']);
+  echo "</div>";
+  echo "
               <div class= 'float-right button library-icon-container' onclick='toggleBookOnLibrary($bookID);'><span style='display:inherit'>
                   <i id='library-icon' class='big-logo library'></i>
-                  <i id='library-status-icon2' class='logo ". (getBookAddedToLibraryState($bookID)?"right":"remove") ."'></i>
+                  <i id='library-status-icon2' class='logo ".( userAuthenticationStatus()? (getBookAddedToLibraryState($bookID)?"right":"remove"):"no-go") ."'></i>
                 </span>
-              </div>
+              </div>";
+  echo "
           </div>
           <div>
             <div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>
@@ -48,6 +52,7 @@ function display_book($bookID = null){
           </div>
 
         ";
+        display_chapter_list($book);
 }
 
 function display_book_edit($book = null,$url = null,$synopsis = null,$bookGenreList = null){

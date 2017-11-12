@@ -251,6 +251,9 @@ img {
 .right {
   background: url("img/right.svg");
 }
+.no-go{
+  background: url("img/no-go.svg");
+}
 .library-icon-container{
   margin:0;
   width: auto !important;

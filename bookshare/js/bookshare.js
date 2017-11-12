@@ -37,8 +37,13 @@ function validateUser(form) {
   // xmlhttp.open("GET", "gethint.php?q=" + str, true);
   xmlhttp.open("POST", "login/loginJSON.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  var pageType = document.forms["PageInfo"].firstChild.class;
-  var contentID = document.forms["PageInfo"].firstChild.id;
+  if(document.forms["PageInfo"] != undefined){
+    var pageType = document.forms["PageInfo"].firstChild.classList[0];
+    var contentID = document.forms["PageInfo"].firstChild.id;
+  }else {
+    var pageType = undefined;
+    var contentID = undefined;
+  }
   var message = "username=" + form["username"].value + "&password=" + form["password"].value + "&pageType="+ pageType + "&contentID=" + contentID;
   xmlhttp.send(message);
   // console.log("message:\n" + message);
@@ -160,12 +165,14 @@ function toggleBookOnLibrary(bookID){
           statusIcon.classList.remove("addition");
           statusIcon2.classList.add("right");
           statusIcon2.classList.remove("remove");
+          statusIcon2.classList.remove("no-go");
           statusIcon.nextElementSibling.textContent = "Remove From Library";
         }else if (response.onLibrary==false) {
           statusIcon.classList.add("addition");
           statusIcon.classList.remove("remove");
           statusIcon2.classList.add("remove");
           statusIcon2.classList.remove("right");
+          statusIcon2.classList.remove("no-go");
           statusIcon.nextElementSibling.textContent = "Add Book to Library";
         }
       }

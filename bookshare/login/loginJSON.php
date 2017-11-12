@@ -38,6 +38,8 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
       $_SESSION['autenticado'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['userBooks'] = getBookInfoByAuthor($username);
+      $pageType = $_POST['pageType'];
+      $contentID= $_POST['contentID'];
       // echo "\n\n-________login__________--session status:".session_status();
       ob_start();
       loginOk($username);

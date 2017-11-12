@@ -3,7 +3,7 @@
 
 <?php
 	function addUser($login,$password,$email,$avatar){
-	
+
 	if (empty($avatar)){
 		$query = "INSERT INTO users(name,password,email) VALUES('" . $login . "','" . md5($password) . "','" . $email . "');";
 		$result = execQuery($query);
@@ -40,7 +40,7 @@ function CheckUser($user){
 	$query = "SELECT name FROM users WHERE name = '".$user."'";
 	$result = execQuery($query);
 	$num_registos = pg_numrows($result);
-	
+
 	return $num_registos;
 }
 
@@ -49,7 +49,7 @@ function CheckEmail($email){
 	$query = "SELECT email FROM users WHERE email = '".$email."'";
 	$result = execQuery($query);
 	$num_registos = pg_numrows($result);
-	
+
 	return $num_registos;
 }
 

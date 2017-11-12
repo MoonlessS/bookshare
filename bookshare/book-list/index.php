@@ -2,6 +2,7 @@
 
   <?php $pageTitle = null; $pageType = null; $contentID= null;
   include_once("database/books.php");
+  include_once("apresentacao/chapter.php");
 if(isset($_GET['Options'])){
   $pageTitle = 'Book-'.$_GET['Options'];
 }elseif (isset($_GET['edit-book'])) {
@@ -24,6 +25,7 @@ if(isset($bookID)) $contentID = $bookID;
 <?php include_once("template/templateTop.php");?>
 <?php include_once("apresentacao/book.php"); ?>
 <?php include_once("database/users.php"); ?>
+<?php include_once("database/library.php"); ?>
     <article class="main">
 <!-- /////////////////////////////////////////////////////////////////////// -->
 
