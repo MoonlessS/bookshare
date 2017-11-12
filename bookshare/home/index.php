@@ -19,7 +19,7 @@
                 <th>Author</th>
                 <th>Update</th>
             </tr>
-			<?php getLastMonthChaptersInfo($num_rows); ?>
+			<?php getLastUpdatedChaptersInfo($num_rows); ?>
           </tbody>
         </table>
         </section>
@@ -31,7 +31,7 @@
               <th>Book</th>
               <th>Popularity</th>
           </tr>
-          <?php getLastMonthBooks($num_rows); ?>
+          <?php getLastUpdatedBooks($num_rows); ?>
         </table>
 		</section>
 <!-- /////////////////////////////////////////////////////////////////////// -->

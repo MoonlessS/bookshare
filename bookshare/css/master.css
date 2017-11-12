@@ -367,6 +367,83 @@ article.main > section.main-page{
   float: left;
 }
 
+article.main > section.register{
+	width: 100%;
+	padding-right: 1%;
+}
+
+.register>table>tbody>tr>th {
+	width: 20%;
+	border-collapse: collapse;
+	background-color: rgba(0, 145, 0, .5);
+}
+
+.register>table>tbody>tr>td {
+	border-collapse: collapse;
+	background-color: rgba(0, 145, 0, .5);
+	padding: 0px;
+	text-align: center;
+}
+
+.register>table>tbody>tr>td:nth-child(n) {
+	border-collapse: collapse;
+	background-color: rgba(0, 145, 0, 0);
+	padding: 0px;
+	text-align: center;
+}
+
+input.register[type="text"], textarea {
+	background-color: rgba(0, 145, 0, .5);
+	border: none;
+	color: white;
+	font-size: 16px;
+	font-family: 'Segoe UI';
+	text-align: center;
+	padding: 5px;
+}
+
+input.register[type="password"], textarea {
+	background-color: rgba(0, 145, 0, .5);
+	border: none;
+	color: white;
+	font-size: 16px;
+	font-family: 'Segoe UI';
+	text-align: center;
+	padding: 5px;
+}
+
+input.register[type=submit]{
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border: 3px solid white;
+  background-color: rgba(0, 145, 0, .5);
+  background-size: 100%;
+}
+
+input.register[type=email], textarea{
+	background-color: rgba(0, 145, 0, .5);
+	border: none;
+	color: white;
+	font-size: 16px;
+	font-family: 'Segoe UI';
+	text-align: center;
+	padding: 5px;
+}
+
+input.register[type=url], textarea{
+	background-color: rgba(0, 145, 0, .5);
+	border: none;
+	color: white;
+	font-size: 16px;
+	font-family: 'Segoe UI';
+	text-align: center;
+	padding: 5px;
+}
+
 article.main > section.search{
 	width: 100%;
 	padding-right: 1%;

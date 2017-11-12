@@ -134,6 +134,26 @@ function submitRating(id,type,rate){
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var message = "id=" + id + "&" + "type=" + type + "&" + "rate=" + rate;
   xmlhttp.send(message);
+    
   return;
 
+}
+
+function ValidatePassword(){
+    if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
+        displayNotification("Passwords do not match! Please try again!");
+        return false;
+	}
+	else document.getElementById('submit').disabled = false;
+}
+
+function CheckUsername(){
+	var usernameInput = document.getElementById("u_name").value;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "database/user.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var message = "username=" + usernameInput;
+	xmlhttp.send(message);
+	return;
+	
 }
