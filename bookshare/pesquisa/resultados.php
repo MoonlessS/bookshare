@@ -20,7 +20,10 @@
 		search_chapter($chapter);
 	}
 	elseif(isset($_GET['user'])){
-		
+		$user = htmlspecialchars($_GET['user']);
+		$user = (strtolower($user));
+        
+		search_user($user);
 	}
 	elseif(isset($_GET['general_search'])){
 		$search_input = htmlspecialchars($_GET['general_search']);
