@@ -1,4 +1,4 @@
-// TODO Library page and book addition
+﻿// TODO Library page and book addition
 // TODO popularity
 // TODO Pagina de author/profile + links
 // TODO corrigir saida da criação de pagina nova
@@ -6,3 +6,8 @@
 // TODO pagina registar
 // TODO HOMEPAGE
 // TODO sidemenu
+
+// TODO library icon without login? or put no-go icon ?
+// TODO Icon/button for edit on page when user=author
+// TODO change to redirect? change to new page? on edit ok
+// TODO Select for book state change

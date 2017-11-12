@@ -1,9 +1,17 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 );?>
 <?php include_once("common/database.php"); ?>
+
 <?php
-function addUser($login,$password,$email){
-  $query = "INSERT INTO users(name,password,email) VALUES('" . $login . "','" . md5($password) . "','" . $email . "');";
-  $result = execQuery($query);
+	function addUser($login,$password,$email,$avatar){
+	
+	if (empty($avatar)){
+		$query = "INSERT INTO users(name,password,email) VALUES('" . $login . "','" . md5($password) . "','" . $email . "');";
+		$result = execQuery($query);
+	}
+	else{
+		$query = "INSERT INTO users(name,password,email,avatar_url) VALUES('" . $login . "','" . md5($password) . "','" . $email . "','" . $avatar . "' );";
+		$result = execQuery($query);
+	}
 }
 ?>
 
@@ -29,6 +37,18 @@ function userAuthenticationStatus(){
     }
   return false;
 }
+
+
+function CheckEmail($email){
+	$query = 'SELECT email FROM users WHERE email = "'.$email.'"';
+	$result = execQuery($query);
+	$num_registos = pg_numrows($result);
+	
+	if($num_registos != 0) return false;
+	
+	return true;
+}
+
 ?>
 
 

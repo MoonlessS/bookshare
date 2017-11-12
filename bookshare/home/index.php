@@ -1,6 +1,5 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 ); ?>
   <?php $pageTitle = null;$pageType = null; $contentID= null; ?>
-<?php $pageTitle = null;$pageType = null; $contentID= null; ?>
 <?php include_once("template/templateTop.php");?>
   <?php include_once("database/chapter.php"); ?>
   <?php include_once("database/books.php"); ?>
@@ -21,7 +20,7 @@
                 <th>Author</th>
                 <th>Update</th>
             </tr>
-			<?php getLastMonthChaptersInfo($num_rows); ?>
+			<?php getLastUpdatedChaptersInfo($num_rows); ?>
           </tbody>
         </table>
         </section>
@@ -33,11 +32,11 @@
               <th>Book</th>
               <th>Popularity</th>
           </tr>
-          <?php getLastMonthBooks($num_rows); ?>
+          <?php getLastUpdatedBooks($num_rows); ?>
         </table>
 		</section>
 <!-- /////////////////////////////////////////////////////////////////////// -->
     </article>
-	
+
 <?php //include_once("apresentacao/sidebar.php"); display_sidebar(); ?>
 <?php include_once("template/templateBot.php"); ?>
