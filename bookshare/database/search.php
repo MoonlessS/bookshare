@@ -49,12 +49,10 @@
 			for ($i=0; $i< $num_registos;$i++){
 				$chapter_name = pg_fetch_result($result,$i,1);
 
-				$book_link = GetBookTitleByChapter($chapter_name);
-				$book_link = str_replace(" ","-",strtolower($book_link));
-
+				$book_name = GetBookTitleByChapter($chapter_name);
 				$chapter_number = GetIdByChapter($chapter_name);
 
-				echo "<th><a href='ongoing-books-list/".$book_link."/chapter".$chapter_number.".php'>" .$chapter_name. "</th>";
+				echo "<th><a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>" .$chapter_name. "</th>";
 				echo"</tr><tr></tr>";
 			}
 			echo"</table>";
