@@ -186,22 +186,26 @@ var evaluate_pass;
 var evaluate_email;
 
 function CheckUsername(){
+	evaluate_username=0;
 	var usernameInput = document.getElementById('name').value;
 
 	var xmlhttp = new XMLHttpRequest();
-
+	
+	if(usernameInput==='' || usernameInput===null) return;
+	else{
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 		  var response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
 				displayNotification("Username not available! Try another please!");
+				document.getElementById('submit').disabled = true;
 			}
 		  else {
 			  evaluate_username = 1;
 			  ActivateSubmit();
 		  }
 		}
-	};
+	};}
 	xmlhttp.open("POST", "register/user.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var message = "username=" + usernameInput;
@@ -210,8 +214,11 @@ function CheckUsername(){
 }
 
 function ValidatePassword(){
+	evaluate_pass=0;
+	
     if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
         displayNotification("Passwords do not match! Please try again!");
+		document.getElementById('submit').disabled = true;
         return false;
 	}
 	else{
@@ -221,22 +228,26 @@ function ValidatePassword(){
 }
 
 function CheckEmail(){
+	evaluate_email=0;
 	var emailInput = document.getElementById('email').value;
 
 	var xmlhttp = new XMLHttpRequest();
-
+	
+	if(emailInput==='' || emailInput===null) return;
+	else{
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 		  var response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
 				displayNotification("Email already in use! Try another please!");
+				document.getElementById('submit').disabled = true;
 			}
 		  else{
 		  evaluate_email = 1;
 		  ActivateSubmit();
 	}
 		}
-	};
+	};}
 	xmlhttp.open("POST", "register/email.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var message = "email=" + emailInput;
@@ -245,10 +256,6 @@ function CheckEmail(){
 }
 
 function ActivateSubmit(){
-
-	console.log('x value: ' + evaluate_username);
-    console.log('y value: ' + evaluate_pass);
-    console.log('z value: ' + evaluate_email);
 
 	if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)) document.getElementById('submit').disabled = false;
 
