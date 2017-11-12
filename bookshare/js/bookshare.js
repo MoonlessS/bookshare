@@ -181,6 +181,10 @@ function toggleBookOnLibrary(bookID){
 
 }
 
+var evaluate_username;
+var evaluate_pass;
+var evaluate_email;
+
 function CheckUsername(){
 	var usernameInput = document.getElementById('name').value;
 
@@ -192,6 +196,10 @@ function CheckUsername(){
 		  if(response.status==="not_ok"){
 				displayNotification("Username not available! Try another please!");
 			}
+		  else {
+			  evaluate_username = 1;
+			  ActivateSubmit();
+		  }
 		}
 	};
 	xmlhttp.open("POST", "register/user.php", true);
@@ -206,7 +214,10 @@ function ValidatePassword(){
         displayNotification("Passwords do not match! Please try again!");
         return false;
 	}
-	else return 1;
+	else{
+		  evaluate_pass = 1;
+		  ActivateSubmit();
+	}
 }
 
 function CheckEmail(){
@@ -220,7 +231,10 @@ function CheckEmail(){
 		  if(response.status==="not_ok"){
 				displayNotification("Email already in use! Try another please!");
 			}
-		  else return 1;
+		  else{
+		  evaluate_email = 1;
+		  ActivateSubmit();
+	}
 		}
 	};
 	xmlhttp.open("POST", "register/email.php", true);
@@ -228,4 +242,14 @@ function CheckEmail(){
 	var message = "email=" + emailInput;
 	xmlhttp.send(message);
 	return;
+}
+
+function ActivateSubmit(){
+
+	console.log('x value: ' + evaluate_username);
+    console.log('y value: ' + evaluate_pass);
+    console.log('z value: ' + evaluate_email);
+
+	if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)) document.getElementById('submit').disabled = false;
+
 }
