@@ -35,11 +35,11 @@
 			$book_lastupdate = GetInfoChapterByBook($book_id)[0];
 			$book_totalchapters = GetInfoChapterByBook($book_id)[1];
 			$book_chaptername = GetInfoChapterByBook($book_id)[2];
-
+			$chapter_number = GetIdByChapter($book_chaptername);
 
 			echo "<td width='20%'><a href='book-list/index.php?title=".$book_title."'> ".$book_title." </td>
 				<td width='15%'> ".$book_lastupdate." </td>
-				<td width='20%'> ".$book_chaptername." </td>
+				<td width='20%'> <a href='chapter-list/?book=".$book_title."&number=".$chapter_number."&chapter=".$book_chaptername."'>" .$book_chaptername. "</th> </td>
 				<td width='10%'> ".$book_author." </td>
 				<td width='10%'> ".$book_totalchapters." </td>
 				<td width='10%'> ";starIndicator($book_title,$book_popularity); echo " </td> </tr>";

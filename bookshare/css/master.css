@@ -442,13 +442,13 @@ input.register[type="password"], textarea {
 }
 
 input.register[type=submit]{
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   float: left;
   padding: 10px;
   text-align: center;
   color: white;
-  border: 3px solid white;
+  border: 1px solid white;
   background-color: rgba(0, 145, 0, .5);
   background-size: 100%;
 }
@@ -524,13 +524,12 @@ input.advanced_search[type=image]{
 
 input.order[type=submit]{
   font-size: 20px;
-  font-weight: bold;
   float: left;
-  padding: 10px;
+  padding: 12 px;
   text-align: center;
   color: white;
-  border: 3px solid white;
-  background-color: rgba(179, 162, 199, .5);
+  border: 1px solid white;
+  background-color: rgba(179, 162, 199, .4);
   background-size: 100%;
 }
 
@@ -538,6 +537,12 @@ input.order[type=submit]{
 	text-decoration: underline;
 	color:white;
 }
+
+#submit:hover{
+	text-decoration: underline;
+	color:white;
+}
+
 
 article.main>.chapter-list {
   width: 69%;

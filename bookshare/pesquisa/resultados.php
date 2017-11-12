@@ -19,11 +19,8 @@
         
 		search_chapter($chapter);
 	}
-	elseif(isset($_GET['author'])){
-		echo "Olá2!!!";	
-	}
 	elseif(isset($_GET['user'])){
-		echo "Olá3!!!";	
+		
 	}
 	elseif(isset($_GET['general_search'])){
 		$search_input = htmlspecialchars($_GET['general_search']);
