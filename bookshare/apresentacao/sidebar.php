@@ -23,7 +23,7 @@ function display_sidebar(){
                     <th>Popularity</th>
                 </tr>";
 				$number_of_rows = 10;
-				getLastMonthBooks($number_of_rows);
+				getLastUpdatedBooks($number_of_rows);
 	echo"
             </table>
             </section>
@@ -37,7 +37,7 @@ function display_sidebar(){
                     <th>New Chapters</th>
                 </tr>
                 <tr>";
-                getLastMonthChapters($number_of_rows);
+                getLastUpdatedChapters($number_of_rows);
     echo"
             </tbody>
             </table>
