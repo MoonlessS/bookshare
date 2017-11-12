@@ -7,7 +7,6 @@
 		<table>
 			<tbody>
 			<tr></tr>
-			<!-- acrescentar ao form action='database/register.php' para fazer o registo na base de dados -->
 			<form action='register/register.php' method='post' id='register'>
 			<tr>
 				<th class='register'> <label for='name'>Name:</label></th>
