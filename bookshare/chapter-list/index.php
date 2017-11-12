@@ -5,19 +5,32 @@
   include_once("database/books.php");
   include_once("apresentacao/chapter.php");
 
-if(isset($_GET['chapter']) and isset($_GET['book']) and isset($_GET['number'])){
-  $chapterTitle = $_GET['chapter'];
+if(isset($_GET['book'])){
   $bookID = getIDfromTitle($_GET['book']);
-  $chapterNumber = $_GET['number'];
-  $pageTitle = "Chapter ".$chapterNumber." - ".$chapterTitle." - ";
-
-}elseif (isset($_GET['edit-chapter'])) {
-  $pageTitle = 'Book Update';
-}else {
-  $pageTitle = 'Chapter';
-  $pageType = 'chapter';
 }
 
+if(isset($_POST['new-chapter'])){
+  $content = $_POST['content'];
+  $chapterTitle = $_POST['title'];
+  addNewChapter($bookID,$chapterTitle,$content);
+  //header('Location: ')
+  $newChapter = false;
+}
+if(!(isset($_POST['new-chapter'])) and isset($_GET['new-chapter'])) {
+  $newChapter = true;
+  $pageTitle = 'Chapter Addition - ';
+}else if(isset($_GET['chapter']) and isset($_GET['number'])){
+$chapterTitle = $_GET['chapter'];
+$chapterNumber = $_GET['number'];
+$pageTitle = "Chapter ".$chapterNumber." - ".$chapterTitle." - ";
+
+}elseif (isset($_GET['edit-chapter'])) {
+  $pageTitle = 'Chapter Update - ';
+}else {
+  $pageTitle = 'Chapter - ';
+  $pageType = 'book';
+}
+$pageType = 'book';
 if(isset($bookID)) $contentID = $bookID;
 
   ?>
@@ -36,12 +49,17 @@ if(!$book) {
   display_error("The Book requested doesn't exist or was deleted!");
   return;
 }
-$chapter = getChapterInfoByBookAndNumber($bookID,$chapterNumber);
-if(!$chapter) {
-  display_error("The Chapter requested doesn't exist or was deleted!");
-  return;
+
+if(isset($newChapter)){
+  display_new_chapter($book);
+}elseif(isset($chapterTitle)){
+  $chapter = getChapterInfoByBookAndNumber($bookID,$chapterNumber);
+  if(!$chapter) {
+    display_error("The Chapter requested doesn't exist or was deleted!");
+    return;
+  }
+  display_chapter($book,$chapter);
 }
-display_chapter($book,$chapter);
 }
  ?>
 <!-- /////////////////////////////////////////////////////////////////////// -->

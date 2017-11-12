@@ -108,6 +108,11 @@
 		$query = "SELECT number, id, title, popularity FROM chapter WHERE book=$bookID ORDER BY number";
 		return $result = execQuery($query);
 	}
+	function getBookTotalChapterNumber($bookID){
+		$query = "SELECT count(*) FROM chapter WHERE book=$bookID";
+		$result = execQuery($query);
+		return pg_fetch_row($result)[0];
+	}
 	function getChapterInfo($chapterID){
 	  $query = "SELECT *
 	              FROM bookshare.chapter
@@ -123,5 +128,12 @@
 		$result = execQuery($query);
 		if(!$result) return $result;
 			else return pg_fetch_assoc($result);
+	}
+	function addNewChapter($bookID,$chapterTitle,$content,$chapterNumber = null){
+		if(is_null($chapterNumber))$chapterNumber = getBookTotalChapterNumber($bookID) + 1;
+		$query = "INSERT INTO bookshare.chapter(book,number,title,content)
+							VALUES($bookID,$chapterNumber,'$chapterTitle','$content')";
+		$result = execQuery($query);
+		return $result;
 	}
 ?>
