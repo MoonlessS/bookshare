@@ -2,6 +2,7 @@
 
   <?php $pageTitle = null; $pageType = null; $contentID= null;
   include_once("database/books.php");
+  include_once("apresentacao/chapter.php");
 if(isset($_GET['Options'])){
   $pageTitle = 'Book-'.$_GET['Options'];
 }elseif (isset($_GET['edit-book'])) {

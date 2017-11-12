@@ -1,9 +1,9 @@
 <?php  set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-1/bookshare/" . PATH_SEPARATOR .                  "/srv/www/htdocs/bookshare/bookshare/"                 ); ?>
 
-<?php 
+<?php
 	include_once("common/database.php");
 	include_once("database/author.php");
-	include_once("apresentacao/starRating.php"); 
+	include_once("apresentacao/starRating.php");
 ?>
 
 <?php
@@ -86,18 +86,40 @@
 	  $query = "DELETE FROM chapter_usersrate
 	            WHERE book = '$chapterID' and user='$userID'";
 	  $result = execQuery($query);
-
 	  $query = "INSERT INTO chapter_usersrate(book,users,rate) VALUES ($chapterID,$userID,$rate)";
-	  return $result = execQuery($query);
+		$result = execQuery($query);
+
+		if(!($result = execQuery($query))) return false;
+		$query = "UPDATE chapter SET popularity = (SELECT AVG(rate) FROM chapter_usersrate WHERE chapter=$chapterID) WHERE chapter=$chapterID";
+		execQuery($query);
+
+		return $result;
 	}
 	function getUserChapterRate($chapterID){
 	  $userID = $_SESSION['user']['id'];
 	  $query = "SELECT rate FROM chapter_usersrate WHERE chapter='$chapterID' and users='$userID'";
-	  if(!($result = execQuery($query))) return false;
-	  $query = "UPDATE chapter SET popularity = (SELECT AVG(rate) FROM chapter_usersrate WHERE chapter=$chapterID) WHERE chapter=$chapterID";
-	  execQuery($query);
 	  return pg_fetch_assoc($result)['rate'];
+		if(!($result = execQuery($query))) return 0;
+		return pg_fetch_assoc($result)['rate'];
 	}
-	
-
+	function getBookChapters($bookID){
+		$query = "SELECT number, id, title, popularity FROM chapter WHERE book=$bookID ORDER BY number";
+		return $result = execQuery($query);
+	}
+	function getChapterInfo($chapterID){
+	  $query = "SELECT *
+	              FROM bookshare.chapter
+	              where chapter.id='$chapterID'";
+	  $result = execQuery($query);
+	  if(!$result) return $result;
+	    else return pg_fetch_assoc($result);
+	}
+	function getChapterInfoByBookAndNumber($bookID,$chapterNumber){
+		$query = "SELECT *
+								FROM bookshare.chapter
+								WHERE chapter.book='$bookID' and chapter.number=$chapterNumber";
+		$result = execQuery($query);
+		if(!$result) return $result;
+			else return pg_fetch_assoc($result);
+	}
 ?>

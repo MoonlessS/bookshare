@@ -3,6 +3,7 @@
 // TODO:0 passar para os capitulos id:1 gh:6
 //``````````````````````````````````````````````````````````````
 function display_book($bookID = null){
+  include_once("apresentacao/chapter.php");
   $book = getBookInfo($bookID);
   if(!$book) {
     display_error("The Book requested doesn't exist or was deleted!");
@@ -51,6 +52,7 @@ function display_book($bookID = null){
           </div>
 
         ";
+        display_chapter_list($book);
 }
 
 function display_book_edit($book = null,$url = null,$synopsis = null,$bookGenreList = null){
