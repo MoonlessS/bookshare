@@ -21,7 +21,6 @@
 			echo "<table width='100%'><tr><th>Books Found:</th></tr><tr>";
 			for ($i=0; $i< $num_registos;$i++){
 				$book_name=pg_fetch_result($result,$i,1);
-				$book_name_link=str_replace(" ","-",strtolower($book_name));
 
 				echo "<th><a href='book-list/index.php?title=".$book_name."'>" .$book_name. "</th>";
 				echo"</tr><tr></tr>";
@@ -60,6 +59,33 @@
 		}
 
 	}
+	
+	function search_user ($search_input){
+
+        $query = "SELECT name FROM users WHERE (name LIKE '%".$search_input."%')";
+		$result = execQuery($query);
+
+		$num_registos = pg_numrows($result);
+
+		if($num_registos==0){
+			$error = 'No users found!';
+			display_error($error);
+		}
+		else{
+			echo "<section class='search'>";
+			echo "<table width='100%'><tr><th>Users Found:</th></tr><tr>";
+			for ($i=0; $i< $num_registos;$i++){
+				$user_name=pg_fetch_result($result,$i,0);
+
+				echo "<th><a href='user'>".$user_name."</th>";
+				echo"</tr><tr></tr>";
+			}
+			echo"</table>";
+			echo"</section>";
+		}
+		return $num_registos;
+
+	}
 
 	function general_search ($search_input){
 			echo "<section class='search'>";
@@ -72,6 +98,13 @@
 			echo "<section class='search'>";
 			echo "<table width='100%'>";
 				search_chapter($search_input);
+			echo "<tr><br></tr>";
+			echo"</table>";
+			echo"</section>";
+			
+			echo "<section class='search'>";
+			echo "<table width='100%'>";
+				search_user($search_input);
 			echo "<tr><br></tr>";
 			echo"</table>";
 			echo"</section>";

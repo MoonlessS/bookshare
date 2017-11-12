@@ -3,7 +3,7 @@
 
 <?php
 	function addUser($login,$password,$email,$avatar){
-
+	
 	if (empty($avatar)){
 		$query = "INSERT INTO users(name,password,email) VALUES('" . $login . "','" . md5($password) . "','" . $email . "');";
 		$result = execQuery($query);
@@ -40,7 +40,7 @@ function CheckUser($user){
 	$query = "SELECT name FROM users WHERE name = '".$user."'";
 	$result = execQuery($query);
 	$num_registos = pg_numrows($result);
-
+	
 	return $num_registos;
 }
 
@@ -49,8 +49,24 @@ function CheckEmail($email){
 	$query = "SELECT email FROM users WHERE email = '".$email."'";
 	$result = execQuery($query);
 	$num_registos = pg_numrows($result);
-
+	
 	return $num_registos;
+}
+
+
+function GetUserInfo($user){
+	$query = "SELECT avatar_url, popularity,description FROM users WHERE name= '".$user."'";
+	$result = execQuery($query);
+	
+	$num_registos = pg_numrows($result);
+
+	if($num_registos>0){
+		$user_avatar = pg_fetch_result(execQuery($query),0,0);
+		$user_popularity = pg_fetch_result(execQuery($query),0,1);
+		$user_description = pg_fetch_result(execQuery($query),0,2);
+
+		return array($user_avatar,$user_popularity,$user_description);
+	}
 }
 
 ?>

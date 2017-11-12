@@ -251,9 +251,6 @@ img {
 .right {
   background: url("img/right.svg");
 }
-.no-go{
-  background: url("img/no-go.svg");
-}
 .library-icon-container{
   margin:0;
   width: auto !important;
@@ -651,6 +648,43 @@ article.main {
   color: white;
   border: 3px solid white;
   background-color: rgba(179, 162, 199, .5);
+  background-size: 100%;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+  justify-content: center;
+  align-items: center;
+  /*resize: horizontal;
+  justify-content: center;*/
+  /*max-width: -moz-available;*/
+}
+
+.user-container {
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: 10px;
+  height: 75px;
+  /*resize: horizontal;
+  justify-content: center;*/
+}
+/*---use with flex-container
+.book-title-container>div#author{
+  margin-right: auto !important;
+}*/
+.user-container>div {
+  /*display: inline-block;*/
+  max-width: 100%;
+  min-width: 20%;
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+  height: 55px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border: 3px solid white;
+  background-color: rgba(0, 145, 0, .5);
   background-size: 100%;
   text-align: center;
   vertical-align: middle;
