@@ -24,6 +24,7 @@ if(isset($bookID)) $contentID = $bookID;
 <?php include_once("template/templateTop.php");?>
 <?php include_once("apresentacao/book.php"); ?>
 <?php include_once("database/users.php"); ?>
+<?php include_once("database/library.php"); ?>
     <article class="main">
 <!-- /////////////////////////////////////////////////////////////////////// -->
 
