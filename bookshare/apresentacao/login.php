@@ -39,7 +39,7 @@ if($pageType == 'book'){
                 <button class='button button2' style='/*vertical-align:middle*/' onclick='toggleBookOnLibrary($bookID);'><i id='library-status-icon' class='logo ". (getBookAddedToLibraryState($bookID)?"remove":"addition") ."'></i> <p>". (getBookAddedToLibraryState($bookID)?"Remove Book From Library":"Add Book to Library") ."</p></button>";
   }
   echo "
-                <button class='button button2' style='/*vertical-align:middle*/'><i class='logo library'></i> <p>Library</p></button>
+                <a href='library/' class='button button2' style='/*vertical-align:middle*/'><i class='logo library'></i> <p>Library</p></a>
                 <button class='button button2' style='/*vertical-align:middle*/' onclick=toggleVisibility('book-edition-submenu')><i class='logo pencil'></i> <p>Book Edition</p></button>
                 <div id='book-edition-submenu' class='submenu' style='/*vertical-align:middle;*/display:none'>";
 if($userBooks = getBookInfoByAuthor($username)) {
