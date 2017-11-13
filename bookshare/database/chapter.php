@@ -61,7 +61,7 @@
 	}
 
 	function getLastUpdatedChaptersInfo ($num_rows){
-		$query = "SELECT title, number,date FROM chapter ORDER BY date desc LIMIT ".$num_rows."";
+		$query = "SELECT title, number,date_trunc('second',date) as date FROM chapter ORDER BY date desc LIMIT ".$num_rows."";
 		$result = execQuery($query);
 
 		$num_registos = pg_numrows($result);
