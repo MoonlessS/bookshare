@@ -5,6 +5,8 @@
 <!-- /////////////////////////////////////////////////////////////////////// -->
 
 <div class="block">
+    <p class="title block purple border"> NOTA: Carregar Home para ir para a Homepage do site BookShare, Home na Homepage do site regressa aqui.</p>
+    <p class="title block purple border"> NOTA2: Credenciais exemplo: Username: username Password: password <br> Testado e a funcionar em firefox resolução 1280x720 </p>
     <div class="float" >
 
       <div class="book-title-container">
