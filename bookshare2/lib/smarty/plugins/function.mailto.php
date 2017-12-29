@@ -99,7 +99,7 @@ function smarty_function_mailto($params, $template)
 
         return;
     }
-    // FIXME: (rodneyrehm) document.write() excues me what? 1998 has passed! id:7 gh:13
+    // FIXME: (rodneyrehm) document.write() excues me what? 1998 has passed!
     if ($encode == 'javascript') {
         $string = 'document.write(\'<a href="mailto:' . $address . '" ' . $extra . '>' . $text . '</a>\');';
 

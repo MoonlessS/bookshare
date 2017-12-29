@@ -1,4 +1,4 @@
-<?php
+ <?php
   function db(){
     global $conn;
     if(!isset($conn)){

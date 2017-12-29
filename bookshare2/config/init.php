@@ -4,8 +4,7 @@
 
 //set_include_path( get_include_path() . PATH_SEPARATOR .                  "/usr/users2/mieec2013/up201307839/public_html/" . PATH_SEPARATOR .                  "/usr/users2/miec2013/up201305298/public_html/" . PATH_SEPARATOR .                  "/srv/www/htdocs/"                 );
 
-  $BASE_DIR = '/usr/users2/miec2013/up201305298/public_html/trabalhosSiem/trabalhoPHP-final/bookshare2/bookshare/';
-  $BASE_URL = 'https://paginas.fe.up.pt/~up201305298/trabalhosSiem/trabalhoPHP-final/bookshare2/bookshare/';
+include_once('base_dir.php');
 
   $conn = new PDO('pgsql:host=db.fe.up.pt;dbname=siem1728', 'siem1728', 'CrrfyvDH');
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
