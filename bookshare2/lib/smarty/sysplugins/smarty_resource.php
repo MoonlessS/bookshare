@@ -450,7 +450,7 @@ abstract class Smarty_Resource
             return $smarty->_resource_handlers[$type] = self::$resources['stream'];
         }
 
-        // TODO: try default_(template|config)_handler
+        // TODO: try default_(template|config)_handler id:17 gh:24
 
         // give up
         throw new SmartyException("Unkown resource type '{$type}'");
@@ -498,7 +498,7 @@ abstract class Smarty_Resource
     public static function getUniqueTemplateName($smarty, $template_resource)
     {
         self::parseResourceName($template_resource, $smarty->default_resource_type, $name, $type);
-        // TODO: optimize for Smarty's internal resource types
+        // TODO: optimize for Smarty's internal resource types id:19 gh:26
         $resource = Smarty_Resource::load($smarty, $type);
 
         return $resource->buildUniqueResourceName($smarty, $name);
