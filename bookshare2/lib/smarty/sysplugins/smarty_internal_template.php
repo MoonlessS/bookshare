@@ -623,7 +623,7 @@ class Smarty_Internal_Template extends Smarty_Internal_TemplateBase
 
                 return;
 
-            // FIXME: routing of template -> smarty attributes
+            // FIXME: routing of template -> smarty attributes id:11 gh:18
             default:
                 if (property_exists($this->smarty, $property_name)) {
                     $this->smarty->$property_name = $value;
@@ -684,7 +684,7 @@ class Smarty_Internal_Template extends Smarty_Internal_TemplateBase
 
                 return $this->compiler;
 
-            // FIXME: routing of template -> smarty attributes
+            // FIXME: routing of template -> smarty attributes id:13 gh:20
             default:
                 if (property_exists($this->smarty, $property_name)) {
                     return $this->smarty->$property_name;
