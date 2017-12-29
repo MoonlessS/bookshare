@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-12-29 21:53:53
+<?php /* Smarty version Smarty-3.1.15, created on 2017-12-29 23:10:51
          compiled from "/srv/www/htdocs/bookshare/bookshare2/templates/common/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16620678765a46b5023fd4c5-37870102%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '68c38958bc85decf93aaefa4540af0c5f5cac300' => 
     array (
       0 => '/srv/www/htdocs/bookshare/bookshare2/templates/common/header.tpl',
-      1 => 1514584387,
+      1 => 1514587210,
       2 => 'file',
     ),
   ),
