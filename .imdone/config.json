@@ -17,12 +17,17 @@
       "XXX",
       "IDEA",
       "NOTE",
-      "REVIEW"
+      "REVIEW",
+      "FIXME"
     ]
   },
   "lists": [
     {
       "name": "TODO",
+      "hidden": false
+    },
+    {
+      "name": "FIXME",
       "hidden": false
     }
   ],
@@ -33,5 +38,10 @@
     "pedantic": false,
     "smartLists": true,
     "langPrefix": "language-"
+  },
+  "sync": {
+    "id": "5a01ce4a1372600a4bd15457",
+    "name": "MoonlessS/bookshare",
+    "useImdoneioForPriority": true
   }
 }
