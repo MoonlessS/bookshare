@@ -18,7 +18,8 @@
       "IDEA",
       "NOTE",
       "REVIEW",
-      "FIXME"
+      "FIXME",
+      "NOTE"
     ]
   },
   "lists": [
@@ -28,6 +29,10 @@
     },
     {
       "name": "FIXME",
+      "hidden": false
+    },
+    {
+      "name": "NOTE",
       "hidden": false
     }
   ],

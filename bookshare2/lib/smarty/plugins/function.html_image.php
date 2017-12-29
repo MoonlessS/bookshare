@@ -119,7 +119,7 @@ function smarty_function_html_image($params, $template)
     }
 
     if (!isset($params['width']) || !isset($params['height'])) {
-        // FIXME: (rodneyrehm) getimagesize() loads the complete file off a remote resource, use custom [jpg,png,gif]header reader!
+        // FIXME: (rodneyrehm) getimagesize() loads the complete file off a remote resource, use custom [jpg,png,gif]header reader! id:10 gh:17
         if (!$_image_data = @getimagesize($_image_path)) {
             if (!file_exists($_image_path)) {
                 trigger_error("html_image: unable to find '$_image_path'", E_USER_NOTICE);
@@ -146,7 +146,7 @@ function smarty_function_html_image($params, $template)
 
     if (isset($params['dpi'])) {
         if (strstr($_SERVER['HTTP_USER_AGENT'], 'Mac')) {
-            // FIXME: (rodneyrehm) wrong dpi assumption
+            // FIXME: (rodneyrehm) wrong dpi assumption id:12 gh:19
             // don't know who thought this up… even if it was true in 1998, it's definitely wrong in 2011.
             $dpi_default = 72;
         } else {
