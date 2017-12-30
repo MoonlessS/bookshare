@@ -52,44 +52,56 @@
 		$query = "SELECT title, number FROM chapter ORDER BY date desc LIMIT ?";
 		$array = array($num_rows);
 		$result = execQuery($query,$array);
+		return $result->fetchAll();
+// // todo passar para template
+// 		$num_registos = ($result->rowCount());
+//
+// 		for($i=0;$i<$num_registos;$i++){
+// 			$row = $result->fetch();
+// 			$chapter_number = $row['number'];
+// 			$chapter_name = $row['title'];
+// 			$book_name = GetBookTitleByChapter($chapter_name);
+// 			echo "<tr>
+// 				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
+// 				<td><a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>" .$chapter_name. " </td>
+// 			</tr>";
+// 		}
 
-// todo passar para template
-		$num_registos = ($result->rowCount());
-
-		for($i=0;$i<$num_registos;$i++){
-			$row = $result->fetch();
-			$chapter_number = $row['number'];
-			$chapter_name = $row['title'];
-			$book_name = GetBookTitleByChapter($chapter_name);
-			echo "<tr>
-				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-				<td><a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>" .$chapter_name. " </td>
-			</tr>";
-		}
+// {foreach $lastUpdatedChapters as $row}
+// 	{$chapter_number = $row['number']}
+// 	{$chapter_name = $row['title']}
+// 	{$book_name = $row['book_name']}
+// 	<tr>
+// 		<td><a href='book-list/index.php?title={$book_name}'> {$book_name} </td>
+// 		<td><a href='chapter-list/?book={$book_name}&number={$chapter_number}&chapter={$chapter_name}'> {$chapter_name} </td>
+// 	</tr>
+// {/foreach}
 	}
 
 	function getLastUpdatedChaptersInfo ($num_rows){
-		$query = "SELECT title, number,date_trunc('second',date) as date FROM chapter ORDER BY date desc LIMIT ?";
+		$query = "SELECT title, number,date_trunc('second',date) as date
+		FROM chapter
+		JOIN book ORDER BY date desc LIMIT ?";
 		$array = array($num_rows);
 		$result = execQuery($query,$array);
-
-// todo passar para template
-		$num_registos = ($result->rowCount());
-
-		for($i=0;$i<$num_registos;$i++){
-			$row = $result->fetch();
-			$chapter_number = $row['number'];
-			$chapter_update = $row['date'];
-			$chapter_name = $row['title'];
-			$book_name = GetBookTitleByChapter($chapter_name);
-			$author_name = GetAuthorByChapter($chapter_name);
-			echo "<tr>
-				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-				<td>".$chapter_number." <a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>".$chapter_name." </td>
-				<td>".$author_name." </td>
-				<td>".$chapter_update." </td>
-			</tr>";
-		}
+		return $result->fetchAll();
+// // todo passar para template
+// 		$num_registos = ($result->rowCount());
+//
+// 		for($i=0;$i<$num_registos;$i++){
+// 			$row = $result->fetch();
+// 			$chapter_number = $row['number'];
+// 			$chapter_update = $row['date'];
+// 			$chapter_name = $row['title'];
+// 			$book_name = GetBookTitleByChapter($chapter_name);
+// 			$author_name = GetAuthorByChapter($chapter_name);
+// 			echo "<tr>
+// 				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
+// 				<td>".$chapter_number." <a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>".$chapter_name." </td>
+// 				<td>".$author_name." </td>
+// 				<td>".$chapter_update." </td>
+// 			</tr>";
+// 		}
 	}
 
 	function rateChapter($rate,$chapterID){
