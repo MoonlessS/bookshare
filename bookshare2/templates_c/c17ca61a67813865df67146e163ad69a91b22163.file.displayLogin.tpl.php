@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-12-29 21:35:00
+<?php /* Smarty version Smarty-3.1.15, created on 2017-12-30 00:40:13
          compiled from "/srv/www/htdocs/bookshare/bookshare2/templates/login/displayLogin.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2139121095a46b504c45a06-44349117%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c17ca61a67813865df67146e163ad69a91b22163' => 
     array (
       0 => '/srv/www/htdocs/bookshare/bookshare2/templates/login/displayLogin.tpl',
-      1 => 1513158780,
+      1 => 1514594290,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
   'unifunc' => 'content_5a46b504f1dc37_40278707',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a46b504f1dc37_40278707')) {function content_5a46b504f1dc37_40278707($_smarty_tpl) {?><a class='dropbtn' onclick='javascript:showLogin(this)'>Login</a>
   <div class='space-box'>
@@ -36,4 +36,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
   </div>
   <script>resizeNav(false);</script>
+  </li>
 <?php }} ?>

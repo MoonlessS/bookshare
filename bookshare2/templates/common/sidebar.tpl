@@ -11,7 +11,7 @@
                 <th>Popularity</th>
             </tr>
         </table>
-    </section>
+    </section> 
 
     <section class='chapter-list'>
         <table>

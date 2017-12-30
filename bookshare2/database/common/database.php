@@ -1,15 +1,20 @@
 <?php
-  include_once(../config/init.php);
+  // include_once("../../config/init.php");
  ?>
 
  <?php
 
 
-function execQuery($query,$array){
+function execQuery($query,$array = null){
   global $conn;
 
   $stmt = $conn->prepare($query);
 
- return $stmt->execute($array);
+if(is_array($array)){
+  $stmt->execute($array);
+}else{
+  $stmt->execute();
+}
+  return $stmt;
 }
 ?>

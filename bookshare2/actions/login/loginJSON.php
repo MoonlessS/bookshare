@@ -1,16 +1,17 @@
 <?php header('Access-Control-Allow-Origin: *'); ?>
 
 <?php
-  include_once("common/database.php");
+include_once('../../config/init.php');
+  // include_once("database/common/database.php");
   include_once("database/users.php");
   include_once("database/books.php");
-  include_once("apresentacao/login.php");
+  include_once("database/library.php");
   ?>
 <?php
 // echo "<p>---- \n\n\n\n\n\n\n----</p>";
 // var_dump($_POST);
 // error_reporting(E_ALL & ~E_ALL);
-session_start();
+// session_start();
 $_SESSION['autenticado'] = isset($_SESSION['autenticado']) ? $_SESSION['autenticado'] : null;
 $_SESSION['username'] = isset($_SESSION['username']) ? $_SESSION['username'] : null;
 
@@ -19,7 +20,11 @@ $password = isset($_POST['password']) ? $_POST['password'] : null;
 $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
 
   //  echo "\n\n-_______start___________--session status:".session_status();
-  if($_SESSION['autenticado'] and $_SESSION['username'] == $username and !($logout=='true')){
+  ////////////////////////////////////////////////////
+    if(                     !$_SESSION['autenticado'] and $_SESSION['username'] == $username and !($logout=='true')){
+  //////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+
     error_log("dbg: Utilizador ja autenticado!");
     //Chrome faz pedidos duplos por isso reposta não deve dar qualquer erro para não se notar esse acontecimento do ponto de vista do utilizador ou deve ser resolvido de outra forma -- firefox winndows não dá problemas
     $message = array('status' => 'authenticated');
@@ -34,10 +39,13 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
       // echo "\n\n-_______logout___________--session status:".session_status();
     } else if(($_SESSION['user'] = validateUser("$username", "$password"))){
       $_SESSION['autenticado'] = true;
+      $smarty->assign('autenticado', $_SESSION['autenticado']);
       $_SESSION['username'] = $username;
+      $smarty->assign('username', $_SESSION['username']);
       $_SESSION['userBooks'] = getBookInfoByAuthor($username);
       $pageType = $_POST['pageType'];
       $contentID= $_POST['contentID'];
+
       // echo "\n\n-________login__________--session status:".session_status();
       ob_start();
       loginOk($username);
@@ -53,25 +61,31 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
   }
 
 if(isset($conn)) {
-  pg_close($conn);
+  $conn = null;
 }
 ?>
 <?php
 function loginOk(){
-  displayLoggedUser();
+  global $smarty,$pageType,$contentID;
+  $smarty->assign('pageType', (is_null($pageType)?false:$pageType));
+  $smarty->assign('bookID', (is_null($contentID)?false:$contentID));
+  $smarty->assign('onLibrary', $pageType=='book'?getBookAddedToLibraryState($contentID):false);
+  $smarty->assign('userBooks', $_SESSION['userBooks']);
+  $smarty->display('templates/login/displayLoggedUser.tpl');
 }
 function loginFailure(){
-  displayLogin();
+  global $smarty;
+  $smarty->display('templates/login/displayLogin.tpl');
 }
 
 function logoutUser(){
   $_SESSION['autenticado'] = false;
   session_destroy();
-  displayLogin();
+  global $smarty;
+  $smarty->display('templates/login/displayLogin.tpl');
 }
 
 function getUserPrivileges(){
   $username = $_SESSION['username'];
-
 }
 ?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-12-29 21:35:01
+<?php /* Smarty version Smarty-3.1.15, created on 2017-12-29 23:45:05
          compiled from "/srv/www/htdocs/bookshare/bookshare2/templates/common/sidebar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8192429375a46b50510c332-82985315%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '85b862f7783ae3b09fe690e40b289719fa62cd88' => 
     array (
       0 => '/srv/www/htdocs/bookshare/bookshare2/templates/common/sidebar.tpl',
-      1 => 1512689400,
+      1 => 1514590652,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
   'unifunc' => 'content_5a46b50510c338_47543410',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a46b50510c338_47543410')) {function content_5a46b50510c338_47543410($_smarty_tpl) {?><script type='text/javascript'>
     document.querySelector('article.main').style.width = '70%';
@@ -32,7 +32,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <th>Popularity</th>
             </tr>
         </table>
-    </section>
+    </section> 
 
     <section class='chapter-list'>
         <table>
@@ -45,4 +45,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             </tbody>
         </table>
     </section>
-</aside><?php }} ?>
+</aside>
+<?php }} ?>

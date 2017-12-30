@@ -1,11 +1,11 @@
 <?php
-  include_once(common/database.php);
+  include_once("common/database.php");
  ?>
 
  <?php
 
   function SidebarChapter(){
-    $num_rows= 10
+    $num_rows= 10;
 
     $query = "SELECT title, number,date FROM chapter ORDER BY date desc LIMIT ?";
 

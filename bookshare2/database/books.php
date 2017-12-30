@@ -1,5 +1,5 @@
 <?php
-  include_once(common/database.php);
+  include_once("common/database.php");
  ?>
 
  <?php
@@ -16,6 +16,6 @@
     $array = array($username);
 
      $stmt = execQuery($query,$array);
-     return $stmt->fetch();
+     return $stmt->fetchAll();
    }
 ?>

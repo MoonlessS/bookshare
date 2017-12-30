@@ -35,7 +35,7 @@ function validateUser(form) {
     showLoading(false);
   };
   // xmlhttp.open("GET", "gethint.php?q=" + str, true);
-  xmlhttp.open("POST", "login/loginJSON.php", true);
+  xmlhttp.open("POST", "actions/login/loginJSON.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   if(document.forms["PageInfo"] != undefined){
     var pageType = document.forms["PageInfo"].firstChild.classList[0];
@@ -63,7 +63,7 @@ function logoutUser(form) {
     }
     showLoading(false);
   };
-  xmlhttp.open("POST", "login/loginJSON.php", true);
+  xmlhttp.open("POST", "actions/login/loginJSON.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var message = "username=" + form["username"].value + "&" + "logout=true";
   xmlhttp.send(message);
@@ -197,7 +197,7 @@ function CheckUsername(){
 	var usernameInput = document.getElementById('name').value;
 
 	var xmlhttp = new XMLHttpRequest();
-	
+
 	if(usernameInput==='' || usernameInput===null) return;
 	else{
 	xmlhttp.onreadystatechange = function() {
@@ -222,7 +222,7 @@ function CheckUsername(){
 
 function ValidatePassword(){
 	evaluate_pass=0;
-	
+
     if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
         displayNotification("Passwords do not match! Please try again!");
 		document.getElementById('submit').disabled = true;
@@ -239,7 +239,7 @@ function CheckEmail(){
 	var emailInput = document.getElementById('email').value;
 
 	var xmlhttp = new XMLHttpRequest();
-	
+
 	if(emailInput==='' || emailInput===null) return;
 	else{
 	xmlhttp.onreadystatechange = function() {
