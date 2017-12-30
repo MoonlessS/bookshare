@@ -5,13 +5,11 @@
 <?php
 
 
-
-
   $smarty->display('templates/home/home.tpl');
 
 
 ?>
 <?php
-$displaySidebar = true;
+$displaySidebar = false;
 include_once('../../templates/templateBot.php');
  ?>
