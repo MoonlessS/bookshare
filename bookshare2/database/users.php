@@ -63,15 +63,12 @@ function GetUserInfo($user){
   $array = array($user);
   $result = execQuery($query,$array);
 	$num_registos = $result->rowCount();
-$userInfo = $result->fetch();
+  $userInfo = $result->fetch();
 
 	if($num_registos>0){
     $user_avatar = $userInfo['avatar_url'];
 		$user_popularity = $userInfo['popularity'];
 		$user_description = $userInfo['description'];
-		// $user_avatar = pg_fetch_result(execQuery($query),0,0);
-		// $user_popularity = pg_fetch_result(execQuery($query),0,1);
-		// $user_description = pg_fetch_result(execQuery($query),0,2);
 
 		return array($user_avatar,$user_popularity,$user_description);
 	}
