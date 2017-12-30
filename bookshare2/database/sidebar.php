@@ -4,12 +4,28 @@
 
  <?php
 
-  function SidebarChapter(){
-    $num_rows= 10;
+  function SidebarChapter($num_chapters){
 
-    $query = "SELECT title, number,date FROM chapter ORDER BY date desc LIMIT ?";
+    $query = "SELECT chapter.title as title, chapter.number as cnumber,chapter.date, book.title as book
+              FROM chapter
+              JOIN book ON chapter.book = book.id
+              ORDER BY chapter.date desc
+              LIMIT ?";
 
-    $array = array($num_rows);
+    $array = array($num_chapters);
+
+     $stmt = execQuery($query,$array);
+     return $stmt->fetchAll();
+  }
+
+  function SidebarBook($num_books){
+
+    $query = "SELECT title, popularity
+              FROM book
+              ORDER BY start_publish_date desc
+              LIMIT ?";
+
+    $array = array($num_books);
 
      $stmt = execQuery($query,$array);
      return $stmt->fetchAll();

@@ -1,6 +1,7 @@
 <?php
   $pageTitle = null;$pageType = null; $contentID= null;
-  include_once('../../templates/templateTop.php');
+  include_once('../../config/init.php');
+  include_once($BASE_DIR . 'templates/templateTop.php');
 ?>
 <?php
 
@@ -13,5 +14,5 @@
 ?>
 <?php
 $displaySidebar = true;
-include_once('../../templates/templateBot.php');
+include_once($BASE_DIR . 'templates/templateBot.php');
  ?>
