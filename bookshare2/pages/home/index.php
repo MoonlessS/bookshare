@@ -6,8 +6,6 @@
 <?php
 
 
-
-
   $smarty->display('templates/home/home.tpl');
 
 
