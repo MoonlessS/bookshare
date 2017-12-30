@@ -10,10 +10,11 @@
                 <th>Book</th>
                 <th>Popularity</th>
             </tr>
+            {include 'templates/common/starRating.tpl'}
             {foreach $SidebarBooks as $book}
               <tr>
           			<td><a href='{$BASE_URL}pages/book-list/index.php?title={$book.title}'>{$book.title} </td>
-          			<td>{* starIndicator($book.title,$book.popularity) ; *}</td>
+          			<td>{call starIndicator nameprop=$book.title value=$book.popularity }</td>
           		</tr>
             {/foreach}
         </table>
