@@ -133,7 +133,7 @@
 
    	 $result = execQuery($query,$array);
 
-// TODO change to template section foreach
+// TODO: change to template section foreach id:20 gh:28
    	 $num_registos = ($result->rowCount());
 
    	 for($i=0;$i<$num_registos;$i++){
