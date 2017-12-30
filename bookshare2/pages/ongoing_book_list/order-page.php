@@ -5,9 +5,8 @@
   include_once($BASE_DIR . 'templates/templateTop.php');
 ?>
 <?php
-  $order = 0;
 
-  $page_order = OnGoingOrderBy($order);
+  $page_order = $_SESSION['order-page'];
 
   $smarty->assign('Order', $page_order);
   $smarty->display('templates/ongoing_book_list/ongoing_book_list.tpl');

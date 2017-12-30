@@ -7,10 +7,10 @@
 <?php
   $order = 0;
 
-  $page_order = OnGoingOrderBy($order);
+  $page_order = FinishedOrderBy($order);
 
-  $smarty->assign('Order', $page_order);
-  $smarty->display('templates/ongoing_book_list/ongoing_book_list.tpl');
+  $smarty->assign('Finished_Order', $page_order);
+  $smarty->display('templates/finished-book-list/finished-book-list.tpl');
 ?>
 <?php
 $displaySidebar = false;
