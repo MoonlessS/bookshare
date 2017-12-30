@@ -12,7 +12,7 @@
             </tr>
             {foreach $SidebarBooks as $book}
               <tr>
-          			<td><a href='book-list/index.php?title={$book.title}'>{$book.title} </td>
+          			<td><a href='{$BASE_URL}pages/book-list/index.php?title={$book.title}'>{$book.title} </td>
           			<td>{* starIndicator($book.title,$book.popularity) ; *}</td>
           		</tr>
             {/foreach}
@@ -29,8 +29,8 @@
             </tr>
             {foreach $SidebarChapters as $chapter}
               <tr>
-                <td><a href='book-list/index.php?title={$chapter.book}'>{$chapter.book}</td>
-                <td><a href='chapter-list/?book={$chapter.book}&number={$chapter.cnumber}&chapter={$chapter.title}'>{$chapter.title}</td>
+                <td><a href='{$BASE_URL}pages/book-list/index.php?title={$chapter.book}'>{$chapter.book}</td>
+                <td><a href='{$BASE_URL}pages/chapter-list/?book={$chapter.book}&number={$chapter.cnumber}&chapter={$chapter.title}'>{$chapter.title}</td>
             	</tr>
             {/foreach}
             </tbody>
