@@ -48,6 +48,7 @@
 		}
 	}
 
+// DEPRECATED 
 	function getLastUpdatedChapters ($num_rows){
 		$query = "SELECT title, number
 		FROM chapter
@@ -55,29 +56,6 @@
 		$array = array($num_rows);
 		$result = execQuery($query,$array);
 		return $result->fetchAll();
-// // todo passar para template
-// 		$num_registos = ($result->rowCount());
-//
-// 		for($i=0;$i<$num_registos;$i++){
-// 			$row = $result->fetch();
-// 			$chapter_number = $row['number'];
-// 			$chapter_name = $row['title'];
-// 			$book_name = GetBookTitleByChapter($chapter_name);
-// 			echo "<tr>
-// 				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-// 				<td><a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>" .$chapter_name. " </td>
-// 			</tr>";
-// 		}
-
-// {foreach $lastUpdatedChapters as $row}
-// 	{$chapter_number = $row['number']}
-// 	{$chapter_name = $row['title']}
-// 	{$book_name = $row['book_name']}
-// 	<tr>
-// 		<td><a href='book-list/index.php?title={$book_name}'> {$book_name} </td>
-// 		<td><a href='chapter-list/?book={$book_name}&number={$chapter_number}&chapter={$chapter_name}'> {$chapter_name} </td>
-// 	</tr>
-// {/foreach}
 	}
 
 	function getLastUpdatedChaptersInfo ($num_rows){
