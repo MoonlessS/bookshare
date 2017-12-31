@@ -131,18 +131,7 @@
    	 $query = "SELECT title, popularity FROM book ORDER BY start_publish_date desc LIMIT ?";
      $array = array($num_rows);
    	 $result = execQuery($query,$array);
+     return $result->fetchAll();
 
-// TODO: change to template section foreach id:20 gh:28
-   	 $num_registos = ($result->rowCount());
-
-   	 for($i=0;$i<$num_registos;$i++){
-       $row = ($result->fetch());
-   		$book_name = $row['title'];
-   		$book_popularity = $row['popularity'];
-   		echo "<tr>
-   			<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-   			<td>";starIndicator($book_name,$book_popularity); echo " </td>
-   			</tr>";
-   		}
    }
 ?>

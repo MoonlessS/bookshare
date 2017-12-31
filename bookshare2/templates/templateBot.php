@@ -1,8 +1,8 @@
-<?php include_once($BASE_DIR . 'database/sidebar.php'); ?>
-
+</article>
 <?php
 
 if($displaySidebar){
+  include_once($BASE_DIR . 'database/sidebar.php');
   $num_chapters = 10;
   $num_books = 10;
 

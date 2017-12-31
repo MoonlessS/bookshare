@@ -1,6 +1,6 @@
 <?php
 	include_once("common/database.php");
-	include_once("database/author.php");
+	// include_once("database/author.php");
 ?>
 
 <?php
@@ -49,7 +49,9 @@
 	}
 
 	function getLastUpdatedChapters ($num_rows){
-		$query = "SELECT title, number FROM chapter ORDER BY date desc LIMIT ?";
+		$query = "SELECT title, number
+		FROM chapter
+		ORDER BY date desc LIMIT ?";
 		$array = array($num_rows);
 		$result = execQuery($query,$array);
 		return $result->fetchAll();
@@ -79,29 +81,21 @@
 	}
 
 	function getLastUpdatedChaptersInfo ($num_rows){
-		$query = "SELECT title, number,date_trunc('second',date) as date
-		FROM chapter
-		JOIN book ORDER BY date desc LIMIT ?";
+		// DISTINCT ON (chapter.id)
+		$query = "SELECT
+							book.title as title,
+		 					users.name as author,
+							chapter.title as chapter,
+						 	book.popularity as popularity,
+							chapter.number as cnumber,
+							date_trunc('second',chapter.date) as cdate
+							FROM chapter
+							LEFT JOIN book ON book.id = chapter.book
+							JOIN users ON book.author = users.id
+							ORDER BY date desc, chapter.id ASC LIMIT ?";
 		$array = array($num_rows);
 		$result = execQuery($query,$array);
 		return $result->fetchAll();
-// // todo passar para template
-// 		$num_registos = ($result->rowCount());
-//
-// 		for($i=0;$i<$num_registos;$i++){
-// 			$row = $result->fetch();
-// 			$chapter_number = $row['number'];
-// 			$chapter_update = $row['date'];
-// 			$chapter_name = $row['title'];
-// 			$book_name = GetBookTitleByChapter($chapter_name);
-// 			$author_name = GetAuthorByChapter($chapter_name);
-// 			echo "<tr>
-// 				<td><a href='book-list/index.php?title=".$book_name."'>" .$book_name." </td>
-// 				<td>".$chapter_number." <a href='chapter-list/?book=".$book_name."&number=".$chapter_number."&chapter=".$chapter_name."'>".$chapter_name." </td>
-// 				<td>".$author_name." </td>
-// 				<td>".$chapter_update." </td>
-// 			</tr>";
-// 		}
 	}
 
 	function rateChapter($rate,$chapterID){

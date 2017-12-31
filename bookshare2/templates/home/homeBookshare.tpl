@@ -12,20 +12,21 @@
                <th>Update</th>
            </tr>
 {foreach $lastUpdatedChaptersInfo as $row}
-		{$chapter_number = $row['number']}
-		{$chapter_update = $row['date']}
-		{$chapter_name = $row['title']}
-    {$author_name = $row['authorName']}
-    {$book_name = $row['bookTitle']}
-		<!-- $book_name = GetBookTitleByChapter($chapter_name); -->
-		<!-- $author_name = GetAuthorByChapter($chapter_name); -->
-          <tr>
-      			<td><a href='book-list/index.php?title={$book_name}> {$book_name} </td>
-      			<td>{$chapter_number} <a href='chapter-list/?book={$book_name}&number={$chapter_number}&chapter={$chapter_name}> {$chapter_name} </td>
-      			<td> {$author_name} </td>
-      			<td> {$chapter_update} </td>
-    		  </tr>
-	}
+		{$chapter_number = $row['cnumber']}
+		{$chapter_update = $row['cdate']}
+		{$chapter_name = $row['chapter']}
+    {$author_name = $row['author']}
+    {$book_name = $row['title']}
+            <tr>
+        			<td><a href='pages/book-list/index.php?title={$book_name}'> {$book_name} </td>
+        			<td>
+                <a href='pages/chapter-list/?book={$book_name}&number={$chapter_number}&chapter={$chapter_name}'>
+                  {$chapter_number} {$chapter_name}
+              </td>
+        			<td> {$author_name} </td>
+        			<td> {$chapter_update} </td>
+      		  </tr>
+{/foreach}
          </tbody>
        </table>
        </section>
@@ -37,6 +38,18 @@
              <th>Book</th>
              <th>Popularity</th>
          </tr>
-         <!-- <?php getLastUpdatedBooks($num_rows); ?> -->
+{include 'templates/common/starRating.tpl'}
+{foreach $newBookAdditions as $row}
+  {$book_name = $row['title']}
+  {$book_popularity = $row['popularity']}
+      		<tr>
+      			<td>
+              <a href='pages/book-list/index.php?title={$book_name}'> {$book_name}
+            </td>
+    			  <td>
+              {call starIndicator nameprop=$book_name value=$book_popularity}
+            </td>
+    			</tr>
+{/foreach}
        </table>
    </section>
