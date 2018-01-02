@@ -8,13 +8,13 @@
 		$query = "SELECT book FROM chapter WHERE title = ? ";
 		$array = array($chapter_name);
 		$result = execQuery($query,$array);
-		$book_id = ($result->fetch())['id'];
+		$book_id = $result->fetch()['id'];
 
 
 		$query = "SELECT title FROM book WHERE id = ?";
 		$array = array($book_id);
 		$result = execQuery($query,$array);
-		$book_name = ($result->fetch())['title'];
+		$book_name = $result->fetch()['title'];
 
 		return $book_name;
 	}
@@ -25,7 +25,7 @@
 			$query = "SELECT number FROM chapter WHERE title = ?";
 			$array = array($chapter_name);
 			$result = execQuery($query,$array);
-			$chapter_number = ($result->fetch())['number'];
+			$chapter_number = $result->fetch()['number'];
 			return $chapter_number;
 		}
 	}
@@ -48,7 +48,7 @@
 		}
 	}
 
-// DEPRECATED 
+// DEPRECATED
 	function getLastUpdatedChapters ($num_rows){
 		$query = "SELECT title, number
 		FROM chapter
@@ -101,7 +101,7 @@
 		$array = array($chapterID,$userID);
 		$result = execQuery($query,$array);
 		if(!($result)) return 0;
-		return ($result->fetch())['rate'];
+		return $result->fetch()['rate'];
 	}
 	function getBookChapters($bookID){
 		$query = "SELECT number, id, title, popularity FROM chapter WHERE book=? ORDER BY number";

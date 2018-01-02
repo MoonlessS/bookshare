@@ -16,7 +16,8 @@
 <!-- /////////////////////////////////////////////////////////////////////// -->
 </article>
 
-<section class='new-book-list'>
+
+<article class='new-book-list ' style='width:100%'>
   <table width='100%'>
     <tr>
       <th> Book </th>
@@ -30,12 +31,12 @@
     {foreach $Order as $book}
       <tr>
         <td width='20%'><a href='{$BASE_URL}pages/book-list/index.php?title={$book.title}'> {$book.title} </td>
-          <td width='15%'> {$book.cdate} </td>
-          <td width='20%'> <a href='{$BASE_URL}pages/chapter-list/?book={$book.title}&number={$book.cnumber}&chapter={$book.chapter}'>{$book.chapter}</td>
-          <td width='10%'> {$book.author} </td>
-          <td width='10%'> {$book.cnumber} </td>
-          <td width='10%'> {call starIndicator nameprop=$book.title value=$book.popularity}</td>
+        <td width='15%'> {$book.cdate} </td>
+        <td width='20%'> <a href='{$BASE_URL}pages/chapter-list/?book={$book.title}&number={$book.cnumber}&chapter={$book.chapter}'>{$book.chapter}</td>
+        <td width='10%'> {$book.author} </td>
+        <td width='10%'> {$book.cnumber} </td>
+        <td width='10%'> {call starIndicator nameprop=$book.title value=$book.popularity}</td>
       </tr>
     {/foreach}
   </table>
-</section>
+</article>

@@ -16,7 +16,7 @@
 <!-- /////////////////////////////////////////////////////////////////////// -->
 </article>
 
-<section class='new-book-list'>
+<article class='new-book-list ' style='width:100%'>
   <table width='100%'>
     <tr>
       <th> Book </th>
@@ -38,4 +38,4 @@
       </tr>
       {/foreach}
   </table>
-</section>
+</article>

@@ -8,7 +8,7 @@
 
     if($order == 0){
       $query = "SELECT DISTINCT ON (book.id) book.title as title, users.name as author, chapter.title as chapter,
-                       book.popularity as popularity,chapter.number as cnumber,chapter.date as cdate
+                       book.popularity as popularity,chapter.number as cnumber,date_trunc('second',chapter.date) as cdate
                 FROM book
                 JOIN users ON book.author = users.id
                 LEFT JOIN chapter ON book.id = chapter.book
@@ -17,7 +17,7 @@
     }
     else if($order == 1){
       $query = "SELECT DISTINCT ON (book.title) book.title as title, users.name as author, chapter.title as chapter,
-                       book.popularity as popularity,chapter.number as cnumber,chapter.date as cdate
+                       book.popularity as popularity,chapter.number as cnumber,date_trunc('second',chapter.date) as cdate
                 FROM book
                 JOIN users ON book.author = users.id
                 LEFT JOIN chapter ON book.id = chapter.book
@@ -26,7 +26,7 @@
     }
     else if($order == 2){
       $query = "SELECT book.title as title, book.name as author,book.popularity as popularity,
-                       book.number as cnumber,book.date as cdate,book.chapter as chapter
+                       book.number as cnumber,date_trunc('second',book.date) as cdate,book.chapter as chapter
                 FROM (
                   SELECT DISTINCT ON (book.id) book.title, users.name,book.popularity,chapter.number,
                                      chapter.date,chapter.title as chapter
@@ -39,7 +39,7 @@
     }
     else{
       $query = "SELECT book.title as title, book.name as author,book.popularity as popularity,
-                       book.number as cnumber,book.date as cdate,book.chapter as chapter
+                       book.number as cnumber,date_trunc('second',book.date) as cdate,book.chapter as chapter
                 FROM (
                   SELECT DISTINCT ON (book.id) book.title, users.name,book.popularity,chapter.number,
                                      chapter.date,chapter.title as chapter
@@ -59,7 +59,7 @@
 
     if($order == 0){
       $query = "SELECT DISTINCT ON (book.id) book.title as title, users.name as author, book.status as status,
-                       book.popularity as popularity,chapter.number as cnumber,chapter.date as cdate
+                       book.popularity as popularity,chapter.number as cnumber,date_trunc('second',chapter.date) as cdate
                 FROM book
                 JOIN users ON book.author = users.id
                 LEFT JOIN chapter ON book.id = chapter.book
@@ -68,7 +68,7 @@
     }
     else if($order == 1){
       $query = "SELECT DISTINCT ON (book.title) book.title as title, users.name as author, book.status as status,
-                       book.popularity as popularity,chapter.number as cnumber,chapter.date as cdate
+                       book.popularity as popularity,chapter.number as cnumber,date_trunc('second',chapter.date) as cdate
                 FROM book
                 JOIN users ON book.author = users.id
                 LEFT JOIN chapter ON book.id = chapter.book
@@ -77,7 +77,7 @@
     }
     else if($order == 2){
       $query = "SELECT book.title as title, book.name as author, book.status as status,
-                       book.popularity as popularity,book.number as cnumber,book.date as cdate
+                       book.popularity as popularity,book.number as cnumber,date_trunc('second',book.date) as cdate
                 FROM (
                   SELECT DISTINCT ON (book.id) book.title, users.name,book.popularity,chapter.number,
                                      chapter.date,chapter.title as chapter, book.status
@@ -90,7 +90,7 @@
     }
     else{
       $query = "SELECT book.title as title, book.name as author, book.status as status,
-                       book.popularity as popularity,book.number as cnumber,book.date as cdate
+                       book.popularity as popularity,book.number as cnumber,date_trunc('second',book.date) as cdate
                 FROM (
                   SELECT DISTINCT ON (book.id) book.title, users.name,book.popularity,chapter.number,
                                      chapter.date,chapter.title as chapter, book.status

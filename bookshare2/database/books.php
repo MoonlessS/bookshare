@@ -45,7 +45,7 @@
      $query = "SELECT rate FROM book_usersrate WHERE book=? and users=?";
      $array = array($bookID,$userID);
      if(!($result = execQuery($query,$array))) return 0;
-     return ($result->fetch())['rate'];
+     return $result->fetch()['rate'];
    }
 
    function updateBookInfo($title = null,$url = null,$synopsis = null,$genreList = null){
@@ -85,7 +85,7 @@
      $array = array($title);
      $result = execQuery($query,$array);
      if(!$result) return $result;
-       else return ($result->fetch())['id'];
+       else return $result->fetch()['id'];
 
    }
 
