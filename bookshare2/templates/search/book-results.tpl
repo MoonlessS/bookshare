@@ -1,4 +1,4 @@
-<section class='search'>
+<section class='search'>    
   <table width='100%'>
     <tr>
       <th>Books Found:</th>

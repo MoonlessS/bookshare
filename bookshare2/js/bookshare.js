@@ -280,39 +280,6 @@ function Login(){
   setTimeout(function(){
     let submit = document.getElementById('btnSubmit').click();
   },2000);
-
-  /*
-
-  setTimeout(function(){
-    showLoading(true);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-        if(response.status==="not_ok"){
-          displayNotification("An error occured! Login could not be made!");
-          return false;
-        }
-        else{
-          window.location.href='pages/home/home.php';
-          return true;
-         }
-      }
-      showLoading(false);
-    };
-    xmlhttp.open("POST", "actions/login/loginJSON.php", true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    if(document.forms["PageInfo"] != undefined){
-      var pageType = document.forms["PageInfo"].firstChild.classList[0];
-      var contentID = document.forms["PageInfo"].firstChild.id;
-    }else {
-      var pageType = undefined;
-      var contentID = undefined;
-    }
-    var message = "username=" + usernameInput + "&password=" + passInput + "&pageType="+ pageType + "&contentID=" + contentID;
-    xmlhttp.send(message);
-    return;
-  }, 2000);*/
 }
 
 function Submit(){
