@@ -18,11 +18,15 @@ function validateUser(form) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log("response:\n" + this.responseText);
+      //console.log("response:\n" + this.responseText);
       var response = JSON.parse(this.responseText);
-      if(response.status==="ok"){
+      if(response.status==="ok" && submitted == 0){
         document.getElementById("loginButton").innerHTML = response.html;
         resizeNav(true);
+      } else if (response.status==="ok" && submitted == 1) {
+        document.getElementById("loginButton").innerHTML = response.html;
+        resizeNav(true);
+        window.location.href='pages/home/home.php';
       } else if (response.status==="username") {
         displayNotification("The username doesn't exist!");
       } else if (response.status==="failure") {
@@ -274,6 +278,12 @@ function Login(){
   document.getElementById('username').value = usernameInput;
 
   setTimeout(function(){
+    let submit = document.getElementById('btnSubmit').click();
+  },2000);
+
+  /*
+
+  setTimeout(function(){
     showLoading(true);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
@@ -302,7 +312,7 @@ function Login(){
     var message = "username=" + usernameInput + "&password=" + passInput + "&pageType="+ pageType + "&contentID=" + contentID;
     xmlhttp.send(message);
     return;
-  }, 2000);
+  }, 2000);*/
 }
 
 function Submit(){
