@@ -188,12 +188,15 @@ function toggleBookOnLibrary(bookID){
 
 }
 
+submitted = 0;
+
 function CheckUsername(callback){
 	let usernameInput = document.getElementById('name').value;
 
 	let xmlhttp = new XMLHttpRequest();
 
 	if(usernameInput==='' || usernameInput===null) return;
+  else if (submitted === 1) return;
 	else{
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -238,6 +241,7 @@ function CheckEmail(callback){
 	let xmlhttp = new XMLHttpRequest();
 
 	if(emailInput==='' || emailInput===null) return;
+  else if (submitted === 1) return;
 	else{
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -261,33 +265,44 @@ function CheckEmail(callback){
 }
 
 function Login(){
+  let onClick = document.getElementById('Login').click();
+
   let passInput = document.getElementById('pass').value;
   let usernameInput = document.getElementById('name').value;
 
-  let xmlhttp = new XMLHttpRequest();
+  document.getElementById('password').value = passInput;
+  document.getElementById('username').value = usernameInput;
 
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      let response = JSON.parse(this.responseText);
-      if(response.status==="not_ok"){
-        displayNotification("An error occured! Login could not be made!");
-        return false;
+  setTimeout(function(){
+    showLoading(true);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+        if(response.status==="not_ok"){
+          displayNotification("An error occured! Login could not be made!");
+          return false;
+        }
+        else{
+          window.location.href='pages/home/home.php';
+          return true;
+         }
       }
-      else{
-        window.location.href='pages/home/home.php';
-        return true;
-       }
+      showLoading(false);
+    };
+    xmlhttp.open("POST", "actions/login/loginJSON.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    if(document.forms["PageInfo"] != undefined){
+      var pageType = document.forms["PageInfo"].firstChild.classList[0];
+      var contentID = document.forms["PageInfo"].firstChild.id;
+    }else {
+      var pageType = undefined;
+      var contentID = undefined;
     }
-  };
-
-  xmlhttp.open("POST", "actions/login/loginJSON.php", true);
-  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  let message = "username=" + usernameInput + "&" + "password=" + passInput;
-
-  xmlhttp.send(message);
-  return;
-
+    var message = "username=" + usernameInput + "&password=" + passInput + "&pageType="+ pageType + "&contentID=" + contentID;
+    xmlhttp.send(message);
+    return;
+  }, 2000);
 }
 
 function Submit(){
@@ -297,6 +312,7 @@ function Submit(){
         if(result===true) {
           ValidatePassword(function(result){
             if(result===true) {
+              submitted = 1;
               let emailInput = document.getElementById('email').value;
               let passInput = document.getElementById('pass').value;
               let usernameInput = document.getElementById('name').value;
