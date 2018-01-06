@@ -11,7 +11,7 @@
       <button class='button button1 login-button' style='/*vertical-align:middle*/' onclick='this.form.submit()' name='login'><i class='logo logout-black'></i> <p>LOGIN</p></button>
     </form>
     <div class='login-bot-links'>
-      <a href='register/index.php'>SIGN UP</a><a href='#'>RESET PASSWORD</a>
+      <a href='{$BASE_URL}pages/register/index.php'>SIGN UP</a><a href='#'>RESET PASSWORD</a>
     </div>
   </div>
   <script>resizeNav(false);</script>

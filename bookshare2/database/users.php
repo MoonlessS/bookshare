@@ -2,7 +2,7 @@
 <?php
 function addUser($login,$password,$email,$avatar){
 
-if (empty($avatar)){
+if ($avatar == null){
   $query = "INSERT INTO users(name,password,email) VALUES(?,?,?);";
   $array = array($login,md5($password),$email);
   $result = execQuery($query,$array);
@@ -39,7 +39,7 @@ function userAuthenticationStatus(){
 }
 
 function CheckUser($user){
-	$query = "SELECT name FROM users WHERE name = ?";
+	$query = "SELECT name FROM users WHERE name = ?;";
   $array = array($user);
   $result = execQuery($query,$array);
 	$num_registos = $result->rowCount();

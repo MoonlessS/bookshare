@@ -188,82 +188,164 @@ function toggleBookOnLibrary(bookID){
 
 }
 
-var evaluate_username;
-var evaluate_pass;
-var evaluate_email;
+function CheckUsername(callback){
+	let usernameInput = document.getElementById('name').value;
 
-function CheckUsername(){
-	evaluate_username=0;
-	var usernameInput = document.getElementById('name').value;
-
-	var xmlhttp = new XMLHttpRequest();
+	let xmlhttp = new XMLHttpRequest();
 
 	if(usernameInput==='' || usernameInput===null) return;
 	else{
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-		  var response = JSON.parse(this.responseText);
+		  let response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
+        document.getElementById('name').style.backgroundColor = "rgba(255, 3, 3, 0.8)";
 				displayNotification("Username not available! Try another please!");
-				document.getElementById('submit').disabled = true;
+        callback(false);
 			}
 		  else {
-			  evaluate_username = 1;
-			  ActivateSubmit();
+        document.getElementById('name').style.backgroundColor = "rgba(0, 145, 0, .5)";
+			  callback(true);
 		  }
 		}
 	};}
-	xmlhttp.open("POST", "register/user.php", true);
+	xmlhttp.open("POST", "actions/register/user.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var message = "username=" + usernameInput;
+	let message = 'username=' + usernameInput;
 	xmlhttp.send(message);
 	return;
 }
 
-function ValidatePassword(){
-	evaluate_pass=0;
+function ValidatePassword(callback){
 
+  if( document.getElementById('pass').value != '' && document.getElementById('c_pass').value != '' )
     if (document.getElementById('pass').value != document.getElementById('c_pass').value) {
+        document.getElementById('pass').style.backgroundColor = "rgba(255, 3, 3, 0.8)";
+        document.getElementById('c_pass').style.backgroundColor = "rgba(255, 3, 3, 0.8)";
         displayNotification("Passwords do not match! Please try again!");
-		document.getElementById('submit').disabled = true;
-        return false;
-	}
-	else{
-		  evaluate_pass = 1;
-		  ActivateSubmit();
+        callback(false);
+  	}
+  	else{
+      document.getElementById('pass').style.backgroundColor = "rgba(0, 145, 0, .5)";
+      document.getElementById('c_pass').style.backgroundColor = "rgba(0, 145, 0, .5)";
+  		callback(true);
 	}
 }
 
-function CheckEmail(){
-	evaluate_email=0;
-	var emailInput = document.getElementById('email').value;
+function CheckEmail(callback){
+	let emailInput = document.getElementById('email').value;
 
-	var xmlhttp = new XMLHttpRequest();
+	let xmlhttp = new XMLHttpRequest();
 
 	if(emailInput==='' || emailInput===null) return;
 	else{
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-		  var response = JSON.parse(this.responseText);
+		  let response = JSON.parse(this.responseText);
 		  if(response.status==="not_ok"){
+        document.getElementById('email').style.backgroundColor = "rgba(255, 3, 3, 0.8)";
 				displayNotification("Email already in use! Try another please!");
-				document.getElementById('submit').disabled = true;
+        callback(false);
 			}
 		  else{
-		  evaluate_email = 1;
-		  ActivateSubmit();
-	}
+        document.getElementById('email').style.backgroundColor = "rgba(0, 145, 0, .5)";
+		    callback(true);
+      }
 		}
 	};}
-	xmlhttp.open("POST", "register/email.php", true);
+	xmlhttp.open("POST", "actions/register/email.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var message = "email=" + emailInput;
+	let message = "email=" + emailInput;
 	xmlhttp.send(message);
 	return;
 }
 
-function ActivateSubmit(){
+function Login(){
+  let passInput = document.getElementById('pass').value;
+  let usernameInput = document.getElementById('name').value;
 
-	if((evaluate_username === 1) && (evaluate_pass === 1) && (evaluate_email === 1)) document.getElementById('submit').disabled = false;
+  let xmlhttp = new XMLHttpRequest();
 
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      let response = JSON.parse(this.responseText);
+      if(response.status==="not_ok"){
+        displayNotification("An error occured! Login could not be made!");
+        return false;
+      }
+      else{
+        window.location.href='pages/home/home.php';
+        return true;
+       }
+    }
+  };
+
+  xmlhttp.open("POST", "actions/login/loginJSON.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  let message = "username=" + usernameInput + "&" + "password=" + passInput;
+
+  xmlhttp.send(message);
+  return;
+
+}
+
+function Submit(){
+  CheckUsername(function(result){
+    if(result===true){
+      CheckEmail(function(result){
+        if(result===true) {
+          ValidatePassword(function(result){
+            if(result===true) {
+              let emailInput = document.getElementById('email').value;
+              let passInput = document.getElementById('pass').value;
+              let usernameInput = document.getElementById('name').value;
+
+            	let xmlhttp = new XMLHttpRequest();
+
+            	xmlhttp.onreadystatechange = function() {
+            		if (this.readyState == 4 && this.status == 200) {
+            		  let response = JSON.parse(this.responseText);
+            		  if(response.status==="not_ok"){
+                    displayNotification("An error occured! Try again please!");
+                    return false;
+            			}
+            		  else{
+                    displayNotification("Register Made with Success! Login will be made automatically!");
+                    Login();
+                    return true;
+            	     }
+            		}
+            	};
+
+            	xmlhttp.open("POST", "actions/register/register.php", true);
+            	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              let avatar = document.getElementById('avatar').value;
+
+              if( avatar === ''){
+                let message = "name=" + usernameInput + "&" + "password=" + passInput + "&" + "email=" + emailInput;
+                xmlhttp.send(message);
+                return;
+              }
+              else {
+                let message = "name=" + usernameInput + "&" + "password=" + passInput + "&" + "email=" + emailInput + "&" + "avatar=" + avatar ;
+                xmlhttp.send(message);
+                return;
+              }
+            }
+            else {
+              displayNotification("Correct the red inputs before submitting the form!");
+              return false;
+            }
+        })}
+        else {
+          displayNotification("Correct the red inputs before submitting the form!");
+          return false;
+        }
+      })}
+    else {
+      displayNotification("Correct the red inputs before submitting the form!");
+      return false;
+    }
+  });
 }

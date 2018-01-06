@@ -6,7 +6,7 @@
 
 function execQuery($query,$array = null){
   global $conn;
-
+  
   $stmt = $conn->prepare($query);
 
 if(is_array($array)){
