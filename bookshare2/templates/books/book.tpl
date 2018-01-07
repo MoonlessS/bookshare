@@ -2,7 +2,7 @@
         <form id='PageInfo'><input type='hidden' name='BookPageMarker' class='book' id='{$bookID}' value='{$book['title']}'></form>
         <div class='book-title-container'>
             <div id='title' width=40%><a href='pages/book-list/?title={$book['title']}'>{$book['title']}</a></div>
-            <div id='author' width=40%>By: {$book['author']}</div>
+            <div id='author' width=40%>By: <a href='pages/profile/index.php?user={$book['author']}'>{$book['author']}</a></div>
             <div id='stars' width=10%>
 {include 'templates/common/starRating.tpl'}
 {$book_name = "'T'{$book['title']}"}

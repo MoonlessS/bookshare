@@ -34,7 +34,7 @@
         <p>Start New Book</p>
       </a>
     </div>
-    <a href='{$BASE_URL}pages/profile?user={$username}' class='button button2' style='/*vertical-align:middle*/'>
+    <a href='{$BASE_URL}pages/profile/index.php?user={$username}' class='button button2' style='/*vertical-align:middle*/'>
       <i class='logo profile'></i>
       <p>My Profile</p>
     </a>

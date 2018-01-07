@@ -96,5 +96,12 @@ function GetUserWrittenBooks($user){
   return $result->fetchAll();
 }
 
+function 	UpdateInfo($user,$url,$description){
+  $query = "UPDATE users SET avatar_url=?, description=? WHERE name=?";
+
+  $array = array($url,$description,$user);
+  $result = execQuery($query,$array);
+}
+
  ?>
  <?php //var_dump(GetUserInfo('user')); ?>
