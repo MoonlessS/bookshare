@@ -42,7 +42,7 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
       $smarty->assign('autenticado', $_SESSION['autenticado']);
       $_SESSION['username'] = $username;
       $smarty->assign('username', $_SESSION['username']);
-      $_SESSION['userBooks'] = getBookInfoByAuthor($username);
+      $_SESSION['userBooks'] = getBookInfoByAuthor($username); 
       $pageType = $_POST['pageType'];
       $contentID= $_POST['contentID'];
 

@@ -38,4 +38,15 @@ function display_error($error = "Unknown Error ocurred!",$title = "Error!",$colo
 
   $smarty->display('templates/error/error.tpl');
 }
+function display_saved_errors(){
+  if(isset($_SESSION['errors'])){
+    foreach ($_SESSION['errors'] as $error) {
+      display_error($error['error'],$error['title'],$error['color']);
+    }
+  }
+  unset($_SESSION['errors']);
+}
+function save_error($error = "Unknown Error ocurred!",$title = "Error!",$color = "red"){
+  $_SESSION['errors'][] = array('error' => $error,'color' => $color,'title'=> $title);
+}
 ?>
