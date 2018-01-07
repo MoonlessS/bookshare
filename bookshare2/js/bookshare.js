@@ -89,6 +89,7 @@ window.onload = function() {
   // console.log("showLoadingRequests:" + showLoadingRequests);
   showLoadingRequests = 0;
 };
+
 function showLoading(loadingStatus) {
   showLoadingRequests += loadingStatus
     ? 1
@@ -183,7 +184,7 @@ function toggleBookOnLibrary(bookID){
     }
     showLoading(false);
   };
-  xmlhttp.open("POST", "library/addBookToLibrary.php", true);
+  xmlhttp.open("POST", "actions/library/addBookToLibrary.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   //  bookID = document.forms['PageInfo'].firstChild.id;
   var message = "bookID=" + bookID;
