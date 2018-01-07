@@ -1,10 +1,10 @@
 <?php
+if(!isset($pageTitle)) $pageTitle = null;
+if(!isset($pageType)) $pageType = null;
+if(!isset($contentID)) $contentID = null;
 
 include_once('../../config/init.php');
 
-$pageTitle = is_null($pageTitle)?null:$pageTitle;
-$pageType = is_null($pageType)?null:$pageType;
- $contentID= is_null($contentID)?null:$contentID;
 $smarty->assign('pageTitle', (is_null($pageTitle)?'':$pageTitle)."BookShare - Read Our Amazing Collection Or Write And Share Your Own Books On The Internet");
 
 $smarty->assign('pageType', (is_null($pageType)?false:$pageType));
