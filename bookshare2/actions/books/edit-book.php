@@ -45,4 +45,5 @@ do{
   }
 } while(0);
 header("Location: $BASE_PAGES/pages/book-list/?title={$_POST['title']}&options=edit");
+
  ?>
