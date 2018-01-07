@@ -16,9 +16,14 @@
     $user_popularity = $user_info['popularity'];
     $user_description = $user_info['description'];
 
+    $userId = GetUserId($_GET['user'])['id'];
+    $smarty->assign('UserId', $userId);
+
+
     if(isset($_SESSION['username']) && ($_SESSION['username']) == ($_GET['user']) ){
       $smarty->assign('Edit', true);
     } else $smarty->assign('Edit', false);
+
 
     $smarty->assign('UserAvatar', $user_avatar);
     $smarty->assign('UserPopularity', $user_popularity);
