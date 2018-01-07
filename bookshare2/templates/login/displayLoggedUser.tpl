@@ -8,15 +8,15 @@
   <div class='dropdown-content'>
 {if $pageType == 'book' }
     <button class='button button2' style='/*vertical-align:middle*/' onclick='toggleBookOnLibrary({$bookID});'>
-      <i id='library-status-icon' class='logo {if $onLibrary }"remove"{else}"addition"{/if}'></i>
-      <p> {if $onLibrary }"Remove Book From Library"{else}"Add Book to Library"{/if}</p>
+      <i id='library-status-icon' class='logo {if $onLibrary }remove{else}addition{/if}'></i>
+      <p> {if $onLibrary }Remove Book From Library{else}Add Book to Library{/if}</p>
     </button>
 {/if}
-    <a href='library/' class='button button2' style='/*vertical-align:middle*/'>
+    <a href='pages/library/' class='button button2' style='/*vertical-align:middle*/'>
   <i class='logo library'></i>
   <p>Library</p>
   </a>
-    <button class='button button2' style='/*vertical-align:middle*/' onclick=toggleVisibility( 'book-edition-submenu')>
+    <button class='button button2' style='/*vertical-align:middle*/' onclick=toggleVisibility('book-edition-submenu')>
   <i class='logo pencil'></i>
   <p>Book Edition</p>
   </button>

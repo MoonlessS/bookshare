@@ -39,42 +39,7 @@ if(isset($bookID)) $contentID = $bookID;
     display_book_edit($_POST['title'],$_POST['url'],$_POST['synopsis'],$_POST);
     break;
 
-  } else if(isset($_POST['edit-book'])){
-      if(!userAuthenticationStatus()){
-        display_error("You need to be authenticated to access this page!");
-        break;
-      } else {
-        if(isset($_GET['id'])){
-          $bookID = $_GET['id'];
-        }else if(isset($_GET['title'])){
-          $bookID = getIDfromTitle($_GET['title']);
-        }
-        if(!$bookID){
-          display_error("The Book with the requested Title doesn't exist or was deleted!");
-          break;
-        } else {
-          $book = getBookInfo($bookID);
-          if($book['author']==$_SESSION['username']){
-            $result = getGenreList();
-            $num_linhas = pg_numrows($result);
-            $i = 0;
-              while ($i < $num_linhas) {
-                $row = pg_fetch_assoc($result);
-                $genreX = $row['genre'];
-                if(isset($_POST[$genreX]))$bookGenreList[] = $genreX;
-                $i++;
-              }
-            if(!updateBookInfo($_POST['title'],$_POST['url'],$_POST['synopsis'],$bookGenreList)){
-              display_error("A problem ocurred! Please try again or contact the admin!");
-            }
-            display_error("Click your book title to find your updated book page!","Book successfully updated!","purple");
-            display_book($bookID);
-            break;
-          }else
-            display_error("You need to be authenticated as this book author for edition rights!");
-        }
-      }
-  } else if(isset($_GET['options'])){
+  }else if(isset($_GET['options'])){
     if($_GET['options']=='edit'){
       if(!userAuthenticationStatus()){
         display_error("You need to be authenticated to access this page!");
@@ -97,6 +62,7 @@ if(isset($bookID)) $contentID = $bookID;
             break;
           }else
             display_error("You need to be authenticated as this book author for edition rights!");
+            break;
         }
       }
     }

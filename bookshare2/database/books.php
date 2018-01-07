@@ -75,7 +75,7 @@
        }
        $query = rtrim($query,',');
        $result2 = execQuery($query,$array);
-     }
+     } else $result2 = true;
      return ($result1 and $result2);
    }
 
@@ -95,6 +95,7 @@
        $array = array($bookID);
      }else {
        $query = 'SELECT genre FROM bookshare.genre';
+       $array = array();
      }
      $result = execQuery($query,$array);
 

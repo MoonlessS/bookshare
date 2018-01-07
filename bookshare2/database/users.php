@@ -16,6 +16,15 @@ else{
   }
 }
 
+function editUserPassword($login,$newPassword){
+  $options = ['cost' => 12];
+  $password_hashed = password_hash($newPassword, PASSWORD_DEFAULT, $options);
+
+  $query = "UPDATE users SET password=? WHERE name=?";
+  $array = array($password_hashed,$login);
+  return $result = execQuery($query,$array);
+}
+
 function validateUser($login,$password){
 //debug
 // return true;
@@ -104,4 +113,8 @@ function 	UpdateInfo($user,$url,$description){
 }
 
  ?>
- <?php //var_dump(GetUserInfo('user')); ?>
+ <?php //var_dump(GetUserInfo('user'));
+ //$login = 'username';
+ //$newPassword = 'password';
+    //editUserPassword($login,$newPassword);
+  ?>
