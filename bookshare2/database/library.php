@@ -26,8 +26,13 @@ function getBookAddedToLibraryState($bookID){
 function getLibraryBookList(){
   $userID = $_SESSION['user']['id'];
 
-  $query = "SELECT * FROM book_users
-            WHERE users=?";
-  return $result = execQuery($query,array($userID));
+  $query = "SELECT title,book.popularity as popularity,name as author,cover
+            FROM book_users
+            JOIN book ON book_users.book = book.id
+            JOIN users ON book.author = users.id
+            WHERE book_users.users=?";
+  $result = execQuery($query,array($userID));
+
+  return $result->fetchAll();
 }
 ?>

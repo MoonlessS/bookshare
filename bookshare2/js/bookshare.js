@@ -89,6 +89,7 @@ window.onload = function() {
   // console.log("showLoadingRequests:" + showLoadingRequests);
   showLoadingRequests = 0;
 };
+
 function showLoading(loadingStatus) {
   showLoadingRequests += loadingStatus
     ? 1
