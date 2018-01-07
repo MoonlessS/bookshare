@@ -29,3 +29,13 @@ set_include_path( get_include_path() . PATH_SEPARATOR . $BASE_DIR );
   //unset($_SESSION['error_messages']);
   unset($_SESSION['form_values']);
 ?>
+<?php
+function display_error($error = "Unknown Error ocurred!",$title = "Error!",$color = "red"){
+  global $smarty;
+  $smarty->assign('color', $color);
+  $smarty->assign('title', $title);
+  $smarty->assign('error', $error);
+
+  $smarty->display('templates/error/error.tpl');
+}
+?>
