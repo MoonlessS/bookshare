@@ -143,7 +143,7 @@ function submitRating(id,type,rate){
     }
     showLoading(false);
   };
-  xmlhttp.open("POST", "starRating/starRating.php", true);
+  xmlhttp.open("POST", "actions/starRating/starRating.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   var message = "id=" + id + "&" + "type=" + type + "&" + "rate=" + rate;
   xmlhttp.send(message);

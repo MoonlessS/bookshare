@@ -20,7 +20,7 @@
 
 <div>
 	<div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>
-		<img src='{$UserAvatar}' alt='{$BASE_URL}img/avatar.png'>
+		<img src='{$UserAvatar}' alt='img/avatar.png'>
 	</div>
 	<div class='float' style='min-width: 70%;width:calc(100% - 250px - 20px)'>
 		<div class='green title' style='margin-right:50%;'>Description</div>
@@ -28,7 +28,7 @@
 			<p>{$UserDescription}</p><br><br>
       {if !($Edit == true)}
 			<div class='title black' style='position:relative;right:1%;bottom:1%;display:inline-block;'><p>Rate this user:<p>
-			{call starRating nameprop=0 type='userid' value=5}
+			{call starRating nameprop=$UserId type='userid' value=$UserPopularity}
       {/if}
 			</div>
 		</div>

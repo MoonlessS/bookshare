@@ -16,6 +16,23 @@ else{
   }
 }
 
+function rateUser($rate,$user_rated){
+  $userID = $_SESSION['user']['id'];
+
+  $query = "DELETE FROM users_usersrate
+            WHERE user_rated=? and user_rating=?";
+  $array = array($user_rated,$userID);
+  $result = execQuery($query,$array);
+
+  $query = "INSERT INTO users_usersrate(user_rated,user_rating,rate) VALUES (?,?,?)";
+  $array = array($user_rated,$userID,$rate);
+  if(!($result = execQuery($query,$array))) return false;
+  $query = "UPDATE users SET popularity = (SELECT AVG(rate) FROM users_usersrate WHERE user_rated=?) WHERE id=?";
+  $array = array($user_rated,$user_rated);
+  $result = execQuery($query,$array);
+  return $result;
+}
+
 function editUserPassword($login,$newPassword){
   $options = ['cost' => 12];
   $password_hashed = password_hash($newPassword, PASSWORD_DEFAULT, $options);
