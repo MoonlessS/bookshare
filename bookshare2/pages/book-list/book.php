@@ -9,10 +9,11 @@ function display_book($bookID = null){
     display_error("The Book requested doesn't exist or was deleted!");
     return;
   }
-
+  $book['cover'] = (empty($book['cover'])?$book['cover']:"img/cover.png");
   global $smarty;
   $smarty->assign('book', $book);
   $smarty->assign('bookID', $bookID);
+  $smarty->assign('bookName', "T{$book['title']}");
   $smarty->assign('genreList',getGenreList($bookID));
   $smarty->assign('libraryIcon', userAuthenticationStatus()  ?(getBookAddedToLibraryState($bookID) ?"right" :"remove") :"no-go");
 
@@ -63,8 +64,23 @@ $smarty->assign('genreList',getGenreList()->fetchAll());
 
 function display_new_book_edit($title = null,$url = null,$synopsis = null,$bookGenreList = null){
 
+  if(is_null($bookGenreList)){
+    $result = getGenreList();
+    $num_linhas = $result->rowCount();
+    $i = 0;
+    $bookGenreList = array();
+    while ($i < $num_linhas) {
+      $row = $result->fetch();
+      $genreX = $row['genre'];
+      if(isset($_POST[$genreX])){
+        $bookGenreList[$genreX] = 1;
+      }
+      $i++;
+    }
+  }
+
   global $smarty;
-  $smarty->assign('url', (!empty($url)?$url:"img/cover.png"));
+  $smarty->assign('url', (!empty($url)?$url:""));
   $smarty->assign('synopsis', $synopsis);
   $smarty->assign('title', $title);
   $smarty->assign('bookGenreList',$bookGenreList);
@@ -77,7 +93,7 @@ function display_new_book_edit($title = null,$url = null,$synopsis = null,$bookG
 function display_book_preview(){
 $book = array('title' => $_POST['title'],
               'popularity' => 5,
-              'cover' => $_POST['url'],
+              'cover' => (!empty($_POST['url'])?$_POST['url']:"img/cover.png"),
               'author' => $_SESSION['username'],
               'synopsis' => $_POST['synopsis']);
 
@@ -97,6 +113,7 @@ while ($i < $num_linhas) {
   global $smarty;
   $smarty->assign('book', $book);
   $smarty->assign('bookID', 'book-preview');
+  $smarty->assign('bookName', "T{$book['title']}");
   $smarty->assign('genreList',$bookGenreList);
   $smarty->assign('libraryIcon', "right");
 
