@@ -5,7 +5,7 @@
     </tr>
     {foreach $Search as $user}
     <tr>
-      <th><a href='{$BASE_URL}pages/user-list/?user={$user.name}'>{$user.name}</th>
+      <th><a href='{$BASE_URL}pages/profile/index.php?user={$user.name}'>{$user.name}</th>
     </tr>
     {/foreach}
   </table>

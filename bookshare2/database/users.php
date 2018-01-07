@@ -1,29 +1,33 @@
 <?php include_once("common/database.php"); ?>
 <?php
 function addUser($login,$password,$email,$avatar){
+  $options = ['cost' => 12];
+  $password_hashed = password_hash($password, PASSWORD_DEFAULT, $options);
 
 if ($avatar == null){
   $query = "INSERT INTO users(name,password,email) VALUES(?,?,?);";
-  $array = array($login,md5($password),$email);
+  $array = array($login,$password_hashed,$email);
   $result = execQuery($query,$array);
 }
 else{
   $query = "INSERT INTO users(name,password,email,avatar_url) VALUES(?,?,?,?);";
-  $array = array($login,md5($password),$email,$avatar);
+  $array = array($login,$password_hashed,$email,$avatar);
   $result = execQuery($query,$array);
-}
+  }
 }
 
 function validateUser($login,$password){
 //debug
 // return true;
-  $query = "select * from users where name = ? AND password = ?;" ;
-  $result = execQuery($query, array($login,md5($password)));
-  $num_registos = $result->rowCount();
-  // $num_registos = pg_numrows($result);
+  $query = "select * from users where name = ?" ;
 
-  if ($num_registos > 0){
-    return $result->fetch(PDO::FETCH_ASSOC);
+  $result = execQuery($query, array($login));
+  $result = $result->fetch();
+
+  $pass_result = password_verify($password , $result['password']);
+
+  if ($pass_result != false){
+    return $result;
     //  return pg_fetch_assoc($result);
   }
   else
@@ -63,15 +67,41 @@ function GetUserInfo($user){
   $array = array($user);
   $result = execQuery($query,$array);
 	$num_registos = $result->rowCount();
-  $userInfo = $result->fetch();
 
 	if($num_registos>0){
-    $user_avatar = $userInfo['avatar_url'];
-		$user_popularity = $userInfo['popularity'];
-		$user_description = $userInfo['description'];
-
-		return array($user_avatar,$user_popularity,$user_description);
+		return $result->fetch();
 	}
 }
+
+function GetUserId($user){
+  $query = "SELECT id FROM users  WHERE name=?";
+
+  $array = array($user);
+  $result = execQuery($query,$array);
+
+  return $result->fetch();
+}
+
+function GetUserWrittenBooks($user){
+  $user_id = GetUserId($user)['id'];
+
+  $query = "SELECT book.title as title, book.popularity as popularity
+            FROM book
+            JOIN users ON users.id=book.author
+            WHERE users.id=?";
+
+  $array = array($user_id);
+  $result = execQuery($query,$array);
+
+  return $result->fetchAll();
+}
+
+function 	UpdateInfo($user,$url,$description){
+  $query = "UPDATE users SET avatar_url=?, description=? WHERE name=?";
+
+  $array = array($url,$description,$user);
+  $result = execQuery($query,$array);
+}
+
  ?>
  <?php //var_dump(GetUserInfo('user')); ?>

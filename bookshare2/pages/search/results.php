@@ -89,10 +89,6 @@
       $smarty->display('templates/search/user-results.tpl');
     }
   }
-
-
-
-
 ?>
 
 <?php

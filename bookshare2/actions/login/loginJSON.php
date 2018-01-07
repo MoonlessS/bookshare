@@ -37,7 +37,7 @@ $logout = isset($_POST['logout']) ? $_POST['logout'] : null;
     $message = array('status' => 'ok','html' => $logoutOK);
     echo json_encode($message);
       // echo "\n\n-_______logout___________--session status:".session_status();
-    } else if(($_SESSION['user'] = validateUser("$username", "$password"))){
+    } else if( ($_SESSION['user'] = validateUser("$username", "$password"))){
       $_SESSION['autenticado'] = true;
       $smarty->assign('autenticado', $_SESSION['autenticado']);
       $_SESSION['username'] = $username;
@@ -71,6 +71,7 @@ function loginOk(){
   $smarty->assign('bookID', (is_null($contentID)?false:$contentID));
   $smarty->assign('onLibrary', $pageType=='book'?getBookAddedToLibraryState($contentID):false);
   $smarty->assign('userBooks', $_SESSION['userBooks']);
+  $smarty->assign('username', $_SESSION['username']);
   $smarty->display('templates/login/displayLoggedUser.tpl');
 }
 function loginFailure(){
