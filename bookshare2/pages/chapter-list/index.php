@@ -9,13 +9,13 @@ if(isset($_GET['book'])){
   $bookID = getIDfromTitle($_GET['book']);
 }
 
-if(isset($_POST['new-chapter'])){
-  $content = $_POST['content'];
-  $chapterTitle = $_POST['title'];
-  addNewChapter($bookID,$chapterTitle,$content);
-  //header('Location: ')
-  $newChapter = false;
-}
+// if(isset($_POST['new-chapter'])){
+//   $content = $_POST['content'];
+//   $chapterTitle = $_POST['title'];
+//   addNewChapter($bookID,$chapterTitle,$content);
+//   //header('Location: ')
+//   $newChapter = false;
+// }
 if(!(isset($_POST['new-chapter'])) and isset($_GET['new-chapter'])) {
   $newChapter = true;
   $pageTitle = 'Chapter Addition - ';

@@ -110,10 +110,10 @@
 		return $result;
 	}
 	function getBookTotalChapterNumber($bookID){
-		$query = "SELECT count(*) FROM chapter WHERE book=?";
+		$query = "SELECT count(*) as cnumber FROM chapter WHERE book=?";
 		$array = array($bookID);
 		$result = execQuery($query,$array);
-		return pg_fetch_row($result)[0];
+		return $result->fetch()['cnumber'];
 	}
 	function getChapterInfo($chapterID){
 	  $query = "SELECT *
