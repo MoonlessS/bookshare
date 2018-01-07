@@ -2,6 +2,8 @@
   include_once('../../config/init.php');
   include_once("database/books.php");
 
+  $pageTitle = null;$pageType = null; $contentID= null;
+
 if(isset($_GET['Options'])){
   $pageTitle = 'Book-'.$_GET['Options'];
 }elseif (isset($_GET['edit-book'])) {
@@ -20,8 +22,6 @@ if(isset($_GET['title'])){
   if(!isset($bookID))$bookID = getIDfromTitle($_GET['title']);
 }
 if(isset($bookID)) $contentID = $bookID;
-
-  $pageTitle = null;$pageType = null; $contentID= null;
 
   include_once($BASE_DIR . 'templates/templateTop.php');
   include_once("database/chapter.php");
