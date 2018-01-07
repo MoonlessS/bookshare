@@ -770,6 +770,11 @@ article.main {
   background-color: rgba(149, 179, 215, .6) !important;
 }
 
+.purple2 * td {
+  border-collapse: collapse;
+  background-color: rgba(179, 162, 199, .6) !important;
+}
+
 .black {
   background-color: rgba(15, 15, 15, .5) !important;
 }
