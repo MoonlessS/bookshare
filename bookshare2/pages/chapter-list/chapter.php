@@ -24,6 +24,7 @@ function display_chapter($book,$chapter){
   if ($chapter['number'] + 0 > 1){
     $smarty->assign('previousChapter', getChapterInfoByBookAndNumber($bookID,$chapter['number']-1));
   }
+  $smarty->assign('bookName', "T{$book['title']}");
   $smarty->assign('nextChapter', getChapterInfoByBookAndNumber($bookID,$chapter['number']+1));
   $smarty->assign('chapter', $chapter);
   $smarty->assign('book', $book);

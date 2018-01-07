@@ -80,11 +80,11 @@
 	  $userID = $_SESSION['user']['id'];
 
 	  $query = "DELETE FROM chapter_usersrate
-	            WHERE book = ? and user = ?";
+	            WHERE chapter = ? and users = ?";
 		$array = array($chapterID,$userID);
 		$result = execQuery($query,$array);
 
-	  $query = "INSERT INTO chapter_usersrate(book,users,rate) VALUES (?,?,?)";
+	  $query = "INSERT INTO chapter_usersrate(chapter,users,rate) VALUES (?,?,?)";
 		$array = array($chapterID,$userID,$rate);
 		$result = execQuery($query,$array);
 

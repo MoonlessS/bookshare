@@ -12,7 +12,7 @@
     $user_info = GetUserInfo($user);
     $user_books = GetUserWrittenBooks($user);
 
-    $user_avatar = $user_info['avatar_url'];
+    $user_avatar = (empty($user_info['avatar_url'])?$user_info['avatar_url']:"img/cover.png");
     $user_popularity = $user_info['popularity'];
     $user_description = $user_info['description'];
 
