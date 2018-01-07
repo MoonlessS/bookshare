@@ -24,17 +24,19 @@
       <div class='title black float-right clear'><a href='pages/chapter-list/?book={$book['title']}&number={$chapter['number'] + 1}&chapter={$nextChapter['title']}'>Next Chapter</a></div>
 </div>
           <div class='block'>{$chapter['content']}</div>
-
+<div class="block">
+  <div class='title black float-right' style='position:relative;left:-10%;bottom:1%;display:inline-block;'><p>Rate this chapter:<p>
+  {include 'templates/common/starRating.tpl'}
+  {call starRating nameprop=$chapter['id'] type='chapterid' value=$chapter['popularity']}
+  </div>
+</div>
 <div class="block">
 {if $chapter['number'] > 1}
       <div class='title black float'><a href='pages/chapter-list/?book={$book['title']}&number={$chapter['number'] - 1}&chapter={$previousChapter['title']}'>Previous Chapter</a></div>
 {else}
       <div class='title purple float'><a href='pages/book-list/?title={$book['title']}'>Back to Book Page</a></div>
 {/if}
-<div class='title black' style='position:relative;right:1%;bottom:1%;display:inline-block;'><p>Rate this chapter:<p>
-{include 'templates/common/starRating.tpl'}
-{call starRating nameprop=$chapter['id'] type='chapterid' value=$chapter['popularity']}
-</div>
+
     <div class='title black float-right'><a href='pages/chapter-list/?book={$book['title']}&number={$chapter['number'] + 1}&chapter={$nextChapter['title']}'>Next Chapter</a></div>
 </div>
 </div>

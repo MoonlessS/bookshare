@@ -19,17 +19,13 @@
 	<div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>
 		<img src='{$UserAvatar}' alt='{$BASE_URL}img/avatar.png'>
     <div class='green title' style='margin-right:10px;top:0px;'>New Avatar URL:
-    {literal}
-      <input type='text' id='url' class='invisible' name='url' placeholder='http://img.pt/img.png' pattern='(file|gopher|news|nntp|telnet|https?|ftps?|sftp)://([a-z0-9-]+\.)+[a-z0-9]{0,1000}.*' title='URL format not correct!\nhttp://example.com/image.png'>
-    {/literal}
+      <input type='text' id='url' class='invisible' name='url' placeholder='http://img.pt/img.png' pattern='(file|gopher|news|nntp|telnet|https?|ftps?|sftp)://([a-z0-9-]+\.)+[a-z0-9]{ldelim}0,1000{rdelim}.*' title='URL format not correct!\nhttp://example.com/image.png'>
     </div>
   </div>
 	<div class='float' style='min-width: 70%;width:calc(100% - 250px - 20px)'>
 		<div class='green title' style='margin-right:50%;'>Description</div>
 		<div class='green description' style='min-height:250px;'>
-      {literal}
-      <textarea id='synopsis' class='invisible' name='synopsis' rows='8' cols='80' placeholder='Take advantage of this space to write about yourself, for instance you can write about the type of books you enjoy or even talk about the books you wrote, if you ever wrote some' pattern='[\w]{0,1000}.*' title='The synopsis character count should not exceed 1000!'>
-      {/literal} {$UserDescription}</textarea>
+      <textarea id='synopsis' class='invisible' name='synopsis' rows='8' cols='80' placeholder='Take advantage of this space to write about yourself, for instance you can write about the type of books you enjoy or even talk about the books you wrote, if you ever wrote some' pattern='[\w]{ldelim}0,1000{rdelim}.*' title='The synopsis character count should not exceed 1000!'>{$UserDescription}</textarea>
     </div>
 	</div>
 </div>

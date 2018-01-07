@@ -89,7 +89,7 @@
 		$result = execQuery($query,$array);
 
 		if(!($result)) return false;
-		$query = "UPDATE chapter SET popularity = (SELECT AVG(rate) FROM chapter_usersrate WHERE chapter=?) WHERE chapter=?";
+		$query = "UPDATE chapter SET popularity = (SELECT AVG(rate) FROM chapter_usersrate WHERE chapter=?) WHERE id=?";
 		$array = array($chapterID,$chapterID);
 		$result = execQuery($query,$array);
 
