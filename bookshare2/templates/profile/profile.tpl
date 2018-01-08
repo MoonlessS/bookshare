@@ -20,7 +20,7 @@
 
 <div>
 	<div class='float border' style='width:250px;max-height:350px;margin-left: 20px;'>
-		<img src='{$UserAvatar}' alt='img/avatar.png'>
+		<img style='transform:scale(1.1)' src='{$UserAvatar}' alt='img/avatar.png'>
 	</div>
 	<div class='float' style='min-width: 70%;width:calc(100% - 250px - 20px)'>
 		<div class='green title' style='margin-right:50%;'>Description</div>
@@ -44,7 +44,7 @@
 				{foreach $BookWritten as $book}
 				<tr>
 					<td><a href='{$BASE_URL}pages/book-list/?title={$book.title}'>{$book.title}</a></td>
-					<td>{call starIndicator nameprop=$book.title value=$book.popularity }</td>
+					<td>{call starIndicator nameprop=$book.title|cat:'UP' value=$book.popularity }</td>
 				</tr>
 				{/foreach}
 			</tbody>
