@@ -523,19 +523,19 @@ input.advanced_search[type=image]{
 }
 
 input.order[type=submit]{
-  font-size: 20px;
-  float: left;
-  padding: 12 px;
+  font-size: 16px;
+  font-weight: bold;
+  float: center;
   text-align: center;
+  border: transparent;
   color: white;
-  border: 1px solid white;
-  background-color: rgba(179, 162, 199, .4);
-  background-size: 100%;
+  background-color: transparent;
 }
 
 #order:hover{
 	text-decoration: underline;
 	color:white;
+  background-color: rgba(96, 74, 123, .5);
 }
 
 #submit:hover{
@@ -580,6 +580,7 @@ article.main>.new-book-list {
   background-color: rgba(96, 74, 123, .5);
 }
 
+
 .new-book-list>table>tbody>tr>td {
   border-collapse: collapse;
   background-color: rgba(179, 162, 199, .6);
@@ -588,7 +589,6 @@ article.main>.new-book-list {
 .new-book-list>table>tbody>tr>td:nth-child(2n) {
   background-color: rgba(179, 162, 199, .8);
 }
-
 footer {
   position: relative;
   float: left;
