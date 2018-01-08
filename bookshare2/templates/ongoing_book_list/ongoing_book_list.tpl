@@ -1,31 +1,25 @@
 <article class="main">
 <!-- /////////////////////////////////////////////////////////////////////// -->
   <div id="title" width=40% style="font-size: 20px; font-weight: bold; padding-left: 2px;">Ongoing Books List: </div>
-  <div class="book-title-container" style="padding-left: 2px">
-    <div id="title" width=20%>Order by:</div>
-  </div>
-  <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
-    <input class='order' value='Name' type='submit' name='name' id='order'>
-  </form>
-  <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
-    <input class='order' value='Author' type='submit' name='author' id='order'>
-  </form>
-  <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
-    <input class='order' value='Popularity' type='submit' name='popularity' id='order'>
-  </form>
-<!-- /////////////////////////////////////////////////////////////////////// -->
+
 </article>
 
 
 <article class='new-book-list ' style='width:100%'>
   <table width='100%'>
     <tr>
-      <th> Book </th>
+      <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
+      <th> <input class='order' value='Book' type='submit' name='name' id='order'></th>
+      </form>
       <th> Last Update </th>
       <th> Last Added Chapter </th>
-      <th> Author </th>
+      <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
+      <th>  <input class='order' value='Author' type='submit' name='author' id='order'></th>
+      </form>
       <th> Number of Chapters Released </th>
-      <th> Popularity </th>
+      <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
+      <th> <input class='order' value='Popularity' type='submit' name='popularity' id='order'> </th>
+      </form>
     </tr>
     {include 'templates/common/starRating.tpl'}
     {foreach $Order as $book}

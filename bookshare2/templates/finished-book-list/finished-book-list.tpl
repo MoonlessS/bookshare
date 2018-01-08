@@ -19,12 +19,18 @@
 <article class='new-book-list ' style='width:100%'>
   <table width='100%'>
     <tr>
-      <th> Book </th>
+      <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
+      <th> <input class='order' value='Book' type='submit' name='name' id='order'></th>
+      </form>
       <th> Last Release </th>
-      <th> Author </th>
+      <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
+      <th>  <input class='order' value='Author' type='submit' name='author' id='order'></th>
+      </form>
       <th> Number of Chapter Released </th>
       <th> Status </th>
-      <th> Popularity </th>
+      <form action='{$BASE_URL}actions/ongoing-book-list/order-page.php' method='post'>
+      <th> <input class='order' value='Popularity' type='submit' name='popularity' id='order'> </th>
+      </form>
     </tr>
     {include 'templates/common/starRating.tpl'}
     {foreach $Finished_Order as $book}
