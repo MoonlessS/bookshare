@@ -5,8 +5,8 @@
 		</p>
 		<p class="title block purple border">
 			NOTA2: Credenciais exemplo:
-			<br>  Username: username
-			<br>  Password: password
+			<br>  Username: user10
+			<br>  Password: user10
 			<br>Testado e a funcionar em: Mozilla Firefox com resolução 1280x720
 		</p>
 		<div class="float" >
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="green title"><a href="relatorio/">Link Anexos Relatótio</a></div>
+	<div class="green title"><a href="pages/relatorio/">Link Anexos Relatótio</a></div>
 	<br>
 	<br>
 	<br>
