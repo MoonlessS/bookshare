@@ -6,7 +6,7 @@
    function addNewBook($title = null,$url = null,$synopsis = null,$genreList = null){
      $authorID = $_SESSION['user']['id'];
      $query = "INSERT INTO book(title,author,start_publish_date,cover,status,synopsis) VALUES (?,?,current_date,?,'On-going',?)";
-     $array = array($title,$authorID,(empty($url) ?"DEFAULT" :$url), $synopsis);
+     $array = array($title,$authorID,(empty($url) ?"img/cover.png" :$url), $synopsis);
      $result = execQuery($query,$array);
 
      $array = array();
@@ -55,7 +55,7 @@
                cover = ?,
                synopsis = ?
                WHERE title=? and author=?";
-     $array = array((empty($url) ?"DEFAULT" :$url),$synopsis,$title,$authorID);
+     $array = array((empty($url) ?"img/cover.png" :$url),$synopsis,$title,$authorID);
      $result1 = execQuery($query,$array);
 
 
