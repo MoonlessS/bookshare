@@ -11,6 +11,7 @@
 
 {function starIndicator nameprop=prop value=val }
   {$value = round($value,1)}
+  <span class="float">
 <fieldset title="{$value} stars" class="rating">
     <input title="{$value} stars" type="radio" id="star5" onclick="event.preventDefault();" {if $value >= 4.5} checked="checked" {/if}name=" {$nameprop}" value="5" /><label class = "full" for="star5" ></label>
     <input title="{$value} stars" type="radio" id="star4" onclick="event.preventDefault();" {if $value >= 3.5  and $value < 4.5} checked="checked" {/if} name="{$nameprop}" value="4" /><label class = "full" for="star4" ></label>
@@ -18,4 +19,5 @@
     <input title="{$value} stars" type="radio" id="star2" onclick="event.preventDefault();" {if $value >= 1.5  and $value < 2.5} checked="checked" {/if} name="{$nameprop}" value="2" /><label class = "full" for="star2" ></label>
     <input title="{$value} stars" type="radio" id="star1" onclick="event.preventDefault();" {if $value >= 0.5  and $value < 1.5} checked="checked" {/if} name="{$nameprop}" value="1" /><label class = "full" for="star1"></label>
 </fieldset>
+</span>
 {/function}

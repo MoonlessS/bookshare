@@ -23,8 +23,10 @@
                 <a href='pages/chapter-list/?book={$book_name}&number={$chapter_number}&chapter={$chapter_name}'>
                   {$chapter_number} {$chapter_name}
               </td>
-        			<td> {$author_name} </td>
-        			<td> {$chapter_update} </td>
+        			<td style="text-align: center;" >
+                <a href='pages/profile/index.php?user={$author_name}' >
+                   {$author_name} </a> </td>
+        			<td style="text-align: center;" > {$chapter_update} </td>
       		  </tr>
 {/foreach}
          </tbody>
